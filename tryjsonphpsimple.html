@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Get data as JSON from a PHP file on the server.</h2>
+
+<p id="demo0"></p>
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<p id="demo4"></p>
+<p id="demo5"></p>
+<p id="demo6"></p>
+
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function()
+{
+  if (this.readyState == 4 && this.status == 200)
+  {
+    myObj = JSON.parse(this.responseText);
+	for(var i = 0; i < myObj.length; i++)
+	{
+		document.getElementById("demo" + i).innerHTML = "Building ID: " + myObj[i][0] + "<br>" + "Building: " + myObj[i][1] + "<br>"+ "Pic: " + myObj[i][2] + "<br><br>";
+	}
+  }
+};
+xmlhttp.open("GET", "demo_file.php", true);
+xmlhttp.send();
+</script>
+
+</body>
+</html>
