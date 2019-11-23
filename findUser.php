@@ -4,31 +4,67 @@ require_once ('class/databaseConnection.php');
 $con = new databaseConnection();
 $con->connect();
 
-$con->query("SELECT * FROM user");
-while($item = $res -> fetch_object())
-  $user[] = $item;
+$res_user = $con->query("SELECT * FROM user");
+$users = array();
+while($item = $res_user -> fetch_object())
+{
+    $departmentId = $item->department_id;
+    $res_department = $con->query("SELECT * FROM `department` WHERE `department_id` = '".$departmentId."'");
+    $department = $res_department -> fetch_object();
+    $item->department = $department->department;
+
+    $res_faculty = $con->query("SELECT * FROM `faculty` WHERE `faculty_id` = '".$department->faculty_id."'");
+    $faculty = $res_faculty -> fetch_object();
+    $item->faculty = $faculty->faculty;
+    $users[] = $item;
+}
 
 // get the q parameter from URL
-$search = $_GET["search"];
+if(isset($_GET["search"]))
+    $search = $_GET["search"];
+else
+    $search = "";
+if(isset($_GET["type"]))
+    $type = $_GET["type"];
+else
+    $type = "Name";
 
-$hint = "";
 
+
+$ret = array();
 // lookup all hints from array if $q is different from "" 
 if ($search !== "")
 {
     $search = strtolower($search);
     $len=strlen($search);
-    foreach($a as $name) {
-        if (stristr($q, substr($name, 0, $len)))
+    foreach($users as $user)
+    {
+        if($type == "Name")
         {
-            if ($hint === "")
-                $hint = $name['name'];
-            else
-                $hint .= ", $name";
+            if (stristr($search, substr($user->name, 0, $len)))
+                $ret[] = $user;
+            else if(stristr($search, substr($user->surname, 0, $len)))
+                $ret[] = $user;
         }
+        else if($type == "Faculty")
+        {
+            if (stristr($search, substr($user->faculty, 0, $len)))
+                $ret[] = $user;
+        }
+        else if($type == "Department")
+        {
+            if (stristr($search, substr($user->department, 0, $len)))
+                $ret[] = $user;
+        }
+
     }
+}
+else
+{
+    foreach($users as $user)
+        $ret[] = $user;
 }
 
 // Output "no suggestion" if no hint was found or output correct values 
-echo $hint === "" ? "no suggestion" : $hint;
+echo json_encode($ret);
 ?>
