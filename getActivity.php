@@ -1,25 +1,22 @@
 <?php
 require_once ('class/databaseConnection.php');
-$activity = $_GET['activity'];
+$userId = $_GET['userId'];
 
 $con = new databaseConnection();
 $con->connect();
-//Query user data
-$sql = "SELECT * FROM `user` WHERE `user_id` = '" . $userId."'";
-$query = $con->query($sql);
-$user = $query -> fetch_object();
 
-//Query department data
-$sql = "SELECT * FROM `department` WHERE `department_id` = '" . $user->department_id. "'";
+//Query activity
+$sql = "SELECT * FROM `event` WHERE `advisor` = '" . $userId."'";
 $query = $con->query($sql);
-$department = $query -> fetch_object();
-$user->department = $department->department;
+$activity = $query -> fetch_object();
 
-//Query faculty data
-$sql = "SELECT * FROM `faculty` WHERE `faculty_id` = '" . $department->faculty_id."'";
+$sql = "SELECT * FROM `user` WHERE `user_id` = '" . $activity->student."'";
 $query = $con->query($sql);
-$faculty = $query -> fetch_object();
-$user->faculty = $faculty->faculty;
+$president = $query -> fetch_object();
 
-echo json_encode($user);	
+$activity->president_name = $president->name;
+$activity->president_surname = $president->surname;
+
+
+echo json_encode($activity);	
 ?>

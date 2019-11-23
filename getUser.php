@@ -21,5 +21,8 @@ $query = $con->query($sql);
 $faculty = $query -> fetch_object();
 $user->faculty = $faculty->faculty;
 
+if($user->picture == '')
+	$user->picture = 'null-pic.png';
+
 echo json_encode($user);	
 ?>
