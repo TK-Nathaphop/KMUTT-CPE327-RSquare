@@ -24,7 +24,7 @@
 	      	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 	    		<a class="navbar-brand" href="#">
 	        		<img src="images/logo/Artboard 1logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-	        		<span class="vdark-blue">R-SQUARE</span>
+	        		<span class="vdark-blue"><b>R-SQUARE</b></span>
 	    		</a>
 	        	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	        		<li class="nav-item active">
@@ -48,38 +48,66 @@
                 <div class="d-flex justify-content-center"><h1 class="vdark-blue">Edit Building</h1></div>
             </div>
         </div>
-        <form>
+        <form action="edit_building.php" method="post" id="myform" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <div class="form-group">
-                        <label for="Building-Name">Building Name</label>
+                        <label for="Building-Name"><span class="vdark-blue"><b>Building Name</b></span></label>
                         <input type="text" class="form-control" id="Building-Name" placeholder="Witsawa Wattana Building">
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
                 	<div class="form-group">
 	                    <input type="file" id="img" name="img[]" class="file" accept="image/*">
-	                    <label for="Building-Image">Building Image</label>
+	                    <label for="Building-Image"><span class="vdark-blue"><b>Building Image</b></span></label>
 	        			<div class="input-group">
 	          				<input type="text" class="form-control" disabled placeholder="Upload File" id="file">
 	          				<div class="input-group-append">
 	            				<button type="button" id="btn" class="browse btn btn-primary">Browse...</button>
 	          				</div>
 	        			</div>
-	        			<div class="ml-2 col-sm-6">
+	        			<!-- <div class="ml-2 col-sm-6">
 	    					<img src="https://placehold.it/80x80" id="preview" width="200" height="200" class="img-thumnail-tong" style="border-top-width: 10px;">
-	    				</div>
+	    				</div> -->
 	    			</div>
                 </div>  
             </div>
-            <div class="row">
-            	<div class="shadow-sm p-3 mb-5 bg-white rounded col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+            <div class="row shadow p-3 mb-3 bg-white rounded">
+            	<div class=" col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            		<div class="form-group">
+                        <label for="Floor"><span class="vdark-blue"><b>Floor</b></span></label>
+                        <input type="text" class="form-control" id="Floor" placeholder="Witsawa Wattana Building">
+                    </div>
+                    <div class="form-group">
+	                    <input type="file" id="img" name="img[]" class="file" accept="image/*">
+	                    <label for="Building-Image"><span class="vdark-blue"><b>Building Image</b></span></label>
+	        			<div class="input-group">
+	          				<input type="text" class="form-control" disabled placeholder="Upload File" id="file">
+	          				<div class="input-group-append">
+	            				<button type="button" id="btn" class="browse btn btn-primary">Browse...</button>
+	          				</div>
+	        			</div>
+	        			<!-- <div class="ml-2 col-sm-6">
+	    					<img src="https://placehold.it/80x80" id="preview" width="200" height="200" class="img-thumnail-tong" style="border-top-width: 10px;">
+	    				</div> -->
+	    			</div>
+            	</div>
+            	<div class=" col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+            		<div class="form-group">
+                        <label for="Place"><span class="vdark-blue"><b>Place</b></span></label>
+                        
+                        <a href="#"><span>Home</span></a>
+                    </div>
+            	</div>
+            </div>
+            <!-- <div class="row">
+            	<div class="shadow p-3 mb-3 bg-white rounded col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             		<div class="form-group">
                         <label for="Building-Name">Building Name</label>
                         <input type="text" class="form-control" id="Building-Name" placeholder="Witsawa Wattana Building">
                     </div>
             	</div>
-            </div>
+            </div> -->
         </form>
     </div>
 </body>
