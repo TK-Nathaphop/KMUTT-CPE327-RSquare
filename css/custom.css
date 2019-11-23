@@ -1,0 +1,18 @@
+.vdark-blue{
+    color: #113F67;
+}
+
+.dark-blue{
+    color: #226597;
+}
+.light-blue{
+    color: #87C0CD;
+}
+.file {
+    visibility: hidden;
+    /* visibility: visible; */
+    position: absolute;
+}
+/* h3 {
+
+} */
