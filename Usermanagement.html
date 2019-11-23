@@ -93,21 +93,13 @@
             <!--Column of Detail User1-->
             <div class="col-5">
               <div class="row">
-                <!--Name of User-->
                 <span id="name"></span>
               </div>
             </div>
             <!--Column of Detail User2-->
             <div class="col-4">
-              <!--Role of User-->
               <div class="row">
-                <label for="role">Role: Student </label>
-              </div>
-              <!--Department of User-->
-              <div class="row">
-                <label for="department"
-                  >Department: Computer Engineering
-                </label>
+                <span id="col2"></span>
               </div>
             </div>
           </div>
@@ -123,7 +115,7 @@
                 var container = document.getElementById("name");
                 var div = document.createElement("div");
                   div.innerHTML =
-                    "Name: " +
+                     "Name: " +
                     myObj['name'] + ' ' + myObj['surname'] +
                     "<br>" +
                     "Faculty: " +
@@ -133,6 +125,18 @@
                     myObj['position'] +
                     "<br><br>";
                   container.appendChild(div)
+                  
+                var container = document.getElementById("col2");
+                var div2 = document.createElement("div");
+                  div2.innerHTML =
+                     "Role: " +
+                    myObj['role'] +
+                    "<br>" +
+                    "Department: " +
+                    myObj['department'] +
+                    "<br>" 
+                  container.appendChild(div2)
+
               }
             };
             xmlhttp.open("GET", "getUser.php?userId=" + id , true);
@@ -184,7 +188,7 @@
               <thead>
                 <tr>
                   <th scope="col">Activity Project</th>
-                  <th scope="col">Activity President</th>
+                  <th scope="col"> President</th>
                 </tr>
               </thead>
               <tbody>
