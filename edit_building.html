@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="container">
-    	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 0px; padding-right: 0px;">
     		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     			<span class="navbar-toggler-icon"></span>
     		</button>
@@ -37,10 +37,10 @@
 	        			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 	        		</li>
 	        	</ul>
-        		<form class="form-inline my-2 my-lg-0">
+        		<!-- <form class="form-inline my-2 my-lg-0">
         			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        		</form>
+        		</form> -->
       		</div>
     	</nav>
         <div class="row">
@@ -57,11 +57,28 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
-                    <div class="form-group">
-                        <label for="Building-Image">Building Image</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
+                	<div class="form-group">
+	                    <input type="file" id="img" name="img[]" class="file" accept="image/*">
+	                    <label for="Building-Image">Building Image</label>
+	        			<div class="input-group">
+	          				<input type="text" class="form-control" disabled placeholder="Upload File" id="file">
+	          				<div class="input-group-append">
+	            				<button type="button" id="btn" class="browse btn btn-primary">Browse...</button>
+	          				</div>
+	        			</div>
+	        			<div class="ml-2 col-sm-6">
+	    					<img src="https://placehold.it/80x80" id="preview" width="200" height="200" class="img-thumnail-tong" style="border-top-width: 10px;">
+	    				</div>
+	    			</div>
                 </div>  
+            </div>
+            <div class="row">
+            	<div class="shadow-sm p-3 mb-5 bg-white rounded col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+            		<div class="form-group">
+                        <label for="Building-Name">Building Name</label>
+                        <input type="text" class="form-control" id="Building-Name" placeholder="Witsawa Wattana Building">
+                    </div>
+            	</div>
             </div>
         </form>
     </div>
