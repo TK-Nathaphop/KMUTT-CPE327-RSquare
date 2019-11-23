@@ -59,11 +59,13 @@
                         {
                             if(data[i]['building']!=null)
                             {   var div = document.createElement("div");
-                                div.innerHTML ="<div class=\" col-2\"> <div class =\"card border border-white\"  style = \" width: 12rem;\"> <img src=\"picture/building/" +data[i]['picture']+  "\" class =\"card-img-top\"> <div class= \"card-body\"> <p style=\"font-size:11px\"class ='card-text'> <b> "+ data[i]['building']+" </b></p> </div></div> </div>";
-                            }
-                            container.appendChild(div);
+                                div.innerHTML ="<div class=\" col-2\"> <div class =\"card border border-white text-center\"  style = \" width: 12rem;\"> <img src=\"picture/building/" +data[i]['picture']+  "\" class =\"card-img-top\"> <div class= \"card-body\"> <p style=\"font-size:11px\"class ='card-text'> <b> "+ data[i]['building']+" </b></p> </div></div> </div>";
+                                container.appendChild(div);
+                            } 
                         }
-
+                        var div = document.createElement("div");
+                        div.innerHTML = "<div class=\" col-2\"> <div class =\"card border border-white text-center\" style = \" width: 12rem;\"> <a href=\"https://www.google.co.th\">  <img src=\"picture/building/addbuilding.png\" class = \"card-img\"> </a> </div> </div>";
+                        container.appendChild(div);
                     // }
                 })
             </script>
