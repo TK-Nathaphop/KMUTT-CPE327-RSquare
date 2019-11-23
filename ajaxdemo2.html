@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Get data as JSON from a PHP file on the server.</h2>
+
+<div id="demo"></div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function()
+{
+    if (this.readyState == 4 && this.status == 200)
+    {
+        var myObj = JSON.parse(this.responseText);
+        var container = document.getElementById("demo");
+	    for(var i = 0; i < myObj.length; i++)
+	    {
+   		   var div = document.createElement("div");
+    	   div.innerHTML ="Pic: <img src=\"picture/building/"  + myObj[i]['picture'] + "\" >" + "<br><br>";
+    	   container.appendChild(div);
+	    }
+    }
+};
+xmlhttp.open("GET", "getAllBuilding.php", true);
+xmlhttp.send();
+</script>
+
+</body>
+</html>
