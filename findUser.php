@@ -6,18 +6,18 @@ $con->connect();
 
 $con->query("SELECT * FROM user");
 while($item = $res -> fetch_object())
-  $a[] = $item;
+  $user[] = $item;
 
 // get the q parameter from URL
-$q = $_GET["q"];
+$search = $_GET["search"];
 
 $hint = "";
 
 // lookup all hints from array if $q is different from "" 
-if ($q !== "")
+if ($search !== "")
 {
-    $q = strtolower($q);
-    $len=strlen($q);
+    $search = strtolower($search);
+    $len=strlen($search);
     foreach($a as $name) {
         if (stristr($q, substr($name, 0, $len)))
         {
