@@ -23,8 +23,49 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <div class ="row">
+                    <div class = "card-deck"  id ="queryBuilding"> </div>
+            </div>
             <script>
-                
+                // var xmlhttp = new XMLHttpRequest();
+                // xmlhttp.onreadystatechange = function()
+                // {
+                //     if(this.readyState == 4 && this.status == 200)
+                //     {
+                //         var buildingObj = JSON.parse(this.responseText);
+                //         var container = document.getElementById("queryBuilding");
+                //         for(var i=0; i<buildingObj.length;i++)
+                //         {
+
+                //             var div = document.createElement("div");
+                //             div.innerHTML ="<div class=\" col-2\"> <div class =\"card\"  style = \" width: 12rem;\"> <img src=\"picture/building/" +buildingObj[i]['picture']+  "\" class =\"card-img-top\"> <div class= \"card-body\"> <p class ='card-text'>  "+ buildingObj[i]['building']+" </p> </div></div> </div>";
+                            
+                //             container.appendChild(div);
+                //         }
+
+                //     }
+                // }
+                // xmlhttp.open("GET", "getAllBuilding.php", true);
+                // xmlhttp.send();
+                    /* Korbboon's god code*/
+                fetch('getAllBuilding.php', {
+                    method: 'GET'
+                }).then(async res => {
+                    const data = await res.json()
+                    console.log('data json', data)
+                    var container = document.getElementById("queryBuilding");
+                        for(var i=0; i<data.length;i++)
+                        {
+                            if(data[i]['building']!=null)
+                            {   var div = document.createElement("div");
+                                div.innerHTML ="<div class=\" col-2\"> <div class =\"card border border-white\"  style = \" width: 12rem;\"> <img src=\"picture/building/" +data[i]['picture']+  "\" class =\"card-img-top\"> <div class= \"card-body\"> <p style=\"font-size:11px\"class ='card-text'> <b> "+ data[i]['building']+" </b></p> </div></div> </div>";
+                            }
+                            container.appendChild(div);
+                        }
+
+                    // }
+                })
             </script>
         </div>
         <!-- JQuery for boostrap  -->
