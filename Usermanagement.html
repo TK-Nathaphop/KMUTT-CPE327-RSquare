@@ -1,142 +1,170 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!--Bootstrap-->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <!--CSS-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <body>
-        <nav class = "navbar navbar-default">
-            <div class = "container-fluid">
-                <div class = "navbar-header">
-                    <a class = "navbar-brand" href="#">R-Square</a>
-                </div>
-            </div>
-        </nav>
-        <!--Head of the Card-->
-        <div class = "container">
-            <div class = "container-content">
-                <h2 class = "font-weight-bold text-lg-center text-primary">Edit User</h2>
-                    <div class = "card-content text-center">
-                        <!--------------------------------First Row------------------------------>
-                        <div class = "row">
-                            <div class = "col-3">
-                                <h2>Picture of User</h2>
-                            </div>
-                            <!--Detail of User-->
-                            <!--Column of Detail User1-->
-                            <div class = "col-5">
-                                <div class = "row">
-                                    <!--Name of User-->
-                                    <label for="name">Name: Chawakorn Boonrin </label>
-                                </div>
-                                <div class = "row">
-                                    <!--Faculty of User-->
-                                    <label for="faculty">Faculty: Engineering </label>
-                                </div>
-                                <div class = "row">
-                                    <!--Postion of User-->
-                                    <label for="position">Position : Chairperson of Computer Engineering 
-                                        <a href="#" class="text-decoration-none">Edit</a>
-                                    </label>
-                                </div>
-                            </div> 
-                            <!--Column of Detail User2-->
-                            <div class = "col-4">
-                                <!--Role of User-->
-                                <div class = "row">
-                                    <label for="role">Role: Student </label>
-                                </div>
-                                <!--Department of User-->
-                                <div class = "row">
-                                    <label for="department">Department: Computer Engineering </label>
-                                </div>
-                            </div>
-                        </div>
-                        <!--------------------------------Second Row------------------------------>
-                        <div class = "row">
-                            <h4 class = "font-weight-bold text-lg-left text-primary" >Responsible Activity Project</h4>
-                            <!--Table of Activity infomation-->
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Activity Project</th>
-                                    <th scope="col">Activity President</th>
-                                    </tr>
-                                  </thead>
-                                 <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                    </tr>
-                                 </tbody>
-                            </table>
-                            <div class = "container text-right">
-                            <button type="button" class="btn btn-primary" >Add Activity</button>
-                            </div>
-                        </div>
-                        <!--------------------------------Third Row------------------------------>
-                        <div class = "row">
-                            <h4 class = "font-weight-bold text-lg-left text-primary" >Responsible  Organization</h4>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Activity Project</th>
-                                    <th scope="col">Activity President</th>
-                                    </tr>
-                                  </thead>
-                                 <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                    </tr>
-                                 </tbody>
-                            </table>
-                            <div class = "container text-right">
-                            <button type="button" class="btn btn-primary" onclick = "myfunction()">Add Activity</button>
-                            </div>
-                        </div>
-                        <!--------------------------------fourth Row------------------------------>
-                        <div class = "row">
-                            <h4 class = "font-weight-bold text-lg-left text-primary" >Responsible Place</h4>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Activity Project</th>
-                                    <th scope="col">Activity President</th>
-                                    </tr>
-                                  </thead>
-                                 <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                    </tr>
-                                 </tbody>
-                            </table>
-                            <div class = "container text-right">
-                            <button type="button" class="btn btn-primary" onclick = "myfunction()">Add Activity</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+<head>
+    <!--Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class = "navbar navbar-default">
+        <div class = "container-fluid">
+            <div class = "navbar-header">
+                <a class = "navbar-brand" href="#">R-Square</a>
             </div>
         </div>
-
-    </body>
+    </nav>
+    <!-- /Head of the Card -->
+    <div class = "container">
+        <div class = "container-content">
+            <h2 class = "font-weight-bold text-lg-center text-primary">Edit User</h2>
+            <div class = "card-content text-center">
+                <!--------------------------------First Row------------------------------>
+                <div class = "row">
+                    <div class = "col-3">
+                        <h2>Picture of User</h2>
+                    </div>
+                    <!--Detail of User-->
+                    <!--Column of Detail User1-->
+                    <div class = "col-5">
+                        <div class = "row">
+                            <!--Name of User-->
+                            <label for="name">Name: Chawakorn Boonrin </label>
+                        </div>
+                        <div class = "row">
+                            <!--Faculty of User-->
+                            <label for="faculty">Faculty: Engineering </label>
+                        </div>
+                        <div class = "row">
+                            <!--Postion of User-->
+                            <label for="position">Position : Chairperson of Computer Engineering 
+                                 <a href="#" class="text-decoration-none">Edit</a>
+                            </label>
+                        </div>
+                    </div> 
+                    <!--Column of Detail User2-->
+                    <div class = "col-4">
+                        <!--Role of User-->
+                        <div class = "row">
+                            <label for="role">Role: Student </label>
+                        </div>
+                        <!--Department of User-->
+                        <div class = "row">
+                            <label for="department">Department: Computer Engineering </label>
+                        </div>
+                    </div>
+                </div>
+                <!--------------------------------Second Row------------------------------>
+                <div class = "row">
+                    <h4 class = "font-weight-bold text-lg-left text-primary" >Responsible Activity Project</h4>
+                    <!--Table of Activity infomation-->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Activity Project</th>
+                            <th scope="col">Activity President</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                            </tr>
+                            <tr>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                            </tr>
+                            </tbody>
+                    </table>
+                    <!-- Popup Add-Activity Button -->
+                    <div class = "container text-right">
+                        <button type="button" class="btn btn-primary" data-toggle = "modal" data-target = "#addActivity"  data-whatever="@mdo" >Add Activity</button>
+                        <div class="modal fade" id="addActivity" tabindex="-1" role="dialog" aria-labelledby="addActivityLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <!-- Pop-up Content -->
+                                <div class="modal-content">
+                                    <!-- Headder of pop-up -->
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-lg-center text-primary" id="exampleModalLabel">New message</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <!-- Body of pop-up -->
+                                    <div class="modal-body">
+                                        <h6 class = "font-weight-bold text-primary text-left">Search</h6>
+                                        <div class="form-group mb-4">
+                                            <input id="exampleFormControlInput1" type="email" placeholder="Searching" class="form-control form-control-underlined">
+                                        </div>
+                                        <h6 class = "font-weight-bold text-primary text-left">Activity Name</h6>
+                                        <h6 class = "font-weight-bold text-primary text-left">Activity President</h6>
+                                    </div>
+                                    <!-- Footer of pop-up -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </div>
+                                </div>
+                                <!-- End of Content-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Popup Add Activity -->
+                </div>
+                <!--------------------------------Third Row------------------------------>
+                <div class = "row">
+                    <h4 class = "font-weight-bold text-lg-left text-primary" >Responsible  Organization</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Activity Project</th>
+                            <th scope="col">Activity President</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            </tr>
+                            <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            </tr>
+                            </tbody>
+                    </table>
+                    <div class = "container text-right">
+                        <button type="button" class="btn btn-primary" onclick = "myfunction()">Add Activity</button>
+                     </div>
+                </div>
+                <!--------------------------------fourth Row------------------------------>
+                <div class = "row">
+                    <h4 class = "font-weight-bold text-lg-left text-primary" >Responsible Place</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Activity Project</th>
+                            <th scope="col">Activity President</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            </tr>
+                            <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class = "container text-right">
+                         <button type="button" class="btn btn-primary" onclick = "myfunction()">Add Activity</button>
+                    </div>
+                </div>
+                <!-- /Card of Connent -->
+            </div>
+        </div>
+    </div>
+</body>
 </html>
