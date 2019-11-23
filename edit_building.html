@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/custom.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-	<link rel="icon" href="images/logo/Artboard 1logo.png">
+	<link rel="icon" href="picture/logo/Artboard 1logo.png">
 	<script src="js/jquery-3.4.1.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -58,12 +58,12 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
                 	<div class="form-group">
-	                    <input type="file" id="img" name="img[]" class="file" accept="image/*">
+	                    <input type="file" id="img-building" name="img[]" class="file" accept="image/*">
 	                    <label for="Building-Image"><span class="vdark-blue"><b>Building Image</b></span></label>
 	        			<div class="input-group">
-	          				<input type="text" class="form-control" disabled placeholder="Upload File" id="file">
+	          				<input type="text" class="form-control" disabled placeholder="Upload File" id="file-building">
 	          				<div class="input-group-append">
-	            				<button type="button" id="btn" class="browse btn btn-primary">Browse...</button>
+	            				<button type="button" id="btn" class="browse-building btn btn-primary">Browse...</button>
 	          				</div>
 	        			</div>
 	        			<!-- <div class="ml-2 col-sm-6">
@@ -79,12 +79,12 @@
                         <input type="text" class="form-control" id="Floor" placeholder="Witsawa Wattana Building">
                     </div>
                     <div class="form-group">
-	                    <input type="file" id="img" name="img[]" class="file" accept="image/*">
-	                    <label for="Building-Image"><span class="vdark-blue"><b>Building Image</b></span></label>
+	                    <input type="file" id="img-blueprint" name="img[]" class="file" accept="image/*">
+	                    <label for="Blueprint"><span class="vdark-blue"><b>Blueprint</b></span></label>
 	        			<div class="input-group">
-	          				<input type="text" class="form-control" disabled placeholder="Upload File" id="file">
+	          				<input type="text" class="form-control" disabled placeholder="Upload File" id="file-blueprint">
 	          				<div class="input-group-append">
-	            				<button type="button" id="btn" class="browse btn btn-primary">Browse...</button>
+	            				<button type="button" id="btn" class="browse-blueprint btn btn-primary">Browse...</button>
 	          				</div>
 	        			</div>
 	        			<!-- <div class="ml-2 col-sm-6">
@@ -93,11 +93,67 @@
 	    			</div>
             	</div>
             	<div class=" col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-            		<div class="form-group">
-                        <label for="Place"><span class="vdark-blue"><b>Place</b></span></label>
-                        
-                        <a href="#"><span>Home</span></a>
-                    </div>
+            		<label for="Place"><span class="vdark-blue"><b>Place</b></span></label>   
+                        <h5>Dummy Place</h5>
+                        <a href="#"><span>View details</span></a>
+                        <!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+						  Launch demo modal
+						</button>
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+						    	<div class="modal-content">
+						      		<div class="modal-header">
+						        		<h5 class="modal-title vdark-blue" id="exampleModalLongTitle">Edit Place</h5>
+						        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						        			<span aria-hidden="true">&times;</span>
+						        		</button>
+								    </div>
+									<div class="modal-body">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+													<div class="form-check">
+			  											<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+														<label class="form-check-label" for="defaultCheck1">
+															Default checkbox
+														</label>
+													</div>
+													<div class="form-check">
+			  											<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+														<label class="form-check-label" for="defaultCheck1">
+															Default checkbox
+														</label>
+													</div>
+												</div>	
+											</div>
+											<div class="row">
+												<div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+													<div class="form-check">
+			  											<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+														<label class="form-check-label" for="defaultCheck1">
+															Default checkbox
+														</label>
+													</div>
+													<div class="form-check">
+			  											<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+														<label class="form-check-label" for="defaultCheck1">
+															Default checkbox
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								    <div class="modal-footer">
+						        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        		<button type="button" class="btn btn-primary">Save changes</button>
+						    		</div>
+								</div>
+							</div>
+						</div>
             	</div>
             </div>
             <!-- <div class="row">
