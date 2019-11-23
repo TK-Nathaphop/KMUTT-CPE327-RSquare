@@ -60,17 +60,25 @@
                 	<div class="form-group">
 	                    <input type="file" id="img" name="img[]" class="file" accept="image/*">
 	                    <label for="Building-Image">Building Image</label>
-	        			<div class="input-group my-3">
+	        			<div class="input-group">
 	          				<input type="text" class="form-control" disabled placeholder="Upload File" id="file">
 	          				<div class="input-group-append">
-	            					<button type="button" id="btn" class="browse btn btn-primary">Browse...</button>
+	            				<button type="button" id="btn" class="browse btn btn-primary">Browse...</button>
 	          				</div>
 	        			</div>
 	        			<div class="ml-2 col-sm-6">
-	    					<img src="https://placehold.it/80x80" id="preview" width="200" height="200" class="img-thumbnail">
+	    					<img src="https://placehold.it/80x80" id="preview" width="200" height="200" class="img-thumnail-tong" style="border-top-width: 10px;">
 	    				</div>
 	    			</div>
                 </div>  
+            </div>
+            <div class="row">
+            	<div class="shadow-sm p-3 mb-5 bg-white rounded col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+            		<div class="form-group">
+                        <label for="Building-Name">Building Name</label>
+                        <input type="text" class="form-control" id="Building-Name" placeholder="Witsawa Wattana Building">
+                    </div>
+            	</div>
             </div>
         </form>
     </div>
