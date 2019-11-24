@@ -27,7 +27,7 @@ else
 if(isset($_GET["type"]))
     $type = $_GET["type"];
 else
-    $type = "Name";
+    $type = "name";
 
 
 
@@ -39,19 +39,19 @@ if ($search !== "")
     $len=strlen($search);
     foreach($users as $user)
     {
-        if($type == "Name")
+        if($type == "name")
         {
             if (stristr($search, substr($user->name, 0, $len)))
                 $ret[] = $user;
             else if(stristr($search, substr($user->surname, 0, $len)))
                 $ret[] = $user;
         }
-        else if($type == "Faculty")
+        else if($type == "faculty")
         {
             if (stristr($search, substr($user->faculty, 0, $len)))
                 $ret[] = $user;
         }
-        else if($type == "Department")
+        else if($type == "department")
         {
             if (stristr($search, substr($user->department, 0, $len)))
                 $ret[] = $user;
