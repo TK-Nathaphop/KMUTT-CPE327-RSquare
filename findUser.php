@@ -19,7 +19,7 @@ while($item = $res_user -> fetch_object())
     $users[] = $item;
 }
 
-// get the q parameter from URL
+//Get search from interface
 if(isset($_GET["search"]))
     $search = $_GET["search"];
 else
