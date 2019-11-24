@@ -21,21 +21,21 @@ $(document).on("click", ".browse-building", function() {
   });
 });
 
-// $(document).on("click", ".browse-blueprint", function() {
-//   $('#img-blueprint').click();
-//   $('#img-blueprint').change(function(e) {
-//     var fileName = e.target.files[0].name;
-//     $("#file-blueprint").val(fileName);
+$(document).on("click", ".browse-blueprint", function() {
+  $('#img-blueprint').click();
+  $('#img-blueprint').change(function(e) {
+    var fileName = e.target.files[0].name;
+    $("#file-blueprint").val(fileName);
 
-//     var reader = new FileReader();
-//     reader.onload = function(){
-//       var dataURL = reader.result;
-//       var output = document.getElementById('preview');
-//       output.src = dataURL;
-//     };
-//     reader.readAsDataURL(e.target.files[0]);
-//   });
-// });
+    // var reader = new FileReader();
+    // reader.onload = function(){
+    //   var dataURL = reader.result;
+    //   var output = document.getElementById('preview');
+    //   output.src = dataURL;
+    // };
+    // reader.readAsDataURL(e.target.files[0]);
+  });
+});
 
 $(document).on("click", "#add-floor", function() {
   count = count +1;
