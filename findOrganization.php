@@ -4,8 +4,8 @@ require_once ('class/databaseConnection.php');
 $con = new databaseConnection();
 $con->connect();
 
-$res_act = $con->query("SELECT * FROM `event`");
-$acts = array();
+$res_act = $con->query("SELECT * FROM `organization`");
+$organizations = array();
 while($item = $res_act -> fetch_object())
 {
     // $advisorId = $item->advisor;
@@ -19,7 +19,7 @@ while($item = $res_act -> fetch_object())
     $student = $res_student -> fetch_object();
     $item->student_name = $student->name;
     $item->student_surname = $student->surname;
-    $acts[] = $item;
+    $organizations[] = $item;
 }
 
 //Get search from interface
@@ -34,16 +34,16 @@ if ($search !== "")
 {
     $search = strtolower($search);
     $len=strlen($search);
-    foreach($acts as $act)
+    foreach($organizations as $organization)
     {
-        if (stristr($search, substr($act->event, 0, $len)))
-            $ret[] = $act;
+        if (stristr($search, substr($organization->organization, 0, $len)))
+            $ret[] = $organization;
     }
 }
 else
 {
-    foreach($acts as $act)
-        $ret[] = $act;
+    foreach($organizations as $organization)
+        $ret[] = $organization;
 }
 
 // Output "no suggestion" if no hint was found or output correct values 
