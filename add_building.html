@@ -16,57 +16,71 @@
 	<title>R-SQUARE</title>
 </head>
 <body>
-    <div class="container">
+		<div id="nav-placeholder"> </div>
+        <script>
+            $.get("navigationbar.html", function(data){
+                $("#nav-placeholder").replaceWith(data);
+            });
+        </script>
+	<div class="container">
 		<!-- <form action="edit_building.php" method="post" enctype="multipart/form-data" id="add-building-form"> -->
 		<form id="add-building-form">
-	    	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 0px; padding-right: 0px;">
-	    		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-	    			<span class="navbar-toggler-icon"></span>
-	    		</button>
-		      	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-		    		<a class="navbar-brand" href="#">
-		        		<img src="picture/logo/Artboard 1logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-		        		<span class="vdark-blue"><b>R-SQUARE</b></span>
-		    		</a>
-		        	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-		        		<li class="nav-item active">
-		        			<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 0px; padding-right: 0px;">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+					aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+					<a class="navbar-brand" href="#">
+						<img src="picture/logo/Artboard 1logo.png" width="30" height="30"
+							class="d-inline-block align-top" alt="" />
+						<span class="vdark-blue"><b>R-SQUARE</b></span>
+					</a>
+					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item">
-		        			<a class="nav-link" href="#">Link</a>
-		        		</li>
-		        		<li class="nav-item">
-		        			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-		        		</li>
-		        	</ul>
-	      		</div>
-	    	</nav>
-	        <div class="row">
-	            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-	                <div class="d-flex justify-content-center"><h1 class="vdark-blue"><b>Add Building</b></h1></div>
-	            </div>
-	        </div>
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                    <div class="form-group">
-                        <label for="Building-Name"><span class="vdark-blue"><b>Building Name</b></span></label>
-                        <input type="text" class="form-control" id="Building-Name" placeholder="Witsawa Wattana Building">
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
-                	<div class="form-group">
-	                    <input type="file" id="img-building" name="img[]" class="file" accept="image/*">
-	                    <label for="Building-Image"><span class="vdark-blue"><b>Building Image</b></span></label>
-	        			<div class="input-group">
-	          				<input type="text" class="form-control" disabled placeholder="Upload File" id="file-building">
-	          				<div class="input-group-append">
-	            				<button type="button" id="btn" class="browse-building btn btn-primary">Browse...</button>
-	          				</div>
-	        			</div>
-	    			</div>
-                </div>  
-            </div>
-            <div class="row p-3">
+							<a class="nav-link" href="#">Link</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+						</li>
+					</ul>
+				</div>
+			</nav> -->
+			<div class="row">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+					<div class="d-flex justify-content-center">
+						<h1 class="vdark-blue"><b>Add Building</b></h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+					<div class="form-group">
+						<label for="Building-Name"><span class="vdark-blue"><b>Building Name</b></span></label>
+						<input type="text" class="form-control" id="Building_Name" name="Building_Name"
+							placeholder="Witsawa Wattana Building" />
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+					<div class="form-group">
+						<input type="file" id="img-building" name="img[]" class="file" accept="image/*" />
+						<label for="Building-Image"><span class="vdark-blue"><b>Building Image</b></span></label>
+						<div class="input-group">
+							<input type="text" class="form-control" disabled placeholder="Upload File"
+								id="file-building" />
+							<div class="input-group-append">
+								<button type="button" id="btn" class="browse-building btn btn-primary">
+									Browse...
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row p-3">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="floor-template">
 					<div class="row nothing">
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
