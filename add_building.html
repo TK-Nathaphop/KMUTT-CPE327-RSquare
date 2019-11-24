@@ -253,7 +253,7 @@
 					</button>
 				</div>
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-					<button onclick="onSave()" type="submit" class="btn btn-primary" data-toggle="modal" id="btn-save"
+					<button onclick="sendAll()" type="submit" class="btn btn-primary" data-toggle="modal" id="btn-save"
 						style="width:100%">
 						Save
 					</button>
@@ -274,9 +274,9 @@
 		console.log("img send");
 		const formData = new FormData();
 		const img1 = document.getElementById("img-building").files[0];
-		const img2 = document.getElementById("image2").files[0];
-		formData.append("image", img1);
-		formData.append("image2", img2);
+		const img2 = document.getElementById("img-blueprint").files[0];
+		formData.append("img-building", img1);
+		formData.append("img-blueprint", img2);
 
 		fetch("uploadfile.php", {
 			method: "POST",
@@ -289,13 +289,13 @@
 	}
 
 	function sendJSON() {
-		const name = document.getElementById("name").value;
+		const Building_Name = document.getElementById("Building_Name").value;
 
-		console.log("name", name);
+		console.log("Building_Name", Building_Name);
 		fetch("data.php", {
 			method: "POST",
 			body: JSON.stringify({
-				name: name
+				Building_Name: Building_Name
 
 			})
 		}).then(async res => {
