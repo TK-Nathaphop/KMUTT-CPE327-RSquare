@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- using bootstrap 4.3.1 -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<link rel="icon" href="picture/logo/Artboard 1logo.png">
+	<script src="js/jquery-3.4.1.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/custom.js"></script>
+	<title>R-SQUARE</title>
+</head>
+<body>
+<!-- Nav Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 0px; padding-right: 0px;">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+  	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+		<a class="navbar-brand" href="#">
+    		<img src="picture/logo/Artboard 1logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    		<span class="vdark-blue"><b>R-SQUARE</b></span>
+		</a>
+    	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    		<li class="nav-item active">
+    			<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+    			<a class="nav-link" href="#">Link</a>
+    		</li>
+    		<li class="nav-item">
+    			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    		</li>
+    	</ul>
+	</div>
+</nav>
+
+<!-- Start Content -->
+<div class="container">
+	<!-- <form action="edit_building.php" method="post" enctype="multipart/form-data" id="add-building-form"> -->
+
+	<!-- Topic -->
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+	    	<div class="d-flex justify-content-center"><h1 class="vdark-blue"><b>Add Building</b></h1></div>
+		</div>
+	</div>
+	<!-- Form -->
+	<form id="add-building-form">
+
+    <div class="row">
+    	<!-- Building Form -->
+		<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+    	    <div class="form-group">
+    	        <label for="Building-Name"><span class="vdark-blue"><b>Building Name</b></span></label>
+    	        <input type="text" class="form-control" id="Building-Name" placeholder="Building">
+    	    </div>
+    	</div>
+    	<!-- Building Image -->
+    	<div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+    		<div class="form-group">
+		        <input type="file" id="img-building" name="img[]" class="file" accept="image/*">
+		        <label for="Building-Image"><span class="vdark-blue"><b>Building Image</b></span></label>
+				<div class="input-group">
+					<input type="text" class="form-control" disabled placeholder="Upload File" id="file-building">
+					<div class="input-group-append">
+						<button type="button" id="btn" class="browse-building btn btn-primary">Browse...</button>
+					</div>
+				</div>
+			</div>
+    	</div>  
+    </div>
+	<div class="row p-3">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="floor-template">
+		<div class="row nothing">
+		<div id='floor' class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+			<!-- White Block of floor -->
+			<div class="row shadow p-3 mb-3 bg-white rounded">
+				<div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+					<div class="form-group">
+						<label for="Floor"><span class="vdark-blue"><b>Floor</b></span></label>
+						<input type="text" class="form-control" id="Floor" placeholder="Floor G">
+					</div>
+					<div class="form-group">
+						<input type="file" id="img-blueprint" name="img[]" class="file" accept="image/*">
+						<label for="Blueprint"><span class="vdark-blue"><b>Blueprint</b></span></label>
+						<div class="input-group">
+							<input type="text" class="form-control" disabled placeholder="Upload File" id="file-blueprint">
+							<div class="input-group-append">
+								<button type="button" id="btn" class="browse-blueprint btn btn-primary">Browse...</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-5 col-sm-5 col-md-5 col-lg-6 col-xl-6">
+					<label for="Place"><span class="vdark-blue"><b>Place</b></span></label>   
+					<div class="row">
+						<div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+							<h5>Dummy Place</h5>
+						</div>
+						<div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+							<a href="#"><span>View details</span></a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-place">Add Place</button>
+							<!-- Modal -->
+							<div class="modal fade" id="add-place" tabindex="-1" role="dialog" aria-labelledby="add-placeTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title vdark-blue" id="exampleModalLongTitle"><b>Add Place</b></h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+
+										<!-- Place add -->
+										<div class="modal-body">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+														<div class="form-group">
+															<label for="Place-Name"><span class="vdark-blue"><b>Place Name</b></span></label>
+															<input type="text" class="form-control" id="Place-Name" placeholder="DUMMY ROOM 3">
+														</div>
+													</div>
+													<div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+														<div class="form-group">
+															<label for="Capacity"><span class="vdark-blue"><b>Capacity</b></span></label>
+															<input type="text" class="form-control" id="Capacity" placeholder="50">
+														</div>
+													</div>
+													<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+														<div class="form-group">
+															<p class="vdark-blue" style="padding-top: 80%;">people</p>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="Drum_Usage">
+															<label class="form-check-label" for="Drum Usage">Drum Usage</label>
+														</div>
+													</div>
+													<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="Projector">
+															<label class="form-check-label" for="Projector">Projector</label>
+														</div>
+													</div>	
+												</div>
+												<div class="row">
+													<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="Microphone">
+															<label class="form-check-label" for="Microphone">Microphone</label>
+														</div>
+													</div>
+													<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="Speaker">
+															<label class="form-check-label" for="Speaker">Speaker</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Add</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End of Modal -->
+
+						</div>
+					</div>
+				</div>
+				<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+					<button type="button" class="btn btn-secondary" data-toggle="modal" id="delete-floor" style="width:100%">x</button>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+	</div> <!-- End of card -->
+	<div class="row p-3 mb-3">
+		<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10"></div>
+		<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+			<button type="button" class="btn btn-primary" data-toggle="modal" id="add-floor" style="width:100%">Add floor</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8"></div>
+		<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+			<button type="button" class="btn btn-secondary" data-toggle="modal" id="cancel" style="width:100%">Cancel</button>
+		</div>
+		<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+			<button type="submit" class="btn btn-primary" data-toggle="modal" id="save" style="width:100%">Save</button>
+		</div>
+	</div>
+    </form>
+</div>
+<script>
+var row = new Array();
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function()
+{
+    if (this.readyState == 4 && this.status == 200)
+    {
+        var data = JSON.parse(this.responseText);
+        var container = document.getElementById("userList");
+        for(var i=0; i<data.length;i++)
+        {
+            var count = i+1;
+            row[i] = document.createElement("tr");
+            row[i].innerHTML ="<th scope=\"row\">"+ count + " </th><td>"+data[i]['name']+"    "+ data[i]['surname']+"</td><td>"+data[i]['faculty']+"</td><td>  "+data[i]['department']+"</td>";
+            container.appendChild(row[i]);
+        }
+        
+    }
+};
+xmlhttp.open("GET", "findUser.php", true);
+xmlhttp.send();
+
+function removeDisplay()
+{
+    for(var i = 0; i<row.length;i++)
+        row[i].remove();
+}
+
+function display()
+{
+    var select = document.getElementById("type");
+    var type = select.options[select.selectedIndex].value;
+    var search = document.getElementById("search").value;
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            removeDisplay();
+            var container = document.getElementById("userList");
+            var data = JSON.parse(this.responseText);
+            for(var i=0; i<data.length;i++)
+                {
+                    var count = i+1;
+                    row[i] = document.createElement("tr");
+                    row[i].innerHTML ="<th scope=\"row\">"+ count + " </th><td>"+data[i]['name']+"    "+ data[i]['surname']+"</td><td>"+data[i]['faculty']+"</td><td>"+data[i]['department']+"</td>";
+                    container.appendChild(row[i]);
+                }
+            // document.getElementById("test").innerHTML = this.responseText;
+        }
+    };
+    xmlhttp.open("GET", "findUser.php?search=" + search +"&type="+type, true);
+    xmlhttp.send();
+}
+
+</script>
+</body>
+<script type="text/javascript">
+	const data = new FormData();
+	
+	data.append("name", "Natthawat");
+	data.append("age",56);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST","add_building.php",true);
+	xhr.send(data);
+</script>
+</html>
