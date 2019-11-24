@@ -86,8 +86,8 @@
         <div class="card-content justify-content-center">
           <!--------------------------------First Row------------------------------>
           <div class="row">
-            <div class="col-3">
-              <h2>Picture of User</h2>
+            <div class="col-3"  >
+                <div id="col1"></div>
             </div>
             <!--Detail of User-->
             <!--Column of Detail User1-->
@@ -136,6 +136,11 @@
                     myObj['department'] +
                     "<br>" 
                   container.appendChild(div2)
+
+                var container = document.getElementById("col1");
+                var div3 = document.createElement("div");
+                div3.innerHTML ="<img src=\"picture/user/"  + myObj['picture'] + "\" class=\"img-fluid\" \" >" + "<br><br>";
+                container.appendChild(div3)
 
               }
             };
