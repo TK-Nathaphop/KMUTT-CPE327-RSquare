@@ -6,18 +6,18 @@ $(document).on("click", ".browse-building", function() {
     var fileName = e.target.files[0].name;
     $("#file-building").val(fileName);
 
-    var reader = new FileReader();
-    reader.onload = function(){
-      var dataURL = reader.result;
-      console.log('on img', dataURL)
-      imgBuilding = {
-        name: fileName,
-        data: dataURL
-      }
-      // var output = document.getElementById('preview');
-      // output.src = dataURL;
-    };
-    reader.readAsDataURL(e.target.files[0]);
+    // var reader = new FileReader();
+    // reader.onload = function(){
+    //   var dataURL = reader.result;
+    //   console.log('on img', dataURL)
+    //   imgBuilding = {
+    //     name: fileName,
+    //     data: dataURL
+    //   }
+    //   // var output = document.getElementById('preview');
+    //   // output.src = dataURL;
+    // };
+    // reader.readAsDataURL(e.target.files[0]);
   });
 });
 

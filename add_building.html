@@ -276,33 +276,46 @@
 	</div>
 </body>
 <script>
-	// const btnSave = document.getElementById('btn-save')
-	
-	let imgBuilding = {
-		name: "",
-		data: ""
-	};
+	console.log("euei");
 
-	let imgBlueprint = {
-		name: "",
-		data: ""
-	};
+	function sendAll() {
+		sendJSON();
+		sendIMG();
+	}
 
-	function onSave() {
-		console.log("onsave");
-		console.log("before sent", imgBuilding);
-		axios
-			.post("add_building.php", {
-				img_name: imgBuilding.name,
-				img_data: imgBuilding.data,
-				floor: document.getElementById('Floor').value
+	function sendIMG() {
+		console.log("img send");
+		const formData = new FormData();
+		const img1 = document.getElementById("image").files[0];
+		const img2 = document.getElementById("image2").files[0];
+		formData.append("image", img1);
+		formData.append("image2", img2);
+
+		fetch("uploadfile.php", {
+			method: "POST",
+			body: formData
+		}).then(async res => {
+			//   debugging
+			const data = await res.text();
+			console.log("img res", data);
+		});
+	}
+
+	function sendJSON() {
+		const name = document.getElementById("name").value;
+
+		console.log("name", name);
+		fetch("data.php", {
+			method: "POST",
+			body: JSON.stringify({
+				name: name
+
 			})
-			.then(res => {
-				console.log("server res", res.data);
-			})
-			.catch(err => {
-				console.log(err);
-			});
+		}).then(async res => {
+			//   debugging
+			const data = await res.text();
+			console.log("server res", data);
+		});
 	}
 </script>
 
