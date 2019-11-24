@@ -4,7 +4,12 @@
 	data.append("name", "Natthawat");
 	data.append("age",56);
 
-	var xhr = new XMLHttpRequest();
+//   data.append("Building_Name", Building_Name);
+// 	data.append("Floor",Floor);
+
+  var xhr = new XMLHttpRequest();
 	xhr.open("POST","add_building.php",true);
-	xhr.send(data);
+  xhr.send(data);
+  alert("Hello");
+//   alert(Building_Name + Floor);
 </script>
