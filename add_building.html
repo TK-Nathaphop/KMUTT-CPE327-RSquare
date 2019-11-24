@@ -220,4 +220,14 @@
         </form>
     </div>
 </body>
+<script type="text/javascript">
+	const data = new FormData();
+	
+	data.append("name", "Natthawat");
+	data.append("age",56);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST","add_building.php",true);
+	xhr.send(data);
+</script>
 </html>
