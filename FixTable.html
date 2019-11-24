@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- using bootstrap 4.3.1 -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="images/logo/Artboard 1logo.png" />
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    <title>R-SQUARE</title>
+    <!--CSS-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 0px; padding-right: 0px;">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <a class="navbar-brand" href="#">
+                  <img src="picture/logo/Artboard 1logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                  <span class="vdark-blue"><b>R-SQUARE</b></span>
+              </a>
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                  </li>
+              </ul>
+              <!-- <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form> -->
+            </div>
+      </nav>
+    <!-- /Head of the Card -->
+    <div class="container">
+      <div class="container-content">
+        <div class="d-flex justify-content-center">
+          <h1 class="vdark-blue">View User</h1>
+        </div>
+        <div class="card-content">
+          <!--------------------------------First Row------------------------------>
+          <div class="row">
+            <div class="col-3"  >
+                <div id="col1"></div>
+            </div>
+            <!--Detail of User-->
+            <!--Column of Detail User1-->
+            <div class="col-5">
+              <div class="row">
+                <span id="name"></span>
+              </div>
+            </div>
+            <!--Column of Detail User2-->
+            <div class="col-4">
+              <div class="row">
+                <span id="col2"></span>
+              </div>
+            </div>
+          </div>
+          <!-- Script For First Row -->
+          <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get("id");
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                var myObj = JSON.parse(this.responseText);
+                var container = document.getElementById("name");
+                var div = document.createElement("div");
+                  div.innerHTML =
+                     "Name: " +
+                    myObj.name + ' ' + myObj.surname +
+                    "<br>" +
+                    "Faculty: " +
+                    myObj.faculty +
+                    "<br>" +
+                    "Position: " +
+                    myObj.postion +
+                    "<br><br>";
+                  container.appendChild(div)
+                  
+                var container = document.getElementById("col2");
+                var div2 = document.createElement("div");
+                  div2.innerHTML =
+                     "Role: " +
+                    myObj['role'] +
+                    "<br>" +
+                    "Department: " +
+                    myObj['department'] +
+                    "<br>" 
+                  container.appendChild(div2)
+
+                var container = document.getElementById("col1");
+                var div3 = document.createElement("div");
+                div3.innerHTML ="<img src=\"picture/user/"  + myObj['picture'] + "\" class=\"img-fluid\" \" >" + "<br><br>";
+                container.appendChild(div3)
+                
+                // var container = document.getElementById("table1");
+                // var tableCon = document.createElement("tr")
+                // tableCon.innerHTML = " myObj['picture']"
+              }
+            };
+            xmlhttp.open("GET", "getUser.php?userId=" + id , true);
+            xmlhttp.send();
+
+            // fetch("getUser.php", {
+            //   method: "GET",
+            //   body: JSON.stringify({ id })
+            // })
+            //   .then(async res => {
+            //     // debugging
+            //     // const test = await res.text();
+            //     // console.log("server response", test);
+
+          </script>
+          <!--------------------------------Second Row------------------------------>
+          <div class="row ">
+            <h4 class="font-weight-bold text-lg-left text-primary">
+              Responsible Activity Project
+            </h4>
+            <!--Table of Activity infomation-->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col"> Project</th>
+                  <th scope="col"> President</th>
+                </tr>
+              </thead>
+              <tbody id="table1">
+                <!-- Get data from script -->
+              </tbody>
+            </table>
+            <!-- Popup Add-Activity Button -->
+            <div class="row col-sm-4 col-sm-12">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addActivity" data-whatever="@mdo">
+                Add Activity
+              </button>
+              <div class="modal fade" id="addActivity" tabindex="-1" role="dialog" aria-labelledby="addActivityLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <!-- Pop-up Content -->
+                  <div class="modal-content">
+                    <!-- Headder of pop-up -->
+                    <div class="modal-header">
+                      <h5 class="modal-title text-lg-center text-primary" id="exampleModalLabel" >
+                        New message
+                      </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <!-- Body of pop-up -->
+                    <div class="modal-body">
+                      <h6 class="font-weight-bold text-primary text-left">
+                        Search
+                      </h6>
+                    <!-- Searching Bar -->
+                    <form class="form-inline md-form form-sm active-pink-2 mt-2">
+                      <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+                        aria-label="Search">
+                      <i class="fas fa-search" aria-hidden="true"></i>
+                    </form>
+                    <select class="mdb-select" multiple searchable="Search here..">
+                      <optgroup label="team 1">
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                      </optgroup>
+                      <optgroup label="team 2">
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                      </optgroup>
+                    </select>
+                    </div> 
+                    <!-- Footer of pop-up -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+                  </div>
+                  <!-- End of Content-->
+                </div>
+              </div>
+            </div>
+            <!-- End of Popup Add Activity -->
+          </div>
+          <!-- Script For Second Row -->
+          <script>
+              var xmlhttp = new XMLHttpRequest();
+              xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  var myObj = JSON.parse(this.responseText);
+
+                  var container = document.getElementById("table1");
+                  var tableCon = document.createElement("tr")
+                  tableCon.innerHTML = "<td>"+myObj.event+"</td><td>"+myObj.president_name+" "+myObj.president_surname+"</td>";
+                  container.appendChild(tableCon);
+                }
+              };
+              xmlhttp.open("GET", "getActivity.php?userId="+ id , true);
+              xmlhttp.send();
+          </script>
+          <!--------------------------------Third Row------------------------------>
+          <div class="row">
+            <h4 class="font-weight-bold text-lg-left text-primary">
+              Responsible Organization
+            </h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Organization Name</th>
+                  <th scope="col">President</th>
+                </tr>
+              </thead>
+              <tbody id="table3">
+              </tbody>
+            </table>
+            <div class="row col-sm-4 col-sm-12">
+              <button type="button" class="btn btn-primary" onclick="myfunction()" >
+                Add Organization
+              </button>
+            </div>
+          </div>
+          <!-- Script For Third Row -->
+          <script>
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              var myObj = JSON.parse(this.responseText);
+
+              var container = document.getElementById("table3");
+              var tableCon = document.createElement("tr")
+              tableCon.innerHTML = "<td>"+myObj.organization+"</td><td>"+myObj.president_name+" "+myObj.president_surname+"</td>";
+              container.appendChild(tableCon);
+              }
+            };
+              xmlhttp.open("GET", "getOrganization.php?userId="+ id , true);
+              xmlhttp.send();
+          </script>
+          <!--------------------------------fourth Row------------------------------>
+          <div class="row">
+            <h4 class="font-weight-bold text-lg-left text-primary">
+              Responsible Place
+            </h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Building</th>
+                  <th scope="col">Floor</th>
+                  <th scope ="col">Place</th>
+                </tr>
+              </thead>
+              <tbody id ="table4">
+              </tbody>
+            </table>
+            <div class="container text-right">
+              <button type="button" class="btn btn-primary" onclick="myfunction()">
+                Add Place
+              </button>
+            </div>
+          </div>
+          <!-- script for motherfucker last row -->
+          <script>
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                var myObj = JSON.parse(this.responseText);
+                var container = document.getElementById("table4");
+                var i = 0;
+                var j = 0;
+                var rowBuilding;
+                for (i in myObj)
+                {
+                  rowBuilding = "<td rowspawn="+myObj[i].floor.length+">"+myObj[i].building+"</td>";
+                  // var tableCon = document.createElement("tr");
+                  // tableCon.innerHTML = "<td>"+myObj[i].building+"</td>";
+                  // var newCol1 = document.createElement("td");
+                  // var newTab = document.createElement("table");
+                  // container.appendChild(tableCon);
+
+// for (i in myObj)
+// {
+//     for(j in myObj[i].floor)
+//     {
+//       for(k in myObj[i].floor[j].place)
+//             tableCon.innerHTML = "<td>"+myObj[i].building+"</td>"+
+//                                  "<td>"+myObj[i].floor[j]['floor']+"</td>"+
+//                                  "<td>"+myObj[i].floor[j].place[k]['place']+"</td>";
+//         container.appendChild(tableCon);
+//     }
+// } 
+                  for(j in myObj[i].floor)
+                  {
+                    rowBuilding = rowBuilding+"<tr rowspawn="+myObj[i].floor.length+">"+myObj[i].building+"</td>";
+                    for(k in myObj[i].floor[j].place)
+                    tableCon.innerHTML = "<td>"+myObj[i].building+"</td>"+
+                                        "<td>"+myObj[i].floor[j]['floor']+"</td>"+
+                                        "<td>"+myObj[i].floor[j].place[k]['place']+"</td>";
+                  }
+                  container.appendChild(tableCon);
+                } 
+              }
+            };
+            xmlhttp.open("GET", "getResponsiblePlace.php?userId=60070503429" , true);
+            xmlhttp.send();
+          </script>
+          <!-- /Card of Connent -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
