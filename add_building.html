@@ -21,7 +21,7 @@
 </head>
 
 <body>
-		<!-- <div id="nav-placeholder"> </div>
+	<!-- <div id="nav-placeholder"> </div>
         <script>
             $.get("navigationbar.html", function(data){
                 $("#nav-placeholder").replaceWith(data);
@@ -63,13 +63,13 @@
 			</div>
 			<div class="row p-3">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="floor-template">
-					<div class="row nothing">
+					<div class="row nothing" id="deleteFloor0">
 						<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 							<div class="row shadow p-3 mb-3 bg-white rounded">
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 									<div class="form-group">
 										<label for="Floor"><span class="vdark-blue"><b>Floor</b></span></label>
-										<input type="text" class="form-control" id="Floor" placeholder="Floor G" />
+										<input type="text" class="form-control" id="Floor" input="Floor0"placeholder="Floor G" />
 									</div>
 									<div class="form-group">
 										<input type="file" id="img-blueprint" name="img[]" class="file"
@@ -93,7 +93,8 @@
 											<h5>Dummy Place</h5>
 										</div>
 										<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-											<a href="#"><span>View details</span></a>
+											<a href="#"><span data-toggle="modal"
+												data-target="#add-place">View details</span></a>
 										</div>
 									</div>
 									<div class="row">
@@ -221,8 +222,15 @@
 									</div>
 								</div>
 								<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-										<button type="button" class="close" id="delete"data-dismiss="modal"aria-label="Close">
+									<button type="button" onclick="deleteFloor0()" class="close" name="deleteFloor0"
+										data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
+										<script>
+											function deleteFloor0() {
+												alert("Hello");
+												$("div").remove("#deleteFloor0");
+											}
+										</script>
 									</button>
 								</div>
 							</div>
@@ -296,7 +304,6 @@
 			method: "POST",
 			body: JSON.stringify({
 				Building_Name: Building_Name
-
 			})
 		}).then(async res => {
 			//   debugging
