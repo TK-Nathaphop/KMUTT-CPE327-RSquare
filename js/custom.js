@@ -5,19 +5,6 @@ $(document).on("click", ".browse-building", function() {
   $('#img-building').change(function(e) {
     var fileName = e.target.files[0].name;
     $("#file-building").val(fileName);
-
-    // var reader = new FileReader();
-    // reader.onload = function(){
-    //   var dataURL = reader.result;
-    //   console.log('on img', dataURL)
-    //   imgBuilding = {
-    //     name: fileName,
-    //     data: dataURL
-    //   }
-    //   // var output = document.getElementById('preview');
-    //   // output.src = dataURL;
-    // };
-    // reader.readAsDataURL(e.target.files[0]);
   });
 });
 
@@ -26,14 +13,6 @@ $(document).on("click", ".browse-blueprint", function() {
   $('#img-blueprint').change(function(e) {
     var fileName = e.target.files[0].name;
     $("#file-blueprint").val(fileName);
-
-    // var reader = new FileReader();
-    // reader.onload = function(){
-    //   var dataURL = reader.result;
-    //   var output = document.getElementById('preview');
-    //   output.src = dataURL;
-    // };
-    // reader.readAsDataURL(e.target.files[0]);
   });
 });
 
@@ -46,8 +25,3 @@ $(document).on("click", "#add-floor", function() {
 $(document).on("click", "#delete-floor", function() {
   $("div").remove(".nothing");
 });
-
-// const btnSave 
-
-// $(document).on("click","#btn-save",function() {
-// });
