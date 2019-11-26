@@ -69,7 +69,8 @@
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 									<div class="form-group">
 										<label for="Floor"><span class="vdark-blue"><b>Floor</b></span></label>
-										<input type="text" class="form-control" id="Floor" input="Floor0"placeholder="Floor G" />
+										<input type="text" class="form-control" id="Floor" input="Floor0"
+											placeholder="Floor G" />
 									</div>
 									<div class="form-group">
 										<input type="file" id="img-blueprint" name="img[]" class="file"
@@ -87,27 +88,36 @@
 									</div>
 								</div>
 								<div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-									<label for="Place"><span class="vdark-blue"><b>Place</b></span></label>
 									<div class="row">
-										<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
-											<h5>Dummy Place</h5>
+										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+											<label for="Place"><span class="vdark-blue"><b>Place</b></span></label>
 										</div>
-										<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-											<a href="#"><span data-toggle="modal"
-												data-target="#add-place">View details</span></a>
+									</div>
+									<div class="row">
+										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="place">
+										<div class="row">
+											<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+												<h5>Dummy Place</h5>
+											</div>
+											<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+												<a href="#"><span data-toggle="modal"
+														data-target="#add-place-popup">View
+														details</span></a>
+											</div>
 										</div>
+									</div>
 									</div>
 									<div class="row">
 										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 											<!-- Button trigger modal -->
 											<button type="button" class="btn btn-primary" data-toggle="modal"
-												data-target="#add-place">
+												data-target="#add-place-popup" id="add-place-btn">
 												Add Place
 											</button>
 
 											<!-- Modal -->
-											<div class="modal fade" id="add-place" tabindex="-1" role="dialog"
-												aria-labelledby="add-placeTitle" aria-hidden="true">
+											<div class="modal fade" id="add-place-popup" tabindex="-1" role="dialog"
+												aria-labelledby="add-place-popup-Title" aria-hidden="true">
 												<div class="modal-dialog modal-dialog-centered" role="document">
 													<div class="modal-content">
 														<div class="modal-header">
