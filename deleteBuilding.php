@@ -1,7 +1,7 @@
 <?php
 require_once ('class/databaseConnection.php');
 if(!isset($_GET['buildingId']))
-	echo "Don't have building Id!"
+	echo "Don't have building Id!";
 else
 	$buildingId = $_GET['buildingId'];
 
