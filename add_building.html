@@ -40,7 +40,7 @@
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
 					<div class="form-group">
-						<label for="Building-Name"><span class="vdark-blue"><b>Building Name</b></span></label>
+						<label for="Building-Name"><span class="dark-blue"><b>Building Name</b></span></label>
 						<input type="text" class="form-control" id="Building_Name" name="Building_Name"
 							placeholder="Witsawa Wattana Building" />
 					</div>
@@ -48,12 +48,12 @@
 				<div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
 					<div class="form-group">
 						<input type="file" id="img-building" name="img[]" class="file" accept="image/*" />
-						<label for="Building-Image"><span class="vdark-blue"><b>Building Image</b></span></label>
+						<label for="Building-Image"><span class="dark-blue"><b>Building Image</b></span></label>
 						<div class="input-group">
 							<input type="text" class="form-control" disabled placeholder="Upload File"
 								id="file-building" />
 							<div class="input-group-append">
-								<button type="button" id="btn" class="browse-building btn btn-primary">
+								<button type="button" id="btn" class="browse-building btn btn-dark-blue">
 									Browse...
 								</button>
 							</div>
@@ -68,19 +68,20 @@
 							<div class="row shadow p-3 mb-3 bg-white rounded">
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 									<div class="form-group">
-										<label for="Floor0"><span class="vdark-blue"><b>Floor</b></span></label>
+										<label for="Floor0"><span class="dark-blue"><b>Floor</b></span></label>
 										<input type="text" class="form-control" id="Floor0" placeholder="Floor G"
 											name="Floor0" />
 									</div>
 									<div class="form-group">
 										<input type="file" id="img-blueprint" name="img[]" class="file"
 											accept="image/*" />
-										<label for="Blueprint"><span class="vdark-blue"><b>Blueprint</b></span></label>
+										<label for="Blueprint"><span class="dark-blue"><b>Blueprint</b></span></label>
 										<div class="input-group">
 											<input type="text" class="form-control" disabled placeholder="Upload File"
 												id="file-blueprint" />
 											<div class="input-group-append">
-												<button type="button" id="btn" class="browse-blueprint btn btn-primary">
+												<button type="button" id="btn"
+													class="browse-blueprint btn btn-dark-blue">
 													Browse...
 												</button>
 											</div>
@@ -90,7 +91,7 @@
 								<div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
 									<div class="row">
 										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-											<label for="Place"><span class="vdark-blue"><b>Place</b></span></label>
+											<label for="Place"><span class="dark-blue"><b>Place</b></span></label>
 										</div>
 									</div>
 									<div class="row">
@@ -101,8 +102,8 @@
 												</div>
 												<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
 													<a href="#" id="View-Details">
-														<span data-toggle="modal" data-target="#add-place-popup">View
-															details</span>
+														<span class="dark-blue" data-toggle="modal"
+															data-target="#add-place-popup">View details</span>
 													</a>
 												</div>
 											</div>
@@ -111,9 +112,9 @@
 									<div class="row">
 										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 											<!-- Button trigger modal -->
-											<button type="button" class="btn btn-primary" data-toggle="modal"
+											<button type="button" class="btn btn-dark-blue" data-toggle="modal"
 												data-target="#add-place-popup" id="add-place-popup-btn">
-												AddPlace
+												Add Place
 											</button>
 
 											<!-- Modal -->
@@ -124,10 +125,10 @@
 														<div class="modal-header">
 															<h5 class="modal-title vdark-blue"
 																id="exampleModalLongTitle">
-																<b>Add Place</b>
+																<b style="padding-left: 1px;">Add Place</b>
 															</h5>
-															<button onclick="close_detailF0P0()" type="button" class="close" data-dismiss="modal"
-																aria-label="Close">
+															<button onclick="close_detailF0P0()" type="button"
+																class="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
 														</div>
@@ -138,18 +139,19 @@
 																		class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
 																		<div class="form-group">
 																			<label for="Place-NameF0P0"><span
-																					class="vdark-blue"><b>Place
+																					class="dark-blue"><b>Place
 																						Name</b></span></label>
 																			<input type="text" class="form-control"
 																				id="Place-NameF0P0"
-																				placeholder="DUMMY ROOM 3" name="Place-NameF0P0"/>
+																				placeholder="Dummy place"
+																				name="Place-NameF0P0" />
 																		</div>
 																	</div>
 																	<div
 																		class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
 																		<div class="form-group">
 																			<label for="Capacity"><span
-																					class="vdark-blue"><b>Capacity</b></span></label>
+																					class="dark-blue"><b>Capacity</b></span></label>
 																			<input type="text" class="form-control"
 																				id="Capacity" placeholder="50" />
 																		</div>
@@ -218,8 +220,9 @@
 															</div>
 														</div>
 														<div class="modal-footer">
-															<button type="button" class="btn btn-primary"
-																id="add-place"><span id="add-place-text">Add</span>
+															<button type="button" class="btn btn-dark-blue"
+																id="add-place" data-dismiss="modal">
+																<span id="add-place-text">Add</span>
 															</button>
 														</div>
 													</div>
@@ -254,7 +257,8 @@
 					</button>
 				</div>
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-					<button type="button" class="btn btn-primary" data-toggle="modal" id="add-floor" style="width:100%">
+					<button type="button" class="btn btn-dark-blue" data-toggle="modal" id="add-floor"
+						style="width:100%">
 						Add floor
 					</button>
 				</div>
@@ -268,8 +272,8 @@
 					</button>
 				</div>
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-					<button onclick="sendAll()" type="submit" class="btn btn-primary" data-toggle="modal" id="btn-save"
-						style="width:100%">
+					<button onclick="sendAll()" type="submit" class="btn btn-vdark-blue" data-toggle="modal"
+						id="btn-save" style="width:100%">
 						Save
 					</button>
 				</div>
@@ -279,8 +283,11 @@
 </body>
 <script>
 	function close_detailF0P0() {
-		console.log($("#Place-NameF0P0").val())
-		$("#h5F0P0").text($("#Place-NameF0P0").val())
+		console.log($("#Place-NameF0P0").val());
+		if($("#Place-NameF0P0").val() == '')
+			$("#h5F0P0").text('Dummy Place');
+		else
+			$("#h5F0P0").text($("#Place-NameF0P0").val());
 	}
 </script>
 <script>
