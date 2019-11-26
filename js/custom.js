@@ -16,6 +16,19 @@ $(document).on("click", ".browse-blueprint", function() {
   });
 });
 
+$(document).on("click", "#add-place", function() {
+  alert("add place")
+  $('#place').append('<div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5"> <h5>Dummy Place</h5> </div> <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7"> <a href="#"><span data-toggle="modal" data-target="#add-place-popup">View details</span></a> </div> </div> ');
+})
+
+$(document).on("click", "#add-place-popup-btn", function() {
+  $("#add-place-text").text("Add")
+})
+
+$(document).on("click", "#View-Details", function() {
+  $("#add-place-text").text("Save")
+})
+
 $(document).on("click", "#add-floor", function() {
   count = count +1;
   // alert("This is count " + count);

@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<script src="js/jquery-3.4.1.js"></script>
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/bootstrap.css" />
 	<link rel="stylesheet" href="css/custom.css" />
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
 	<link rel="icon" href="picture/logo/Artboard 1logo.png" />
@@ -68,8 +68,9 @@
 							<div class="row shadow p-3 mb-3 bg-white rounded">
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 									<div class="form-group">
-										<label for="Floor"><span class="vdark-blue"><b>Floor</b></span></label>
-										<input type="text" class="form-control" id="Floor" input="Floor0"placeholder="Floor G" />
+										<label for="Floor0"><span class="vdark-blue"><b>Floor</b></span></label>
+										<input type="text" class="form-control" id="Floor0" placeholder="Floor G"
+											name="Floor0" />
 									</div>
 									<div class="form-group">
 										<input type="file" id="img-blueprint" name="img[]" class="file"
@@ -87,27 +88,37 @@
 									</div>
 								</div>
 								<div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-									<label for="Place"><span class="vdark-blue"><b>Place</b></span></label>
 									<div class="row">
-										<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
-											<h5>Dummy Place</h5>
+										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+											<label for="Place"><span class="vdark-blue"><b>Place</b></span></label>
 										</div>
-										<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-											<a href="#"><span data-toggle="modal"
-												data-target="#add-place">View details</span></a>
+									</div>
+									<div class="row">
+										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="place">
+											<div class="row">
+												<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+													<h5 id="h5F0P0">Dummy Place</h5>
+												</div>
+												<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+													<a href="#" id="View-Details">
+														<span data-toggle="modal" data-target="#add-place-popup">View
+															details</span>
+													</a>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 											<!-- Button trigger modal -->
 											<button type="button" class="btn btn-primary" data-toggle="modal"
-												data-target="#add-place">
-												Add Place
+												data-target="#add-place-popup" id="add-place-popup-btn">
+												AddPlace
 											</button>
 
 											<!-- Modal -->
-											<div class="modal fade" id="add-place" tabindex="-1" role="dialog"
-												aria-labelledby="add-placeTitle" aria-hidden="true">
+											<div class="modal fade" id="add-place-popup" tabindex="-1" role="dialog"
+												aria-labelledby="add-place-popup-Title" aria-hidden="true">
 												<div class="modal-dialog modal-dialog-centered" role="document">
 													<div class="modal-content">
 														<div class="modal-header">
@@ -115,7 +126,7 @@
 																id="exampleModalLongTitle">
 																<b>Add Place</b>
 															</h5>
-															<button type="button" class="close" data-dismiss="modal"
+															<button onclick="close_detailF0P0()" type="button" class="close" data-dismiss="modal"
 																aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
@@ -126,12 +137,12 @@
 																	<div
 																		class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
 																		<div class="form-group">
-																			<label for="Place-Name"><span
+																			<label for="Place-NameF0P0"><span
 																					class="vdark-blue"><b>Place
 																						Name</b></span></label>
 																			<input type="text" class="form-control"
-																				id="Place-Name"
-																				placeholder="DUMMY ROOM 3" />
+																				id="Place-NameF0P0"
+																				placeholder="DUMMY ROOM 3" name="Place-NameF0P0"/>
 																		</div>
 																	</div>
 																	<div
@@ -207,12 +218,8 @@
 															</div>
 														</div>
 														<div class="modal-footer">
-															<button type="button" class="btn btn-secondary"
-																data-dismiss="modal">
-																Close
-															</button>
-															<button type="button" class="btn btn-primary">
-																Add
+															<button type="button" class="btn btn-primary"
+																id="add-place"><span id="add-place-text">Add</span>
 															</button>
 														</div>
 													</div>
@@ -257,7 +264,7 @@
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
 					<button type="button" class="btn btn-secondary" data-toggle="modal" id="btn-cancel"
 						style="width:100%">
-						Delete building
+						Cancel
 					</button>
 				</div>
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
@@ -270,6 +277,12 @@
 		</div>
 	</div>
 </body>
+<script>
+	function close_detailF0P0() {
+		console.log($("#Place-NameF0P0").val())
+		$("#h5F0P0").text($("#Place-NameF0P0").val())
+	}
+</script>
 <script>
 	console.log("euei");
 
@@ -298,12 +311,14 @@
 
 	function sendJSON() {
 		const Building_Name = document.getElementById("Building_Name").value;
-
+		const Floor0 = document.getElementById("Floor0").value;
 		console.log("Building_Name", Building_Name);
+		console.log("Floor0", Floor0);
 		fetch("data.php", {
 			method: "POST",
 			body: JSON.stringify({
-				Building_Name: Building_Name
+				Building_Name: Building_Name,
+				Floor0: Floor0
 			})
 		}).then(async res => {
 			//   debugging
