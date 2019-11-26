@@ -1,6 +1,9 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,6 +84,8 @@
             <div class ="row" style="padding-top:3%">
                     <div class = "card-deck"  id ="queryBuilding"> </div>
             </div>
+
+            
             <script>
                 // var xmlhttp = new XMLHttpRequest();
                 // xmlhttp.onreadystatechange = function()
@@ -113,12 +118,15 @@
                         {
                             if(data[i]['building']!=null)
                             {   var div = document.createElement("div");
-                                div.innerHTML ="<div class=\" col-2\"> <div class =\"card border border-white text-center\"  style = \" width: 17rem;\"> <img src=\"picture/building/" +data[i]['picture']+  "\" class =\"card-img-top\"> <div class= \"card-body\"> <p style=\"font-size:11px\"class ='card-text'> <b> "+ data[i]['building']+" </b></p> </div></div> </div>";
+                                // div.setAttribute("href","edit_building.html?id="+data[i]['building_id']+"");
+                                // div.setAttribute("onclick","document.location='edit_building.html?id="+data[i]['building_id']+"'");   
+                                // div.setAttribute("style","cursor: pointer");    
+                                div.innerHTML ="<div class=\" col-2\"> <div class =\"card border border-white text-center\"  style = \" width: 17rem;\"> <a href=\"edit_building.html?id="+data[i]['building']+"\"><img src=\"picture/building/" +data[i]['picture']+  "\" class =\"card-img-top\"></a> <div class= \"card-body \"> <p style=\"font-size:11px\"class ='card-text' > <b> "+ data[i]['building']+" </b></p> </div></div> </div>";
                                 container.appendChild(div);
                             } 
                         }
                         var div = document.createElement("div");
-                        div.innerHTML = "<div class=\" col-2\"> <div class =\"card border border-white text-center\" style = \" width: 17rem;\"> <a href=\"https://www.google.co.th\">  <img src=\"picture/building/addbuilding.png\" class = \"card-img\"> </a> </div> </div>";
+                        div.innerHTML = "<div class=\" col-2\"> <div class =\"card border border-white text-center\" style = \" width: 17rem;\"> <a href=\"add_building.html\">  <img src=\"picture/building/addbuilding.png\" class = \"card-img\"> </a> </div> </div>";
                         container.appendChild(div);
                 })
             </script>
