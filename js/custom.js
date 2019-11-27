@@ -1,5 +1,19 @@
 let floor = 0; // count number of floor
 let place = 0;
+let place_name = new Array(200)
+let place_capacity = new Array(200)
+let myDrumUsage = new Array(200)
+let myProjector = new Array(200)
+let myMicrophone = new Array(200)
+let mySpeaker = new Array(200)
+
+for (var i = 0; i < myDrumUsage.length; i++) {
+  myDrumUsage[i] = new Array(200);
+  myProjector[i] = new Array(200);
+  myMicrophone[i] = new Array(200);
+  mySpeaker[i] = new Array(200);
+}
+
 var request; // Variable to hold request
 $(document).on("click", ".browse-building", function () {
   $('#img-building').click();
@@ -80,7 +94,7 @@ $(document).on("click", "#add-place", function () {
   place_h5 = "h5F0P" + place
   place_View_Detail = "View_DetailsF0P" + place
   place_onclick = "View_Details('F0P" + place + "')"
-  
+
   // place_name[200]
   // place_capacity[200]
 
