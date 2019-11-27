@@ -17,31 +17,110 @@ $(document).on("click", ".browse-blueprint", function () {
   });
 });
 
+function DrumUsage(F0P0) {
+  var DrumUsage = "#DrumUsage" + F0P0
+  if ($(DrumUsage).prop("checked") === true)
+    $(DrumUsage).val("1")
+  else
+    $(DrumUsage).val("0")
+  // console.log($(DrumUsage).val())
+}
+
+function Projector(F0P0) {
+  var Projector = "#Projector" + F0P0
+  if ($(Projector).prop("checked") === true)
+    $(Projector).val("1")
+  else
+    $(Projector).val("0")
+  // console.log($(Projector).val())
+}
+
+function Microphone(F0P0) {
+  var Microphone = "#Microphone" + F0P0
+  if ($(Microphone).prop("checked") === true)
+    $(Microphone).val("1")
+  else
+    $(Microphone).val("0")
+  // console.log($(Microphone).val())
+}
+
+function Speaker(F0P0) {
+  var Speaker = "#Speaker" + F0P0
+  if ($(Speaker).prop("checked") === true)
+    $(Speaker).val("1")
+  else
+    $(Speaker).val("0")
+  // console.log($(Speaker).val())
+}
+
+function save_detail(F0P0) {
+  var Place_Name = "#Place_Name" + F0P0
+  var h5 = "#h5" + F0P0
+  // console.log($("#Place-NameF0P0").val());
+  if ($(Place_Name).val() == '')
+    $(h5).text('Dummy Place');
+  else
+    $(h5).text($(Place_Name).val());
+}
+
+function View_Details(F0P0) {
+  // console.log(F0P0)
+  // alert("View_Details" + F0P0)
+  $("#save").css({
+    'display': 'block'
+  });
+  $("#add-place").css({
+    'display': 'none'
+  });
+  $("#ModalTitleF0P0").text("Edit Place")
+}
+
 $(document).on("click", "#add-place", function () {
-  $('#place').append('<div class="row"> <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5"> <h5>Dummy Place</h5> </div> <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7"> <a href="#"><span data-toggle="modal" data-target="#add-place-popup">View details</span></a> </div> </div> ');
+  place = place + 1
+  place_h5 = "h5F0P" + place
+  place_View_Detail = "View_DetailsF0P" + place
+  place_onclick = "View_Details('F0P" + place + "')"
+  
+  // place_name[200]
+  // place_capacity[200]
+
+  // $('#place').append('<div class="row"> <
+  //     div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+  //     id = "place" >
+  //     <
+  //     div class = "row" >
+  //     <
+  //     div class = "col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5" >
+  //     <
+  //     h5 id =' + place_h5 + '> Dummy Place </h5>
+  //     </div> 
+  //     <div class = "col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7" >
+  //     <
+  //     a href = "#"
+  //     onclick = ' + place_onclick + ' id = ' + place_View_Detail + '>
+  //     <
+  //     span class = "dark-blue"
+  //     data-toggle = "modal"
+  //     data-target = "#add-place-popup" > View details </span> <
+  //     /a> <
+  //     /div> <
+  //     /div> <
+  //     /div> <
+  //     /div>')
+  $('#place').append('<div class="row"> <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"id = "place" ><div class = "row" ><div class = "col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5" ><h5 id =' + place_h5 + '> Dummy Place </h5></div><div class = "col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7" ><a href = "#"onclick = ' + place_onclick + ' id = ' + place_View_Detail + '><span class = "dark-blue"data-toggle = "modal"data-target = "#add-place-popup" > View details </span> </a> </div> </div> </div> </div>')
 })
 
 $(document).on("click", "#add-place-popup-btn", function () {
   // $("#add-place-text").text("Add")
-  $("#add-place").css({ 'display': 'block' });
-  $("#save").css({ 'display': 'none' });
+  // alert("add-place-popup-btn trig")
+  $("#ModalTitleF0P0").text("Add Place")
+  $("#add-place").css({
+    'display': 'block'
+  });
+  $("#save").css({
+    'display': 'none'
+  });
 })
-
-// $(document).on("click", "#View-Details", function () {
-//   // $("#add-place-text").text("Save")
-//   $("#save").css({ 'display': 'block' });
-//   $("#add-place").css({ 'display': 'none' });
-// })
-
-function View_Details(F0P0) {
-    // console.log(F0P0)
-    $("#save").css({
-      'display': 'block'
-    });
-    $("#add-place").css({
-      'display': 'none'
-    });
-}
 
 $(document).on("click", "#add-floor", function () {
   count = count + 1;
@@ -52,30 +131,3 @@ $(document).on("click", "#add-floor", function () {
 $(document).on("click", "#delete-floor", function () {
   $("div").remove(".nothing");
 });
-
-function DrumUsageF0P0(F0P0) {
-  var DrumUsage = "#DrumUsage" + F0P0
-  // console.log(F0P0)
-  if ($(DrumUsage).prop("checked") === true)
-    $(DrumUsage).val("1")
-  else
-    $(DrumUsage).val("0")
-}
-
-// function close_detailF0P0(F0P0) {
-//   // console.log($("#Place-NameF0P0").val());
-//   if ($("#Place-NameF0P0").val() == '')
-//     $("#h5F0P0").text('Dummy Place');
-//   else
-//     $("#h5F0P0").text($("#Place-NameF0P0").val());
-// }
-
-function close_detail(F0P0) {
-  var Place_Name = "#Place_Name" + F0P0
-  var h5 = "#h5" + F0P0
-  // console.log($("#Place-NameF0P0").val());
-  if ($(Place_Name).val() == '')
-    $(h5).text('Dummy Place');
-  else
-    $(h5).text($(Place_Name).val());
-}
