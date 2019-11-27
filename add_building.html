@@ -20,14 +20,13 @@
 </head>
 
 <body>
-	<div id="nav-placeholder"> </div>
+	<!-- <div id="nav-placeholder"> </div>
         <script>
             $.get("navigationbar.html", function(data){
                 $("#nav-placeholder").replaceWith(data);
             });
-        </script>
+        </script> -->
 	<div class="container">
-		<!-- <form action="edit_building.php" method="post" enctype="multipart/form-data" id="add-building-form"> -->
 		<div id="add-building-form">
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -100,7 +99,7 @@
 													<h5 id="h5F0P0">Dummy Place</h5>
 												</div>
 												<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-													<a href="#" onclick="View_Details('parameter')" id="View-Details">
+													<a href="#" onclick="View_Details('F0P0')" id="View_DetailsF0P0">
 														<span class="dark-blue" data-toggle="modal"
 															data-target="#add-place-popup">View details</span>
 													</a>
@@ -122,11 +121,10 @@
 												<div class="modal-dialog modal-dialog-centered" role="document">
 													<div class="modal-content">
 														<div class="modal-header">
-															<h5 class="modal-title vdark-blue"
-																id="exampleModalLongTitle">
-																<b style="padding-left: 1px;">Add Place</b>
+															<h5 class="modal-title vdark-blue">
+																<b id="ModalTitleF0P0" style="padding-left: 1px;">Add Place</b>
 															</h5>
-															<button onclick="close_detail('F0P0')" type="button"
+															<button type="button"
 																class="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
@@ -181,11 +179,11 @@
 																	<div
 																		class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 																		<div class="form-check">
-																			<input class="form-check-input"
-																				type="checkbox" value=""
-																				id="Projector" />
+																			<input onclick="Projector('F0P0')" class="form-check-input"
+																				type="checkbox" value="1"
+																				id="ProjectorF0P0" name="ProjectorF0P0"/>
 																			<label class="form-check-label"
-																				for="Projector">
+																				for="ProjectorF0P0">
 																				Projector
 																			</label>
 																		</div>
@@ -195,11 +193,11 @@
 																	<div
 																		class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 																		<div class="form-check">
-																			<input class="form-check-input"
-																				type="checkbox" value=""
-																				id="Microphone" />
+																			<input onclick="Microphone('F0P0')" class="form-check-input"
+																				type="checkbox" value="1"
+																				id="MicrophoneF0P0" name="MicrophoneF0P0"/>
 																			<label class="form-check-label"
-																				for="Microphone">
+																				for="MicrophoneF0P0">
 																				Microphone
 																			</label>
 																		</div>
@@ -207,10 +205,10 @@
 																	<div
 																		class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 																		<div class="form-check">
-																			<input class="form-check-input"
-																				type="checkbox" value="" id="Speaker" />
+																			<input onclick="Speaker('F0P0')" class="form-check-input"
+																				type="checkbox" value="1" id="SpeakerF0P0" name="SpeakerF0P0"/>
 																			<label class="form-check-label"
-																				for="Speaker">
+																				for="SpeakerF0P0">
 																				Speaker
 																			</label>
 																		</div>
@@ -223,7 +221,7 @@
 																id="add-place" data-dismiss="modal" style="display: block;">
 																<span id="add-place-text">Add</span>
 															</button>
-															<button type="button" class="btn btn-dark-blue"
+															<button onclick="save_detail('F0P0')" type="button" class="btn btn-dark-blue"
 																id="save" data-dismiss="modal" style="display: block;">
 																<span id="add-place-text">Save</span>
 															</button>
@@ -275,7 +273,7 @@
 					</button>
 				</div>
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-					<button onclick="sendAll()" type="submit" class="btn btn-vdark-blue" data-toggle="modal"
+					<button onclick="sendAll()" type="submit" class="btn btn-dark-blue" data-toggle="modal"
 						id="btn-save" style="width:100%">
 						Save
 					</button>
@@ -313,9 +311,7 @@
 	function sendJSON() {
 		const Building_Name0 = $("#Building_Name0").val();
 		const Floor0 = $("#Floor0").val();
-		// const DrumUsageF0P0 = $("#DrumUsageF0P0").val();
 		const DrumUsageF0P0 = $("#DrumUsageF0P0").prop("checked");
-		// const Floor0 = document.getElementById("Floor0").value;
 		console.log("Building_Name0", Building_Name0);
 		console.log("Floor0", Floor0);
 		console.log("DrumUsage0", DrumUsageF0P0);
