@@ -126,7 +126,7 @@
 																id="exampleModalLongTitle">
 																<b style="padding-left: 1px;">Add Place</b>
 															</h5>
-															<button onclick="close_detailF0P0()" type="button"
+															<button onclick="close_detail('F0P0')" type="button"
 																class="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
@@ -137,13 +137,13 @@
 																	<div
 																		class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
 																		<div class="form-group">
-																			<label for="Place-NameF0P0"><span
+																			<label for="Place_NameF0P0"><span
 																					class="dark-blue"><b>Place
 																						Name</b></span></label>
 																			<input type="text" class="form-control"
-																				id="Place-NameF0P0"
+																				id="Place_NameF0P0"
 																				placeholder="Dummy place"
-																				name="Place-NameF0P0" />
+																				name="Place_NameF0P0" />
 																		</div>
 																	</div>
 																	<div
@@ -169,7 +169,7 @@
 																	<div
 																		class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 																		<div class="form-check">
-																			<input onclick="DrumUsageF0P0()" class="form-check-input"
+																			<input onclick="DrumUsage('F0P0')" class="form-check-input"
 																				type="checkbox" value="1"
 																				id="DrumUsageF0P0" name="DrumUsageF0P0"/>
 																			<label class="form-check-label"
@@ -284,23 +284,6 @@
 		</div>
 	</div>
 </body>
-<script>
-	function DrumUsageF0P0() {
-		if ($("#DrumUsageF0P0").prop("checked") === true)
-			$("#DrumUsageF0P0").val("1")
-		else
-			$("#DrumUsageF0P0").val("0")
-	}
-</script>
-<script>
-	function close_detailF0P0() {
-		console.log($("#Place-NameF0P0").val());
-		if($("#Place-NameF0P0").val() == '')
-			$("#h5F0P0").text('Dummy Place');
-		else
-			$("#h5F0P0").text($("#Place-NameF0P0").val());
-	}
-</script>
 <script>
 	console.log("euei");
 

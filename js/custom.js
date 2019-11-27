@@ -52,3 +52,30 @@ $(document).on("click", "#add-floor", function () {
 $(document).on("click", "#delete-floor", function () {
   $("div").remove(".nothing");
 });
+
+function DrumUsageF0P0(F0P0) {
+  var DrumUsage = "#DrumUsage" + F0P0
+  // console.log(F0P0)
+  if ($(DrumUsage).prop("checked") === true)
+    $(DrumUsage).val("1")
+  else
+    $(DrumUsage).val("0")
+}
+
+// function close_detailF0P0(F0P0) {
+//   // console.log($("#Place-NameF0P0").val());
+//   if ($("#Place-NameF0P0").val() == '')
+//     $("#h5F0P0").text('Dummy Place');
+//   else
+//     $("#h5F0P0").text($("#Place-NameF0P0").val());
+// }
+
+function close_detail(F0P0) {
+  var Place_Name = "#Place_Name" + F0P0
+  var h5 = "#h5" + F0P0
+  // console.log($("#Place-NameF0P0").val());
+  if ($(Place_Name).val() == '')
+    $(h5).text('Dummy Place');
+  else
+    $(h5).text($(Place_Name).val());
+}
