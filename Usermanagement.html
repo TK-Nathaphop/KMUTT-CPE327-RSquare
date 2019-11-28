@@ -27,29 +27,6 @@
         <link rel="icon" href="picture/logo/Artboard 1logo.png" />
     </head>
   <body>
-      <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 0px; padding-right: 0px;">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-              <a class="navbar-brand" href="#">
-                  <img src="picture/logo/Artboard 1logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                  <span class="vdark-blue"><b>R-SQUARE</b></span>
-              </a>
-              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                  </li>
-              </ul>
-              
-            </div>
-      </nav> -->
       <div id="nav-placeholder"> </div>
         <script>
             $.get("navigationbar.html", function(data){
@@ -104,14 +81,14 @@
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
 
-                    <!-- Popup content -->
+                    <!---------------------- Popup content ---------------------->
                     <div class="modal-content">
                       <div class="modal-body">
                         <div class="container-fluid">
                           <div class = "row justify-content-center">
                             <h3 class="vdark-blue font-weight-bold text-center"> Add Activity Project</h3>
                           </div>
-                          <!-- searching -->
+                          <!---------------------- searching ---------------------->
                           <div class ="row">
                             <h4 class = "vdark-blue">Search</h4>
                           </div>
@@ -121,7 +98,7 @@
                               <ul id="myList"></ul>
                           </div> -->
                           <form action="/findActivity.php" method="get">
-                            <input type ="text" class="form-control" list="myList" id = "search" name="myList">
+                            <input type ="text" class="form-control" list="myList" id = "search" name="myList" placeholder = "Search">
                             <datalist id="myList">
                               
                             </datalist>
@@ -129,18 +106,19 @@
                           <br>
                           <!-- Row1 -->
                           <div class="row">
-                            <h4 class="vdark-blue" id="org">Organization</h4>
-                            <p id=org_txt></p>
+                            <h4 class="vdark-blue" id="org">Organization:&nbsp</h4>
+                            <h4 id=org_txt> </h4>
                           </div>
                           <!-- Row2 -->
                           <div class="row">
-                            <h4 class = "vdark-blue">President</h4>
+                            <h4 class = "vdark-blue">President:&nbsp</h4>
+                            <h4 id=pre_org_txt> </h4>
                           </div>
                           <!-- Row3 -->
                           <div class="row ">
                             <div class="col-md-10"></div>
                             <div class = "col-sm-2">
-                              <input class="btn btn-primary" type="submit" value="Submit">
+                              <input class="btn btn-primary" type="submit" value="Submit" id ="btn1">
                             </div>
                           </div>
                           <br>
@@ -261,38 +239,60 @@
   <script>
     var row = new Array();
     var xmlhttp = new XMLHttpRequest();
-    var currentData;
+    var data;
     xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var data = JSON.parse(this.responseText);
+      data = JSON.parse(this.responseText);
       var container = document.getElementById("myList");
+      console.log(data);
       for(var i=0; i<data.length;i++)
         {
             row[i] = document.createElement("option");
             row[i].setAttribute("class","search_list")
-            row[i].setAttribute("id","org_text")
+            // row[i].setAttribute("id","org_text")
+            row[i].value = data[i].event_id;
             row[i].innerHTML =  data[i].event
             container.appendChild(row[i]);
         }
-        $(document).ready(function()
-          {
-            $("#search").change(function()
-              {
-              if($(this).val() != '')
-                {
-                var getText = $(this).val();
-                $("#org_txt").append("<h4>"+"Test"+"</h4>");
-                $.getJSON("findActivity.php", function(result)
-                  {
-                    console.log(result);
-                  });
-                }
-              else if(getText)
-                {
 
+        $(document).ready(function(){
+          $("#search").change(function(){
+            if($(this).val() == '')// If There's no text in search box, it will show nothing
+              {
+              }
+            else{
+              var result = document.getElementById("search").value; //Get data to searching
+              //Searching for event in Index
+              for(var j=0; j<data.length;j++){
+                //Print event when it found
+                if(data[j].event_id == result){
+                  document.getElementById("org_txt").innerHTML = data[j].event;
+                  document.getElementById("pre_org_txt").innerHTML = data[j].student_name +' '+data[j].student_surname;
+                  var activityAdd = data[j];
+                  console.log(activityAdd);
+                  }
                 }
-              });
+              }
           });
+          
+          $("#btn1").click(function(){
+            $.ajax({
+              type: "POST",
+              dataType: "json",
+              url: "data.php",
+              data: activityObj,
+              contentType: "application/json; charset=utf-8",
+              success: function(data){
+                  alert('Items added');
+              },
+              error: function(e){
+                  console.log(e.message);
+              }
+          });
+        })
+            
+          });
+
 
       }
     };
