@@ -1,22 +1,79 @@
 /**
+ * struct of building
+ * {
+ *  buildingName: string
+ *  buildingImage: sting(filename)
+ *  floor:[]
+ * }
  * struct of floor
  * {
- *  name: string
- *  blueprint: sting(path)
+ *  floorName: string
+ *  floorBlueprint: sting(filename)
  *  place:[]
  * }
  * struct of place
  * {
- *  name: string
- *  capacity: string
- *  drumusage: boolean
- *  projector: boolean
- *  microphone: boolean
- *  speaker: boolean
+ *  placeName: string
+ *  placeCapacity: string
+ *  placeDrumUsage: boolean
+ *  placeProjector: boolean
+ *  placeMicrophone: boolean
+ *  placeSpeaker: boolean
  * }
  */
 
 //Start init
+
+const building = [];
+
+building.push({
+  buildingName: "Dummy building",
+  buildingImage: "",
+  floor: []
+});
+
+building
+  .find(el => el.buildingName === building[0].buildingName)
+  .floor.push({
+    floorName: "Dummy floor",
+    floorBlueprint: "",
+    place: []
+  });
+
+building
+  .find(el => el.buildingName === building[0].buildingName)
+  .floor.find(el1 => el1.floorName === building[0].floor[0].floorName)
+  .place.push({
+    placeName: "Dummy place",
+    placeCapacity: "50",
+    placeDrumUsage: true,
+    placeProjector: true,
+    placeMicrophone: true,
+    placeSpeaker: true
+  });
+
+console.log(building)
+
+// const floor = [];
+
+// floor.push({
+//   name: "Dummy floor",
+//   blueprint: "",
+//   place: []
+// });
+
+// floor
+//   .find(el => el.name === floor[0].name)
+//   .place.push({
+//     name: "Dummy place",
+//     capacity: "50",
+//     drumUsage: true,
+//     projector: true,
+//     microphone: true,
+//     speaker: true
+//   });
+
+console.log(floor)
 
 function pushPlace(name, capacity, drumUsage, projector, microphone, speaker) {
   // constructor(name, capacity, drumUsage,projector,microphone,speaker){
@@ -38,26 +95,6 @@ function pushPlace(name, capacity, drumUsage, projector, microphone, speaker) {
     });
   console.log(drumUsage);
 }
-
-const floor = [];
-
-floor.push({
-  name: "Dummy floor",
-  blueprint: "",
-  place: []
-});
-
-floor
-  .find(el => el.name === floor[0].name)
-  .place.push({
-    name: "Dummy place",
-    capacity: "50",
-    drumUsage: true,
-    projector: true,
-    microphone: true,
-    speaker: true
-  });
-// console.log(floor);
 
 $(document).on("click", ".browse-building", function() {
   $("#img-building").click();
@@ -132,9 +169,11 @@ function View_Details(F0P0, itsFloor, itsPlace) {
 
 $(document).on("click", "#add-place", function() {
   // place = place + 1
-  place_h5 = "h5F" + (floor.length-1) + "P" + floor[0].place.length;
-  place_View_Detail = "View_DetailsF" + (floor.length - 1) + "P" + floor[0].place.length;
-  place_onclick = "View_Details('F" + (floor.length - 1) + "P" + floor[0].place.length + "')";
+  place_h5 = "h5F" + (floor.length - 1) + "P" + floor[0].place.length;
+  place_View_Detail =
+    "View_DetailsF" + (floor.length - 1) + "P" + floor[0].place.length;
+  place_onclick =
+    "View_Details('F" + (floor.length - 1) + "P" + floor[0].place.length + "')";
 
   // console.log($("#DrumUsageF0P0").prop("checked"))
   // console.log($("#ProjectorF0P0").prop("checked"))
@@ -148,7 +187,7 @@ $(document).on("click", "#add-place", function() {
     $("#ProjectorF0P0").prop("checked"),
     $("#MicrophoneF0P0").prop("checked"),
     $("#SpeakerF0P0").prop("checked")
-  )
+  );
 
   // $('#place').append('<div class="row"> <
   //     div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
@@ -174,7 +213,15 @@ $(document).on("click", "#add-place", function() {
   //     /div> <
   //     /div>')
 
-  $('#place').append('<div class="row"> <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"id = "place" ><div class = "row" ><div class = "col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5" ><h5 id =' + place_h5 + '> Dummy Place </h5></div><div class = "col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7" ><a href = "#"onclick = ' + place_onclick + ' id = ' + place_View_Detail + '><span class = "dark-blue"data-toggle = "modal"data-target = "#add-place-popup" > View details </span> </a> </div> </div> </div> </div>')
+  $("#place").append(
+    '<div class="row"> <div class = "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"id = "place" ><div class = "row" ><div class = "col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5" ><h5 id =' +
+      place_h5 +
+      '> Dummy Place </h5></div><div class = "col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7" ><a href = "#"onclick = ' +
+      place_onclick +
+      " id = " +
+      place_View_Detail +
+      '><span class = "dark-blue"data-toggle = "modal"data-target = "#add-place-popup" > View details </span> </a> </div> </div> </div> </div>'
+  );
   // check_Update()
 });
 
@@ -202,9 +249,9 @@ $(document).on("click", "#delete-floor", function() {
   $("div").remove(".nothing");
 });
 
-function check_Update () {
-  console.log('fire chck update')
-  console.log('place name', place_name)
+function check_Update() {
+  console.log("fire chck update");
+  console.log("place name", place_name);
   // for (i = 0; i <= floor; i++) {
   //   console.log("this is floor", floor)
   //   for (j = 0; j <= place; j++) {
