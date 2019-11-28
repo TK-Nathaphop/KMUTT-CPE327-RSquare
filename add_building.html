@@ -317,11 +317,14 @@
 		console.log("DrumUsage0", DrumUsageF0P0);
 		fetch("data.php", {
 			method: "POST",
-			body: JSON.stringify({
-				Building_Name0: Building_Name0,
-				Floor0: Floor0,
-				DrumUsageF0P0: DrumUsageF0P0
-			})
+			body: JSON.stringify(
+			// 	{
+			// 	Building_Name0: Building_Name0,
+			// 	Floor0: Floor0,
+			// 	DrumUsageF0P0: DrumUsageF0P0
+			// }
+			floor
+			)
 		}).then(async res => {
 			//   debugging
 			const data = await res.text();
