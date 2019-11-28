@@ -92,11 +92,7 @@
                           <div class ="row">
                             <h4 class = "vdark-blue">Search</h4>
                           </div>
-                          <br>
-                          <!-- <div class = "row">
-                              <input class="form-control" id="myInput2" type="text" placeholder="Searching">
-                              <ul id="myList"></ul>
-                          </div> -->
+                          <!-- Input for Searching Event -->
                           <form action="/findActivity.php" method="get">
                             <input type ="text" class="form-control" list="myList" id = "search" name="myList" placeholder = "Search">
                             <datalist id="myList">
@@ -240,6 +236,7 @@
     var row = new Array();
     var xmlhttp = new XMLHttpRequest();
     var data;
+    var dataAdd;
     xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       data = JSON.parse(this.responseText);
@@ -268,90 +265,30 @@
                 if(data[j].event_id == result){
                   document.getElementById("org_txt").innerHTML = data[j].event;
                   document.getElementById("pre_org_txt").innerHTML = data[j].student_name +' '+data[j].student_surname;
-                  var activityAdd = data[j];
-                  console.log(activityAdd);
+                  dataAdd = data[j];
+                  console.log(dataAdd);
                   }
                 }
               }
           });
           
           $("#btn1").click(function(){
-            $.ajax({
-              type: "POST",
-              dataType: "json",
-              url: "data.php",
-              data: activityObj,
-              contentType: "application/json; charset=utf-8",
-              success: function(data){
-                  alert('Items added');
-              },
-              error: function(e){
-                  console.log(e.message);
-              }
-          });
-        })
-            
-          });
-
+            fetch("testGet.php", {
+			      method: "POST",
+			      body: JSON.stringify(dataAdd)
+		        }).then(async res => {
+          //   debugging
+              const data = await res.text();
+              console.log("server res", data);
+            });
+          })      
+        });
 
       }
     };
       xmlhttp.open("GET", "findActivity.php?userId=" + id, true);
       xmlhttp.send();
-      // $(document).ready(function(){
-      //     $("#myInput2").keyup(function(){ 
-      //       var name = $("#myInput2").val();
-      //         $.post("findActivity.php",{suggestion:name},
-      //           function(data,status){
-      //             $("$#activitylist").html(data);
-      //           });
-      //       });
-      //     });
-//     function search_animal() { 
-//     let input = document.getElementById('searchbar').value 
-//     input=input.toLowerCase(); 
-//     let x = document.getElementsByClassName('animals'); 
       
-//     for (i = 0; i < x.length; i++) {  
-//         if (!x[i].innerHTML.toLowerCase().includes(input)) { 
-//             x[i].style.display="none"; 
-//         } 
-//         else { 
-//             x[i].style.display="list-item";                  
-//         } 
-//     } 
-// } 
-    // function removeDisplay()
-    //   {
-    //     for(count = 0 ; count<row.length;count++)
-    //       row[i].remove();
-    //   }
-      
-    // function display()
-    //   {
-    //     var select = document.getElementsById("type")
-    //     var type = select.option[select.selectIndex].value;
-
-    //     var xmlhttp = new XMLHttpRequest();
-    //     xmlhttp.onreadystatechange = function(){
-    //       if(this.readyState == 4 && this.status == 200){
-    //         removeDispaly();
-    //         var container = document.getElementById("userList");
-    //         var data = JSON.parse(this.responseText);
-    //         for(var i = 0 ; i < data.length ; i++){
-    //           var count = i+1;
-    //           row[i] = document.createElement("tr")
-    //           row[i].innerHTML =
-    //           container.appendChild(row[i]);
-    //         }
-    //       }
-    //     };
-
-    //     xmlhttp.open("GET", "findActivity.php?userId="+ id , true);
-    //     xmlhttp.send();
-    //   }
-
-    // };
   </script>
   <!-- Trying to use Jquery -->
 
@@ -382,19 +319,23 @@
         var tableCon = document.createElement("tr")
         var i = 0;
         var j = 0;
-        for (i in myObj){
-          // container.appendChild(tableCon);
-          for(j in myObj[i].floor){
+        for (i in myObj)
+          {
+          rowBuilding = "<td rowspawn="+myObj[i].floor.length+">"+myObj[i].building+"</td>";
+                  
+          for(j in myObj[i].floor)
+            {
+            rowBuilding = rowBuilding+"<tr rowspawn="+myObj[i].floor.length+">"+myObj[i].building+"</td>";
             for(k in myObj[i].floor[j].place)
-            tableCon.innerHTML = "<td>"+myObj[i].building+"</td>"+
-                                "<td>"+myObj[i].floor[j]['floor']+"</td>"+
-                                "<td>"+myObj[i].floor[j].place[k]['place']+"</td>";
-            container.appendChild(tableCon);
-          }
-        } 
+              tableCon.innerHTML = "<td>"+myObj[i].building+"</td>"+
+                "<td>"+myObj[i].floor[j]['floor']+"</td>"+
+                "<td>"+myObj[i].floor[j].place[k]['place']+"</td>";
+                  }
+                  container.appendChild(tableCon);
+                } 
       }
     };
-    xmlhttp.open("GET", "getResponsiblePlace.php?userId=60070503429" , true);
+    xmlhttp.open("GET", "getResponsiblePlace.php?userId=60070503415" , true);
     xmlhttp.send();
   </script>
 </html>
