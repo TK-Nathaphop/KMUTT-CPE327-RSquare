@@ -1,10 +1,23 @@
 <?php
 
+//Get search from interface
+if(isset($_GET["search"]))
+    $search = $_GET["search"];
+else
+    $search = "";
+
+//Get search from interface
+if(isset($_GET["userId"]))
+    $userId = $_GET["userId"];
+else
+    die();
+
 require_once ('class/databaseConnection.php');
 $con = new databaseConnection();
 $con->connect();
 
-$res_act = $con->query("SELECT * FROM `event`");
+
+$res_act = $con->query("SELECT * FROM `event` WHERE `advisor` != '".$userId."'");
 $acts = array();
 while($item = $res_act -> fetch_object())
 {
@@ -22,11 +35,6 @@ while($item = $res_act -> fetch_object())
     $acts[] = $item;
 }
 
-//Get search from interface
-if(isset($_GET["search"]))
-    $search = $_GET["search"];
-else
-    $search = "";
 
 $ret = array();
 // lookup all hints from array if $q is different from "" 
