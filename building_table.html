@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- using bootstrap 4.3.1 -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <!-- import logo Rsquare and Head -->
+    <link rel="icon" href="images/logo/Artboard 1logo.png" />
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    <title>R-SQUARE</title>
+
+    
+    <link href="MDB-Free/css/style.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="MDB-Free/js/mdb.min.js"></script>
+    <!--CSS-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- /Head of the Card -->
+    <div class="container">
+      <div class="container-content">
+        <div class="row justify-content-center"><h1 class="vdark-blue">View User</h1></div>
+        <div class="card-content">                   
+          <div class="row">
+            <h4 class="font-weight-bold text-lg-left text-primary">Responsible Place</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Building</th>
+                  <th scope="col">Floor</th>
+                  <th scope ="col">Place</th>
+                  <th></th>
+                </tr>
+                </thead>
+               <tbody id ="table4">
+              </tbody>
+            </table>
+            <div class="container text-right">
+              <button type="button" class="btn btn-primary" onclick="myfunction()">
+                Add Place
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </body>
+
+
+  <script>
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function()
+  {
+    if (this.readyState == 4 && this.status == 200)
+    {
+      var building = JSON.parse(this.responseText);
+      var container = document.getElementById("table4");
+      var tr_comp;
+      var td_comp;
+      var new_build = true;
+      var new_floor = true;
+      let i,j,k;
+      for (i=0;i<building.length;i++)
+      {
+        tr_comp = document.createElement("tr");
+        td_comp = document.createElement("td");
+        td_comp.rowSpan = building[i].count_place;
+        td_comp.innerHTML = building[i].building;;
+        tr_comp.appendChild(td_comp);
+        new_build = true;
+        // container.appendChild(tableCon);
+        for(j=0; j<building[i].floor.length; j++)
+        {
+          if(new_build)
+          {
+            td_comp = document.createElement("td");
+            new_build = false;
+          }
+          else
+          {
+            tr_comp = document.createElement("tr");
+            td_comp = document.createElement("td");
+          }
+          td_comp.rowSpan = building[i].floor[j].place.length;
+          td_comp.innerHTML = building[i].floor[j].floor;
+          tr_comp.appendChild(td_comp);
+          new_floor = true;
+          for(k=0; k< building[i].floor[j].place.length; k++)
+          {
+            if(new_floor)
+            {
+              td_comp = document.createElement("td");
+              new_floor = false;
+            }
+            else
+            {
+              tr_comp = document.createElement("tr");
+              td_comp = document.createElement("td");
+            }
+            td_comp.innerHTML = building[i].floor[j].place[k].place;
+            tr_comp.appendChild(td_comp);
+            container.appendChild(tr_comp);
+          }
+        }
+      } 
+    }
+  }
+
+    xmlhttp.open("GET", "getResponsiblePlace.php?userId=60070503429" , true);
+    xmlhttp.send();
+  </script>
+</html>
