@@ -157,6 +157,7 @@
       let new_build = true;
       let new_floor = true;
       let i,j,k;
+      let a;
       for (i=0;i<building_res.length;i++)
       {
         tr_comp = document.createElement("tr");
@@ -197,7 +198,11 @@
             td_comp.innerHTML = building_res[i].floor[j].place[k].place;
             tr_comp.appendChild(td_comp);
             td_comp = document.createElement("td");
-            td_comp.innerHTML = "<u>Delete</u>"
+            // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
+            a = document.createElement("a");
+            a.setAttribute("onclick","confirmDelete("+i+","+j+","+k+")");
+            a.innerHTML = "Delete"
+            td_comp.appendChild(a);
             tr_comp.appendChild(td_comp);
             container.appendChild(tr_comp);
           }
@@ -229,6 +234,7 @@
         let new_build = true;
         let new_floor = true;
         let i,j,k;
+        let a;
         for (i=0;i<building_res.length;i++)
         {
           tr_comp = document.createElement("tr");
@@ -269,7 +275,11 @@
               td_comp.innerHTML = building_res[i].floor[j].place[k].place;
               tr_comp.appendChild(td_comp);
               td_comp = document.createElement("td");
-              td_comp.innerHTML = "<u>Delete</u>"
+              // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
+              a = document.createElement("a");
+              a.setAttribute("onclick","confirmDelete("+i+","+j+","+k+")");
+              a.innerHTML = "Delete"
+              td_comp.appendChild(a);
               tr_comp.appendChild(td_comp);
               container.appendChild(tr_comp);
             }
@@ -402,7 +412,10 @@
     placeContainer.querySelectorAll('*').forEach(n => n.remove());
   }
 
-
+  function confirmDelete(str)
+  {
+    let r = confirm("Do you want to delete?");
+  }
 
   function addBuildingRes()
   {
@@ -423,23 +436,10 @@
                 '"place":' + place + ',' +
                 '"id":"' + id + '"}'
     json = JSON.parse(ret)
-    // console.log('json:' + json)
-    // console.log(JSON.stringify(json))
-    // let status
-    // $.post("addResBuilding.php",
-    //   function(json, status)
-    //   {
-    //     removeTableBuilding();
-    //     displayTableBuilding();
-    //     console.log(status);
-    //   });
     fetch("addResBuilding.php", {
       method: "POST",
       body: ret
     }).then(async res => {
-      //   debugging
-      // const data = await res.text();
-      // console.log("server res" + data);
     removeTableBuilding();
     displayTableBuilding();
     });
