@@ -73,6 +73,18 @@ function pushFloor(
     });
 }
 
+function pushFloorDefault(
+  floorNumber
+) {
+  building
+    .find(el => el.buildingName === building[0].buildingName)
+    .floor.push({
+      floorName: "Dummy floor" + floorNumber,
+      floorBlueprint: "",
+      place: []
+    });
+}
+
 //function for pushPlace
 function pushPlace(
   placeName,
@@ -92,6 +104,23 @@ function pushPlace(
       placeProjector: placeProjector,
       placeMicrophone: placeMicrophone,
       placeSpeaker: placeSpeaker
+    });
+}
+
+function pushPlaceDefault(
+  floorNumber
+) {
+  console.log("pushPlaceDefault", floorNumber)
+  building
+    .find(el => el.buildingName === building[0].buildingName)
+    .floor.find(el1 => el1.floorName === building[0].floor[floorNumber].floorName)
+    .place.push({
+      placeName: "Dummy place",
+      placeCapacity: "50",
+      placeDrumUsage: true,
+      placeProjector: true,
+      placeMicrophone: true,
+      placeSpeaker: true
     });
 }
 
@@ -263,9 +292,11 @@ function add_place_popup_btn(floor) {
 }
 
 function add_floor() {
-  const currentFloor = building[0].floor.length;
-  const curPlaces = currentFloor.place;
+  pushFloorDefault(building[0].floor.length)
+  const currentFloor = (building[0].floor.length) - 1;
   console.log("current floor", currentFloor);
+  pushPlaceDefault(currentFloor)
+  const curPlaces = currentFloor.place;
   console.log("places", curPlaces);
   // alert("This is floor ");
   $("#floor-template").append(
@@ -425,7 +456,7 @@ function add_floor() {
                 </div>
             </div>
             <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-                <button type="button" onclick="deleteFloor${currentFloor}()" class="close" name="deleteFloor${currentFloor}" data-dismiss="modal"
+                <button type="button" onclick="deleteFloor('${currentFloor}')" class="close" name="deleteFloor${currentFloor}" data-dismiss="modal"
                     aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -436,9 +467,10 @@ function add_floor() {
   );
 }
 
-function deleteFloor0() {
-  alert("Hello");
-  $("div").remove("#deleteFloor0");
+function deleteFloor(floor) {
+  const deleteFloor = "#deleteFloor" + floor
+  alert("Hello" + floor);
+  $("div").remove(deleteFloor);
 }
 
 function check_Update() {
