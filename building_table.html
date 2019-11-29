@@ -259,7 +259,6 @@
           item = document.createElement("option");
           item.value = buildings[i].floor[j].floor_id;
           item.innerHTML =  buildings[i].floor[j].floor;
-          console.log(item);
           floorContainer.appendChild(item);
         }
         break;
@@ -293,7 +292,6 @@
               input.setAttribute("type","checkbox");
               input.setAttribute("id","option"+k);
               input.setAttribute("value",buildings[i].floor[j].place[k].place_id);
-              input.setAttribute("onClick","checkPlace("+i+","+j+","+k+")");
               if(buildings[i].floor[j].place[k].res)
               {
                 input.setAttribute("disabled",'');
@@ -307,40 +305,18 @@
               check.appendChild(label);
               placeContainer.appendChild(check);
             }
+            break;
           }
         }
+        break;
       }
     }
   }
-
-  function checkPlace(i,j,k)
-  {
-    console.log(document.getElementById(""))
-    // if(document.getElementById("option"+k).value)
-    // {
-    //   for``
-    // }
-    // else
-    // {
-
-    //   buildings[i].floor[j].place[k].res = true;
-    // }
-  }
-
 
   function removeFloor()
   {
     let floorContainer = document.getElementById("floorList");
     floorContainer.querySelectorAll('*').forEach(n => n.remove());
-    // if(floorContainer.childElementCount != 0)
-    // {
-    //   // let floorChild = floorContainer.children;
-    //   // while (floorChild.firstChild) {
-    //   //   console.log(floorChild.firstChild)
-    //   //   floorChild.removeChild(floorChild.firstChild);
-    //   // }
-    //   floorContainer.reset()
-    // }
   }
 
   function removePlace()
