@@ -292,6 +292,11 @@ function add_place_popup_btn(floor) {
 }
 
 function add_floor() {
+  /** from add_place
+   * const currentFloor = building[0].floor[floor];
+   * const curPlaces = currentFloor.place;
+   */
+  
   pushFloorDefault(building[0].floor.length)
   const currentFloor = (building[0].floor.length) - 1;
   console.log("current floor", currentFloor);
