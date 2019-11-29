@@ -42,25 +42,47 @@
         <div class="container-fluid">
           <!--------------------------------First Row------------------------------>
           <div class="row">
-            <div class="col-3"  >
-                <div id="col1"></div>
+            <div class="col-3">
+                <div class = "row" id = "picture">
+                  <img src="picture/user/null-pic.png" class=rounded-circle height = "150" width=  "150" >
+                </div>
             </div>
             <!--Detail of User-->
             <!--Column of Detail User1-->
-            <div class="col-5" id ="name">
+            <div class="col-4" id ="display_info">
+              <div class="row" >
+                <h4 class="vdark-blue">Name:&nbsp&nbsp&nbsp&nbsp</h4>
+                <h4 id="name"></h4>
+              </div>
+              <div class="row" >
+                <h4 class="vdark-blue">Faculty:&nbsp&nbsp</h4>
+                <h4 id="faculty"></h4>
+              </div>
+              <div class="row" >
+                <h4 class="vdark-blue">Postion:&nbsp&nbsp</h4>
+                <h4 id="position"></h4>
+                </div>
             </div>
             <!--Column of Detail User2-->
-            <div class="col-4" id="col2">
+            <div class="col-5">
+              <div class = "row">
+                <h4 class="vdark-blue">Role:&nbsp</h4>
+                <h4 id="role"></h4>
+              </div>
+              <div class = "row">
+                  <h4 class="vdark-blue">Department:&nbsp</h4>
+                  <h4 id="department"></h4>
+                </div>
             </div>
-          </div>
           <div class ="container">
+            <br> <!-- Space between row 1 and row 2 -->
             <!--------------------------------Second Row------------------------------>
             <div class="row">
-              <h4 class="font-weight-bold justify-content-left text-primary">
+              <h4 class="font-weight-bold justify-content-left vdark-blue ">
                 Responsible Activity Project
               </h4>
               <!--Table of Activity infomation-->
-              <table class="table justify-content-left">
+              <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">Project</th>
@@ -86,7 +108,7 @@
                       <div class="modal-body">
                         <div class="container-fluid">
                           <div class = "row justify-content-center">
-                            <h3 class="vdark-blue font-weight-bold text-center"> Add Activity Project</h3>
+                            <h3 class="vdark-blue font-weight-bold text-center"> Add Activity</h3>
                           </div>
                           <!---------------------- searching ---------------------->
                           <div class ="row">
@@ -95,14 +117,14 @@
                           <!-- Input for Searching Event -->
                           <form action="/findActivity.php" method="get">
                             <input type ="text" class="form-control" list="myList" id = "search" name="myList" placeholder = "Search">
-                            <datalist id="myList">
-                              
+                            <datalist id="myList"> 
+                              <!-- List of Resonsible for user that can added -->
                             </datalist>
                           </form>
                           <br>
                           <!-- Row1 -->
                           <div class="row">
-                            <h4 class="vdark-blue" id="org">Organization:&nbsp</h4>
+                            <h4 class="vdark-blue" id="org">Activity Name:&nbsp</h4>
                             <h4 id=org_txt> </h4>
                           </div>
                           <!-- Row2 -->
@@ -128,7 +150,7 @@
             </div>
             <!--------------------------------Third Row------------------------------>
             <div class="row">
-              <h4 class="font-weight-bold text-lg-left text-primary">
+              <h4 class="font-weight-bold justify-content-left vdark-blue">
                 Responsible Organization
               </h4>
               <div class = "table-responsive">
@@ -143,15 +165,66 @@
                   </tbody>
                 </table>
               </div>
-              <div class="row col-sm-4 col-sm-12">
-                <button type="button" class="btn btn-primary" onclick="myfunction()" >
-                  Add Organization
-                </button>
+            </div>
+            <!---------------------- Pop-up Row ---------------------->
+            <div class="row">
+              <div class = "col-sm-10"></div>
+              <div class = "col-sm-2">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOrganize" data-whatever="@addOrganize">Add Organization</button>
+
+                <div class="modal fade" id="addOrganize" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+  
+                        <!---------------------- Popup content ---------------------->
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <div class="container-fluid">
+                          <div class = "row justify-content-center">
+                            <h3 class="vdark-blue font-weight-bold text-center"> Add Organization</h3>
+                          </div>
+                              <!---------------------- searching ---------------------->
+                          <div class ="row">
+                            <h4 class = "vdark-blue">Search</h4>
+                          </div>
+                              <!-- Input for Searching Event -->
+                          <form action="/findOrganization.php" method="get">
+                                <input type ="text" class="form-control" list="organizeList"  id = "organize_search" name="organizeList" placeholder = "Search">
+                                <datalist id="organizeList"> 
+                                  <!-- List of Resonsible for user that can added -->
+                                </datalist>
+                          </form>
+                          <br>
+                          <!-- Row1 -->
+                          <div class="row">
+                            <h4 class="vdark-blue" id="org">Organization Name:&nbsp</h4>
+                            <h5 id="organize"> </h5>
+                          </div>
+                          <!-- Row2 -->
+                          <div class="row">
+                            <h4 class = "vdark-blue">President:&nbsp</h4>
+                            <h4 id="organizeName"> </h4>
+                          </div>
+                          <!-- Row3 -->
+                          <div class="row ">
+                            <div class="col-md-10"></div>
+                            <div class = "col-sm-2">
+                              <input class="btn btn-primary" type="submit" value="Submit" id ="btn2">
+                            </div>
+                          </div>
+
+                          <br>
+                        </div>
+                      </div>
+                    </div>
+                        <!-- End of Content -->
+                   </div>
+                </div>
               </div>
+                
             </div>
             <!--------------------------------fourth Row------------------------------>
             <div class="row">
-              <h4 class="font-weight-bold text-lg-left text-primary">
+              <h4 class="font-weight-bold justify-content-left vdark-blue">
                 Responsible Place
               </h4>
               <table class="table">
@@ -187,25 +260,20 @@
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         myObj = JSON.parse(this.responseText);
-        var container = document.getElementById("name");
-        var div = document.createElement("div");
-        div.innerHTML = "<div class = \"row\">"
-        +"<h4 class =  \"vdark-blue\"> Name:</h4>" + ' '+"<h4>"+myObj.name + ' ' + myObj.surname +"</h4>"+"</div>"
-        +"<div class = \"row\">"+"<h4 class =  \"vdark-blue\"> Faculty:</h4>" +' '+"<h4>"+ myObj.faculty+"</h4>"+"</div>"
-        +"<div class = \"row\">"+"<h4 class =  \"vdark-blue\"> Position:</h4>" +' '+"<h4>"+ myObj.position+"</h4>"+"</div>";
-          container.appendChild(div)
+        console.log(myObj);
+        var container = document.getElementById("name").innerHTML = myObj.name+' '+myObj.surname
+        var container = document.getElementById("faculty").innerHTML = myObj.faculty
+        var container = document.getElementById("position").innerHTML = myObj.position
+        var container = document.getElementById("role").innerHTML = myObj.role
+        var container = document.getElementById("department").innerHTML = myObj.department
+        var containerPicture = document.getElementById("picture");
+        var div = document.createElement(div);
+        containerPicture.innerHTML = "<img src=\"picture/user/"  + myObj.picture+ "\" class=\"rounded-circle\" height = \" 150\" width= \" 150\" >" + "<br><br>"
+        //"<div class = \"row\">"
+        // +"<h4 class =  \"vdark-blue\"> Name:</h4>" + ' '+"<h4>"+myObj.name + ' ' + myObj.surname +"</h4>"+"</div>"
+        // +"<div class = \"row\">"+"<h4 class =  \"vdark-blue\"> Faculty:</h4>" +' '+"<h4>"+ myObj.faculty+"</h4>"+"</div>"
+        // +"<div class = \"row\">"+"<h4 class =  \"vdark-blue\"> Position:</h4>" +' '+"<h4>"+ myObj.position+"</h4>"+"</div>";
           
-        var container = document.getElementById("col2");
-        var div2 = document.createElement("div");
-          div2.innerHTML = 
-        "<div class = \"row\">"+"<h4 class =  \"vdark-blue\"> Roke:</h4>" +"<h4>"+ myObj.role+"</h4>"+"</div>"
-        +"<div class = \"row\">"+"<h4 class =  \"vdark-blue\"> Department:</h4>" +"<h4>"+ myObj.department+"</h4>"+"</div>";
-          container.appendChild(div2)
-
-        var container = document.getElementById("col1");
-        var div3 = document.createElement("div");
-        div3.innerHTML ="<img src=\"picture/user/"  + myObj['picture'] + "\" class=\"rounded-circle\" height = \" 200-\" width= \" 200\" >" + "<br><br>";
-        container.appendChild(div3)
         
       }
     };
@@ -235,18 +303,17 @@
   <script>
     var row = new Array();
     var xmlhttp = new XMLHttpRequest();
-    var data;
-    var dataAdd;
+    let data;
+    let dataAdd;
     xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       data = JSON.parse(this.responseText);
       var container = document.getElementById("myList");
-      console.log(data);
       for(var i=0; i<data.length;i++)
         {
             row[i] = document.createElement("option");
             row[i].setAttribute("class","search_list")
-            // row[i].setAttribute("id","org_text")
+            row[i].setAttribute("id","org_text")
             row[i].value = data[i].event_id;
             row[i].innerHTML =  data[i].event
             container.appendChild(row[i]);
@@ -288,10 +355,65 @@
     };
       xmlhttp.open("GET", "findActivity.php?userId=" + id, true);
       xmlhttp.send();
-      
   </script>
-  <!-- Trying to use Jquery -->
+  <!-- SCRIPT FOR ADD ORGANIZATION -->
+  <script>
+    let rowOrganize = new Array();
+    var xmlhttp = new XMLHttpRequest();
+    let dataOrganize;
+    let addOrganzie;
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      dataOrganize = JSON.parse(this.responseText);
+      var container = document.getElementById("organizeList");
+      console.log(dataOrganize);
+      for(var i=0; i<dataOrganize.length;i++)
+        {
+          rowOrganize[i] = document.createElement("option");
+          rowOrganize[i].setAttribute("class","search_list")
+          // rowOrganize[i].setAttribute("id","organize")
+          rowOrganize[i].value = dataOrganize[i].organization_id;
+          rowOrganize[i].innerHTML =  dataOrganize[i].organization
+          container.appendChild(rowOrganize[i]);
+        }
 
+        $(document).ready(function(){
+          $("#organize_search").change(function(){
+            if($(this).val() == '')// If There's no text in search box, it will show nothing
+              {
+              }
+            else{
+              var result = document.getElementById("organize_search").value; //Get data to searching
+              //Searching for event in Index
+              for(var j=0; j<dataOrganize.length;j++){
+                //Print event when it found
+                if(dataOrganize[j].organization_id == result){
+                  document.getElementById("organize").innerHTML = dataOrganize[j].organization
+                  document.getElementById("organizeName").innerHTML = dataOrganize[j].student_name +' '+dataOrganize[j].student_surname
+                  addOrganize = dataOrganize[j];
+                  console.log(addOrganize);
+                  }
+                }
+              }
+          });
+          
+          $("#btn2").click(function(){
+            fetch("showOrganizeAdd.php", {
+			      method: "POST",
+			      body: JSON.stringify(addOrganize)
+		        }).then(async res => {
+          //   debugging
+              const data = await res.text();
+              console.log("server res", data);
+            });
+          })      
+        });
+
+      }
+    };
+      xmlhttp.open("GET", "findOrganization.php?userId=" + id, true);
+      xmlhttp.send();
+  </script>
   <!-- Script For Third Row -->
   <script>
      var xmlhttp = new XMLHttpRequest();
@@ -335,7 +457,7 @@
                 } 
       }
     };
-    xmlhttp.open("GET", "getResponsiblePlace.php?userId=60070503415" , true);
+    xmlhttp.open("GET", "getResponsiblePlace.php?userId=60070503429" , true);
     xmlhttp.send();
   </script>
 </html>
