@@ -222,10 +222,15 @@
 																id="add_placeF0" data-dismiss="modal" style="display: block;">
 																<span id="add_place_text_F0">Add</span>
 															</button>
+															<button onclick="delete_detail('F0P0','0','0')" type="button" class="btn btn-outline-dark-blue"
+																id="delete_place" style="display: block;">
+																<span id="add_place_text_F0">Delete</span>
+															</button>
 															<button onclick="save_detail('F0P0','0','0')" type="button" class="btn btn-dark-blue"
 																id="save" data-dismiss="modal" style="display: block;">
 																<span id="add_place_text_F0">Save</span>
 															</button>
+															
 														</div>
 													</div>
 												</div>
@@ -259,7 +264,7 @@
 					</button>
 				</div>
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-					<button type="button" class="btn btn-dark-blue" data-toggle="modal" id="add-floor"
+					<button onclick="add_floor()" type="button" class="btn btn-dark-blue" data-toggle="modal" id="add_floor"
 						style="width:100%">
 						Add floor
 					</button>
