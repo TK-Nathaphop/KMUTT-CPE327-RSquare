@@ -223,7 +223,7 @@
 																<span id="add_place_text_F0">Add</span>
 															</button>
 															<button onclick="delete_detail('F0P0','0','0')" type="button" class="btn btn-outline-dark-blue"
-																id="delete_place" style="display: block;">
+																id="delete_place" data-dismiss="modal" style="display: block;">
 																<span id="add_place_text_F0">Delete</span>
 															</button>
 															<button onclick="save_detail('F0P0','0','0')" type="button" class="btn btn-dark-blue"
@@ -330,7 +330,7 @@
 			// 	Floor0: Floor0,
 			// 	DrumUsageF0P0: DrumUsageF0P0
 			// }
-			floor
+			building
 			)
 		}).then(async res => {
 			//   debugging

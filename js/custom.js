@@ -95,6 +95,13 @@ function pushPlace(
     });
 }
 
+function deletePlace(fromFloor,fromPlace) {
+  building
+    .find(el => el.buildingName === building[0].buildingName)
+    .floor.find(el1 => el1.floorName === building[0].floor[fromFloor].floorName)
+    .place.splice(fromPlace, 1)
+}
+
 $(document).on("click", ".browse-building", function () {
   $("#img-building").click();
   $("#img-building").change(function (e) {
@@ -148,11 +155,37 @@ function save_detail(F0P0, itsFloor, itsPlace) {
 }
 
 function delete_detail(F0P0, itsFloor, itsPlace) {
+  console.log(happenFloor, happenPlace)
+  deletePlace(happenFloor, happenPlace)
 
+  currentFloor = building[0].floor[happenFloor];
+  curPlaces = currentFloor.place;
+  $('#place').html('')
+  curPlaces.forEach((e, i) => {
+    console.log('e ->', e)
+
+    $('#place').append(
+      `<div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            <h5 id = "h5F${happenFloor}P${i}">${e.placeName}</h5>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+            <a href = "#"
+            onclick = "${`View_Details('F${happenFloor}P${i}','${happenFloor}','${i}')`}"
+            id = "View_DetailsF${happenFloor}P${i}" >
+              <span class="dark-blue" data-toggle="modal"
+                data-target="#add_place_popup_F0">View details</span>
+            </a>
+          </div>
+        </div>`
+    )
+  });
 }
 
 function View_Details(F0P0, itsFloor, itsPlace) {
   let my_add_place;
+  happenFloor = itsFloor
+  happenPlace = itsPlace
   const curPlaces = building[0].floor[itsFloor].place[itsPlace]
   console.log('view curplace', curPlaces)
   console.log('view detail', F0P0, itsFloor, itsPlace)
@@ -186,12 +219,10 @@ function add_place(floor) {
     $("#MicrophoneF0P0").prop("checked"),
     $("#SpeakerF0P0").prop("checked")
   );
-  // const buildingName =
   const currentFloor = building[0].floor[floor];
   const curPlaces = currentFloor.place;
   console.log("current floor", currentFloor);
   console.log("places", curPlaces);
-  // let place_h5, place_View_Detail, place_onclick;
 
   $('#place').html('')
 
