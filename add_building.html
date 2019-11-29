@@ -101,23 +101,24 @@
 												<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
 													<a href="#" onclick="View_Details('F0P0','0','0')" id="View_DetailsF0P0">
 														<span class="dark-blue" data-toggle="modal"
-															data-target="#add-place-popup">View details</span>
+															data-target="#add_place_popup_F0">View details</span>
 													</a>
 												</div>
 											</div>
+											
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 											<!-- Button trigger modal -->
-											<button type="button" class="btn btn-dark-blue" data-toggle="modal"
-												data-target="#add-place-popup" id="add-place-popup-btn">
+											<button onclick="add_place_popup_btn('0')" type="button" class="btn btn-dark-blue" data-toggle="modal"
+												data-target="#add_place_popup_F0" id="add_place_popup_btn_F0">
 												Add Place
 											</button>
 
 											<!-- Modal -->
-											<div class="modal fade" id="add-place-popup" tabindex="-1" role="dialog"
-												aria-labelledby="add-place-popup-Title" aria-hidden="true">
+											<div class="modal fade" id="add_place_popup_F0" tabindex="-1" role="dialog"
+												aria-labelledby="add_place_popup_F0_Title" aria-hidden="true">
 												<div class="modal-dialog modal-dialog-centered" role="document">
 													<div class="modal-content">
 														<div class="modal-header">
@@ -217,14 +218,19 @@
 															</div>
 														</div>
 														<div class="modal-footer">
-															<button type="button" class="btn btn-dark-blue"
-																id="add-place" data-dismiss="modal" style="display: block;">
-																<span id="add-place-text">Add</span>
+															<button onclick="add_place('0')" type="button" class="btn btn-dark-blue"
+																id="add_placeF0" data-dismiss="modal" style="display: block;">
+																<span id="add_place_text_F0">Add</span>
+															</button>
+															<button onclick="delete_detail('F0P0','0','0')" type="button" class="btn btn-outline-dark-blue"
+																id="delete_place" data-dismiss="modal" style="display: block;">
+																<span id="add_place_text_F0">Delete</span>
 															</button>
 															<button onclick="save_detail('F0P0','0','0')" type="button" class="btn btn-dark-blue"
 																id="save" data-dismiss="modal" style="display: block;">
-																<span id="add-place-text">Save</span>
+																<span id="add_place_text_F0">Save</span>
 															</button>
+															
 														</div>
 													</div>
 												</div>
@@ -258,7 +264,7 @@
 					</button>
 				</div>
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-					<button type="button" class="btn btn-dark-blue" data-toggle="modal" id="add-floor"
+					<button onclick="add_floor()" type="button" class="btn btn-dark-blue" data-toggle="modal" id="add_floor"
 						style="width:100%">
 						Add floor
 					</button>
@@ -324,7 +330,7 @@
 			// 	Floor0: Floor0,
 			// 	DrumUsageF0P0: DrumUsageF0P0
 			// }
-			floor
+			building
 			)
 		}).then(async res => {
 			//   debugging

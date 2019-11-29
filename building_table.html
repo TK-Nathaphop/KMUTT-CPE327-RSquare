@@ -55,9 +55,69 @@
               </tbody>
             </table>
             <div class="container text-right">
-              <button type="button" class="btn btn-primary" onclick="myfunction()">
-                Add Place
-              </button>
+               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-place-popup" id="add-place-popup-btn" onclick = "initial()"> Add Place </button>
+
+        <div class="modal fade" id="add-place-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title vdark-blue"><b id="ModalTitleF0P0" style="padding-left: 1px;">Add Place</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <!-- Modal Body for add building -->
+              <div class="modal-body" >
+                <div class="container-fluid">
+                  <!-- First row for building and floor -->
+                  <div class="row">
+                    <!-- Building -->
+                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                      <label for="Capacity"><span class="dark-blue"><b>Building</b></span></label>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                      <form>
+                        <select id="buildingList" onchange ="changeBuilding()" class="selectpicker">
+                        
+                        </select>
+                      </form>
+                    </div>
+                     <!-- Floor -->
+                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                        <label for="Capacity"><span
+                            class="dark-blue"><b>Floor</b></span></label>
+                    </div>
+                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                      <form>
+                        <select id="floorList" onchange="changeFloor()" class="selectpicker">
+                        
+                        </select>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- Second row for building and floor -->
+                  <div class="row">
+                    <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+                      <label for="Capacity"><span class="dark-blue"><b>Place</b></span></label>
+                    </div>
+                    <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11"></div>
+                  </div>
+                  <div id="placeList">
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button onclick="addBuildingRes()" type="button" class="btn btn-primary"
+                  id="save" data-dismiss="modal" style="display: block;">
+                  <span id="add-place-text">Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
             </div>
           </div>
           
@@ -68,28 +128,45 @@
 
 
   <script>
+  var id = '60070503429'; // initial id
+  var buildings;  // all building variable
+  var add = new Array();
+  var amound;
+  
+  /** Get all building list **/
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function()
   {
     if (this.readyState == 4 && this.status == 200)
+      buildings = JSON.parse(this.responseText);
+  };
+  xmlhttp.open("GET", "listBuildingRes.php?userId="+id , true);
+  xmlhttp.send();
+
+
+    /** Display table building **/
+  var xmlhttp2 = new XMLHttpRequest();
+  xmlhttp2.onreadystatechange = function()
+  {
+    if (this.readyState == 4 && this.status == 200)
     {
-      var building = JSON.parse(this.responseText);
-      var container = document.getElementById("table4");
-      var tr_comp;
-      var td_comp;
-      var new_build = true;
-      var new_floor = true;
+      let building_res = JSON.parse(this.responseText);
+      let container = document.getElementById("table4");
+      let tr_comp;
+      let td_comp;
+      let new_build = true;
+      let new_floor = true;
       let i,j,k;
-      for (i=0;i<building.length;i++)
+      for (i=0;i<building_res.length;i++)
       {
         tr_comp = document.createElement("tr");
         td_comp = document.createElement("td");
-        td_comp.rowSpan = building[i].count_place;
-        td_comp.innerHTML = building[i].building;;
+        td_comp.rowSpan = building_res[i].count_place;
+        td_comp.innerHTML = building_res[i].building;;
         tr_comp.appendChild(td_comp);
         new_build = true;
         // container.appendChild(tableCon);
-        for(j=0; j<building[i].floor.length; j++)
+        for(j=0; j<building_res[i].floor.length; j++)
         {
           if(new_build)
           {
@@ -101,11 +178,11 @@
             tr_comp = document.createElement("tr");
             td_comp = document.createElement("td");
           }
-          td_comp.rowSpan = building[i].floor[j].place.length;
-          td_comp.innerHTML = building[i].floor[j].floor;
+          td_comp.rowSpan = building_res[i].floor[j].place.length;
+          td_comp.innerHTML = building_res[i].floor[j].floor;
           tr_comp.appendChild(td_comp);
           new_floor = true;
-          for(k=0; k< building[i].floor[j].place.length; k++)
+          for(k=0; k< building_res[i].floor[j].place.length; k++)
           {
             if(new_floor)
             {
@@ -117,16 +194,255 @@
               tr_comp = document.createElement("tr");
               td_comp = document.createElement("td");
             }
-            td_comp.innerHTML = building[i].floor[j].place[k].place;
+            td_comp.innerHTML = building_res[i].floor[j].place[k].place;
+            tr_comp.appendChild(td_comp);
+            td_comp = document.createElement("td");
+            td_comp.innerHTML = "<u>Delete</u>"
             tr_comp.appendChild(td_comp);
             container.appendChild(tr_comp);
           }
         }
       } 
     }
+  };
+  xmlhttp2.open("GET", "getResponsiblePlace.php?userId="+id , true);
+  xmlhttp2.send();
+
+
+  function removeTableBuilding()
+  {
+    let container = document.getElementById("table4");
+    container.querySelectorAll('*').forEach(n => n.remove());
+  }
+  
+  function displayTableBuilding()
+  {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function()
+    {
+      if (this.readyState == 4 && this.status == 200)
+      {
+        let building_res = JSON.parse(this.responseText);
+        let container = document.getElementById("table4");
+        let tr_comp;
+        let td_comp;
+        let new_build = true;
+        let new_floor = true;
+        let i,j,k;
+        for (i=0;i<building_res.length;i++)
+        {
+          tr_comp = document.createElement("tr");
+          td_comp = document.createElement("td");
+          td_comp.rowSpan = building_res[i].count_place;
+          td_comp.innerHTML = building_res[i].building;;
+          tr_comp.appendChild(td_comp);
+          new_build = true;
+          // container.appendChild(tableCon);
+          for(j=0; j<building_res[i].floor.length; j++)
+          {
+            if(new_build)
+            {
+              td_comp = document.createElement("td");
+              new_build = false;
+            }
+            else
+            {
+              tr_comp = document.createElement("tr");
+              td_comp = document.createElement("td");
+            }
+            td_comp.rowSpan = building_res[i].floor[j].place.length;
+            td_comp.innerHTML = building_res[i].floor[j].floor;
+            tr_comp.appendChild(td_comp);
+            new_floor = true;
+            for(k=0; k< building_res[i].floor[j].place.length; k++)
+            {
+              if(new_floor)
+              {
+                td_comp = document.createElement("td");
+                new_floor = false;
+              }
+              else
+              {
+                tr_comp = document.createElement("tr");
+                td_comp = document.createElement("td");
+              }
+              td_comp.innerHTML = building_res[i].floor[j].place[k].place;
+              tr_comp.appendChild(td_comp);
+              td_comp = document.createElement("td");
+              td_comp.innerHTML = "<u>Delete</u>"
+              tr_comp.appendChild(td_comp);
+              container.appendChild(tr_comp);
+            }
+          }
+        } 
+      }
+    };
+    xmlhttp.open("GET", "getResponsiblePlace.php?userId="+id , true);
+    xmlhttp.send();
   }
 
-    xmlhttp.open("GET", "getResponsiblePlace.php?userId=60070503429" , true);
-    xmlhttp.send();
+
+  /* List option of building */
+  function listBuilding()
+  {
+    let item;
+    let buildingContainer = document.getElementById("buildingList");
+    for(let i=0; i<buildings.length;i++)
+      {
+        item = document.createElement("option");
+        item.value = buildings[i].building_id;
+        item.innerHTML =  buildings[i].building;
+        buildingContainer.appendChild(item);
+      } 
+  }
+
+  function initial()
+  {
+    removeFloor();
+    removePlace();
+    listBuilding();
+    listFloor();
+    listPlace();
+  }
+
+  function changeBuilding()
+  {
+    removeFloor();
+    listFloor();
+    removePlace();
+    listPlace();
+  }
+
+  function changeFloor()
+  {
+    removePlace();
+    listPlace();
+  }
+
+  /* List option of floor */
+  function listFloor()
+  {
+    // let row = new Array();
+    let building_id = document.getElementById("buildingList").value;
+    let floorContainer = document.getElementById("floorList");
+    let item;
+    for(let i=0; i<buildings.length;i++)
+    {
+      //Print event when it found
+      if(buildings[i].building_id == building_id)
+      {
+        for(let j=0; j<buildings[i].floor.length; j++)
+        {
+          item = document.createElement("option");
+          item.value = buildings[i].floor[j].floor_id;
+          item.innerHTML =  buildings[i].floor[j].floor;
+          floorContainer.appendChild(item);
+        }
+        break;
+      }
+    }
+  }
+
+  /* List option of place */
+  function listPlace()
+  {
+    // let row = new Array();
+    let building_id = document.getElementById("buildingList").value;
+    let floor_id = document.getElementById("floorList").value;
+    let placeContainer = document.getElementById("placeList");
+    let item;
+    for(let i=0; i<buildings.length;i++)
+    {
+      //Print event when it found
+      if(buildings[i].building_id == building_id)
+      {
+        for(let j=0; j<buildings[i].floor.length; j++)
+        {
+          if(buildings[i].floor[j].floor_id == floor_id)
+          {
+            for(let k=0; k<buildings[i].floor[j].place.length; k++)
+            {
+              check = document.createElement("div");
+              check.setAttribute("class","form-check form-check-inline");
+              input = document.createElement("input");
+              input.setAttribute("class","form-check-input");
+              input.setAttribute("type","checkbox");
+              input.setAttribute("id","option"+k);
+              input.setAttribute("value",buildings[i].floor[j].place[k].place_id);
+              if(buildings[i].floor[j].place[k].res)
+              {
+                input.setAttribute("disabled",'');
+                input.setAttribute("checked",'');
+              }
+              label = document.createElement("label");
+              label.setAttribute("class", "form-check-label");
+              label.setAttribute("for", "option"+k);
+              label.innerHTML = buildings[i].floor[j].place[k].place;
+              check.appendChild(input);
+              check.appendChild(label);
+              placeContainer.appendChild(check);
+            }
+            break;
+          }
+        }
+        break;
+      }
+    }
+  }
+
+  function removeFloor()
+  {
+    let floorContainer = document.getElementById("floorList");
+    floorContainer.querySelectorAll('*').forEach(n => n.remove());
+  }
+
+  function removePlace()
+  {
+    let placeContainer = document.getElementById("placeList");
+    placeContainer.querySelectorAll('*').forEach(n => n.remove());
+  }
+
+
+
+  function addBuildingRes()
+  {
+    let building = $("#buildingList").val();
+    let floor = $("#floorList").val();
+    let placeContainer = document.getElementById("placeList");
+    var place = new Array();
+    for(let i = 0, max = document.getElementById("placeList").childElementCount; i < max;i++)
+    {
+      item = document.getElementById("option"+i)
+      if(item.checked)
+        place.push(item.value)
+
+    }
+    place = JSON.stringify(place)
+    let ret = '{ "building":"' + building + '",'+
+                '"floor":"' + floor + '",' +
+                '"place":' + place + ',' +
+                '"id":"' + id + '"}'
+    json = JSON.parse(ret)
+    // console.log('json:' + json)
+    // console.log(JSON.stringify(json))
+    // let status
+    // $.post("addResBuilding.php",
+    //   function(json, status)
+    //   {
+    //     removeTableBuilding();
+    //     displayTableBuilding();
+    //     console.log(status);
+    //   });
+    fetch("addResBuilding.php", {
+      method: "POST",
+      body: ret
+    }).then(async res => {
+      //   debugging
+      // const data = await res.text();
+      // console.log("server res" + data);
+    removeTableBuilding();
+    displayTableBuilding();
+    });
+  }
   </script>
 </html>
