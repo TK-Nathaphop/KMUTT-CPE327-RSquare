@@ -55,7 +55,8 @@
               </tbody>
             </table>
             <div class="container text-right">
-               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-place-popup" id="add-place-popup-btn" onclick = "initial()"> Add Place </button>
+               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-place-popup" 
+               id="add-place-popup-btn" onclick = "initial()"> Add Place </button>
 
         <div class="modal fade" id="add-place-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -133,15 +134,15 @@
   var add = new Array();
   var amound;
   
-  /** Get all building list **/
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function()
-  {
-    if (this.readyState == 4 && this.status == 200)
-      buildings = JSON.parse(this.responseText);
-  };
-  xmlhttp.open("GET", "listBuildingRes.php?userId="+id , true);
-  xmlhttp.send();
+    /** Get all building list **/
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function()
+    {
+      if (this.readyState == 4 && this.status == 200)
+        buildings = JSON.parse(this.responseText);
+    };
+    xmlhttp.open("GET", "listBuildingRes.php?userId="+id , true);
+    xmlhttp.send();
 
 
     /** Display table building **/
@@ -200,8 +201,8 @@
             td_comp = document.createElement("td");
             // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
             a = document.createElement("a");
-            a.setAttribute("onclick","confirmDelete("+i+","+j+","+k+")");
-            a.innerHTML = "Delete"
+            a.setAttribute("onclick","confirmDelete('"+ building_res[i].floor[j].place[k].place_id +"')");
+            a.innerHTML = "<u>Delete</u>"
             td_comp.appendChild(a);
             tr_comp.appendChild(td_comp);
             container.appendChild(tr_comp);
@@ -277,20 +278,19 @@
               td_comp = document.createElement("td");
               // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
               a = document.createElement("a");
-              a.setAttribute("onclick","confirmDelete("+i+","+j+","+k+")");
-              a.innerHTML = "Delete"
+              a.setAttribute("onclick","confirmDelete('"+ building_res[i].floor[j].place[k].place_id +"')");
+              a.innerHTML = "<u>Delete</u>"
               td_comp.appendChild(a);
               tr_comp.appendChild(td_comp);
               container.appendChild(tr_comp);
             }
           }
-        } 
+        }  
       }
     };
     xmlhttp.open("GET", "getResponsiblePlace.php?userId="+id , true);
     xmlhttp.send();
   }
-
 
   /* List option of building */
   function listBuilding()
@@ -308,6 +308,15 @@
 
   function initial()
   {
+    let xmlload = new XMLHttpRequest();
+    xmlload.onreadystatechange = function()
+    {
+      if (this.readyState == 4 && this.status == 200)
+        buildings = JSON.parse(this.responseText);
+    };
+    xmlload.open("GET", "listBuildingRes.php?userId="+id , true);
+    xmlload.send();
+
     removeFloor();
     removePlace();
     listBuilding();
@@ -412,9 +421,25 @@
     placeContainer.querySelectorAll('*').forEach(n => n.remove());
   }
 
-  function confirmDelete(str)
+  function confirmDelete(placeId)
   {
     let r = confirm("Do you want to delete?");
+    if (r == true)
+    {
+      let ret = '{ "place":"' + placeId + '",' +
+                '"id":"' + id + '"}'
+      console.log(ret);
+      fetch("delResBuilding.php", {
+      method: "POST",
+      body: ret
+    }).then(async res => {
+    const data = await res.text();
+    console.log("server res" + data);
+    // removeTableBuilding();
+    // displayTableBuilding();
+    window.location.reload();
+    });
+    }
   }
 
   function addBuildingRes()
@@ -440,8 +465,9 @@
       method: "POST",
       body: ret
     }).then(async res => {
-    removeTableBuilding();
-    displayTableBuilding();
+    // removeTableBuilding();
+    // displayTableBuilding();
+    window.location.reload();
     });
   }
   </script>

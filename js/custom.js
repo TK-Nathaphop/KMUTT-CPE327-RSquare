@@ -471,6 +471,7 @@ function deleteFloor(floor) {
   const deleteFloor = "#deleteFloor" + floor
   alert("Hello" + floor);
   $("div").remove(deleteFloor);
+
 }
 
 function check_Update() {
