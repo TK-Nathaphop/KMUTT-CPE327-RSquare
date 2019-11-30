@@ -17,7 +17,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
-    <title>R-SQUARE</title>
+    <title>R-Square</title>
     <link rel="icon" href="picture/logo/Artboard 1logo.png" />
 
 
@@ -93,7 +93,7 @@
                           </form>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-primary" id="save_btn_position">Save</button>
+                          <button type="button" class="btn btn-dark-blue" id="save_btn_position">Save</button>
                         </div>
                       </div>
                     </div>
@@ -387,8 +387,8 @@
         myObj = JSON.parse(this.responseText);
         var container = document.getElementById("name").innerHTML = myObj.name+' '+myObj.surname
         var container = document.getElementById("faculty").innerHTML = myObj.faculty
-        var container = document.getElementById("position").innerHTML = myObj.position.capitalize()
-        var container = document.getElementById("role").innerHTML = myObj.role.capitalize()
+        var container = document.getElementById("position").innerHTML = myObj.position.capitalize()//capitalize for make first letter upper case
+        var container = document.getElementById("role").innerHTML = myObj.role.capitalize()//capitalize for make first letter upper case
         var container = document.getElementById("department").innerHTML = myObj.department
         var containerPicture = document.getElementById("picture");
         var div = document.createElement(div);
@@ -399,7 +399,7 @@
         a.setAttribute("data-target","#editModal");
         a.setAttribute("data-toggle","modal");
         a.setAttribute("id","edit_modal_btn");
-        if(myObj.position == "student")
+        if(myObj.position == "student")//student is not able to edit position
           {
           a.innerHTML = ""
           }
@@ -509,6 +509,7 @@
     };
     xmlhttp.open("GET", "getUser.php?userId=" + id , true);
     xmlhttp.send();
+    //Make First letter to upper case
     String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
@@ -610,6 +611,7 @@
     };
       xmlhttp2.open("GET", "findActivity.php?userId=" + id, true);
       xmlhttp2.send();
+
 
   function confirmDeleteAct(act_id)
   {
