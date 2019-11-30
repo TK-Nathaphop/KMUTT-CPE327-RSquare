@@ -271,7 +271,7 @@ function add_place(floor) {
 }
 
 function add_place_edit(floor,place,capacity,drum,projector,microphone,speaker,id) {
-  happenFloor = floor
+  happenFloor = floor;
   pushPlace(place,capacity,drum,projector,microphone,speaker,id)
   const currentFloor = building[0].floor[floor];
   const curPlaces = currentFloor.place;
@@ -474,13 +474,16 @@ function add_floor() {
 </div>`);
 }
 
+function init_edit()
+{
+  deleteFloor(0);
+}
+
 function add_floor_edit(id)
 {
-  pushFloorDefault(building[0].floor.length,id)
-  const willBeFloor = (building[0].floor.length) - 1;
-  const currentFloor = building[0].floor[willBeFloor];
-  pushPlaceDefault(willBeFloor,id)
-  const curPlaces = currentFloor.place;
+  pushFloorDefault(building[0].floor.length,id);
+  console.log(building[0].floor.length)
+  const willBeFloor = (building[0].floor.length-1);
   $("#floor-template").append(
 `<div class="row nothing" id="deleteFloor${willBeFloor}">
   <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -511,17 +514,7 @@ function add_floor_edit(id)
         </div>
         <div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="placeF${willBeFloor}">
-            <div class="row">
-              <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
-                <h5 id="h5F${willBeFloor}P0">Dummy Place</h5>
-              </div>
-              <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-                <a href="#" onclick="View_Details('F${willBeFloor}P0','${willBeFloor}','0')" id="View_DetailsF${willBeFloor}P0">
-                  <span class="dark-blue" data-toggle="modal" data-target="#add_place_popup_F${willBeFloor}">View details</span>
-                </a>
-              </div>
-            </div>
-
+            
           </div>
         </div>
         <div class="row">
@@ -681,7 +674,7 @@ function sendJSON() {
   }).then(async res => {
     //   debugging
     const data = await res.text();
-    console.log("server res", data);
+    console.log("server res" + data);
   });
 }
 
@@ -690,6 +683,7 @@ function updateData() {
   const blueprintTemplate = 'file_blueprint_'
   const n = building[0].floor.length
   const floor = building[0].floor
+  let container = document.getElementById('floor-template');
   const mappedFloor = floor.map((e, i) => {
     return {
       ...e,
