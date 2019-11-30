@@ -213,7 +213,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" id="btn1" data-dismiss="modal" style="display: block;">
+                      <button type="button" class="btn btn-dark-blue" id="btn1" data-dismiss="modal" style="display: block;">
                         <span id="add-place-text">Add</span>
                       </button>
                     </div>
@@ -275,7 +275,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" id="btn2" data-dismiss="modal" style="display: block;">
+                      <button type="button" class="btn btn-dark-blue" id="btn2" data-dismiss="modal" style="display: block;">
                         <span id="add-place-text">Add</span>
                       </button>
                     </div>
@@ -358,7 +358,7 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button onclick="addBuildingRes()" type="button" class="btn btn-primary" id="save" data-dismiss="modal" style="display: block;">
+                        <button onclick="addBuildingRes()" type="button" class="btn btn-dark-blue" id="save" data-dismiss="modal" style="display: block;">
                           <span id="add-place-text">Add</span>
                         </button>
                       </div>
@@ -403,7 +403,7 @@
           a.innerHTML = ""
           }
         else{
-          a.innerHTML = "<u>Edit</u>"
+          a.innerHTML = "<u style=\"color: blue;\">Edit</u>"
         }
         var edit_position = document.getElementById("edit_position");
         //All of Option
@@ -527,7 +527,7 @@
         for (i=0; i<acts.length; i++)
         {
           tr_comp = document.createElement("tr");
-          tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteAct('"+ acts[i].event_id +"')\"><u>Delete</u></a></td>";
+          tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteAct('"+ acts[i].event_id +"')\"><u style=\"color: red;\">Delete</u></a></td>";
          
           container.appendChild(tr_comp);
         }
@@ -644,7 +644,7 @@
         for (i=0; i<orgs.length; i++)
         {
           tr_comp = document.createElement("tr");
-          tr_comp.innerHTML = "<td>" + orgs[i].organization + "</td><td>" + orgs[i].president_name + " " + orgs[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteOrg('"+ orgs[i].organization_id +"')\"><u>Delete</u></a></td>";
+          tr_comp.innerHTML = "<td>" + orgs[i].organization + "</td><td>" + orgs[i].president_name + " " + orgs[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteOrg('"+ orgs[i].organization_id +"')\"><u style=\"color: red;\">Delete</u></a></td>";
          
           container.appendChild(tr_comp);
         }
@@ -819,7 +819,7 @@
             // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
             a = document.createElement("a");
             a.setAttribute("onclick","confirmDelete('"+ building_res[i].floor[j].place[k].place_id +"')");
-            a.innerHTML = "<u>Delete</u>"
+            a.innerHTML = "<u style=\"color: red;\">Delete</u>"
             td_comp.appendChild(a);
             tr_comp.appendChild(td_comp);
             container.appendChild(tr_comp);
@@ -896,7 +896,7 @@
               // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
               a = document.createElement("a");
               a.setAttribute("onclick","confirmDelete('"+ building_res[i].floor[j].place[k].place_id +"')");
-              a.innerHTML = "<u>Delete</u>"
+              a.innerHTML = "<u style=\"color: red;\">Delete</u>"
               td_comp.appendChild(a);
               tr_comp.appendChild(td_comp);
               container.appendChild(tr_comp);
