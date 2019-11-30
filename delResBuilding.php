@@ -11,4 +11,5 @@ $placeId = $json->place;
 $userId = $json->id;
 $sql = "UPDATE `place` SET `user_id`= NULL WHERE `place_id` = '".$placeId."'";
 $con->query($sql);
+$con->disconnect();
 ?>

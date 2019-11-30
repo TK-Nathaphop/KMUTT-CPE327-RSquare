@@ -20,4 +20,5 @@ while($item = $query -> fetch_object())
 }
 
 echo json_encode($orgs);	
+$con->disconnect();
 ?>

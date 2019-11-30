@@ -19,5 +19,6 @@ while($item = $query -> fetch_object())
 	$acts[] = $item;
 }
 
-echo json_encode($acts);	
+echo json_encode($acts);
+$con->disconnect();	
 ?>

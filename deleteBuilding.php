@@ -31,4 +31,5 @@ while($floor = $query -> fetch_object())
 }
 
 echo 'Success';
+$con->disconnect();
 ?>

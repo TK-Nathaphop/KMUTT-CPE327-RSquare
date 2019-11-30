@@ -8,5 +8,5 @@ $con->connect();
 $sql = "SELECT * FROM `floor` WHERE `flag` = true AND `floor_id` = '" . $floorId . "'";
 $res = $con->query($sql);
 echo json_encode($res -> fetch_object());
-  	
+$con->disconnect();
 ?>

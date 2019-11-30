@@ -15,4 +15,5 @@ $user= $res -> fetch_object();
 $place->name = $user->name;
 $place->surname = $user->surname;
 echo json_encode($place);
+$con->disconnect();
 ?>

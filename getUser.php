@@ -24,5 +24,6 @@ $user->faculty = $faculty->faculty;
 if($user->picture == '')
 	$user->picture = 'null-pic.png';
 
-echo json_encode($user);	
+echo json_encode($user);
+$con->disconnect();	
 ?>

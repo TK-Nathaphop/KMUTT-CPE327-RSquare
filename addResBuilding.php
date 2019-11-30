@@ -17,5 +17,5 @@ foreach ($placeIds as $placeId)
 	$sql = "UPDATE `place` SET `user_id`= '".$userId."' WHERE `place_id` = '".$placeId."'";
 	$con->query($sql);
 }
-
+$con->disconnect();
 ?>
