@@ -7,8 +7,9 @@ $json = json_decode($json_txt);
 require_once ('class/databaseConnection.php');
 $con = new databaseConnection();
 $con->connect();
-$orgId = $json->organizationId;
+$orgId = $json->organization_id;
 $userId = $json->userId;
-$sql = "UPDATE `organization` SET `advisor`= '".$userId."' WHERE `event_id` = '".$orgId."'";
+$sql = "UPDATE `organization` SET `advisor`= '".$userId."' WHERE `organization_id` = '". $orgId ."'";
+echo $sql;
 $con->query($sql);
 ?>

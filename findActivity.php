@@ -16,7 +16,6 @@ require_once ('class/databaseConnection.php');
 $con = new databaseConnection();
 $con->connect();
 
-
 $res_act = $con->query("SELECT * FROM `event` WHERE `advisor` != '".$userId."' OR `advisor` IS NULL");
 $acts = array();
 while($item = $res_act -> fetch_object())
@@ -34,7 +33,6 @@ while($item = $res_act -> fetch_object())
     $item->student_surname = $student->surname;
     $acts[] = $item;
 }
-
 
 $ret = array();
 // lookup all hints from array if $q is different from "" 

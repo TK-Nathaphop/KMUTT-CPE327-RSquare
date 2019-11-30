@@ -8,14 +8,16 @@ $con->connect();
 //Query activity
 $sql = "SELECT * FROM `organization` WHERE `advisor` = '" . $userId."'";
 $query = $con->query($sql);
-$organization = $query -> fetch_object();
+$orgs = array();
+while($item = $query -> fetch_object())
+{
+	$sql = "SELECT * FROM `user` WHERE `user_id` = '" . $item->student."'";
+	$query_pres = $con->query($sql);
+	$president = $query_pres -> fetch_object();
+	$item->president_name = $president->name;
+	$item->president_surname = $president->surname;
+	$orgs[] = $item;
+}
 
-$sql = "SELECT * FROM `user` WHERE `user_id` = '" . $organization->student."'";
-$query = $con->query($sql);
-$president = $query -> fetch_object();
-
-$organization->president_name = $president->name;
-$organization->president_surname = $president->surname;
-
-echo json_encode($organization);	
+echo json_encode($orgs);	
 ?>
