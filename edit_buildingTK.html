@@ -20,13 +20,43 @@
 </head>
 
 <body>
-	<!-- <div id="nav-placeholder"> </div>
-        <script>
-            $.get("navigationbar.html", function(data){
-                $("#nav-placeholder").replaceWith(data);
-            });
-        </script> -->
 	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-white" style="padding-left: 0px; padding-right: 0px;">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+				aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+				<a class="navbar-brand" href="Adminpage.html">
+					<img src="picture/logo/Artboard 1logo.png" width="30" height="30" class="d-inline-block align-top" alt=""/>
+					<span class="vdark-blue"><b>R-SQUARE</b></span>
+				</a>
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-2 my-2 my-lg-0 toRside">
+					<li class="nav-item active" style="padding-right: 15px;">
+						<a class="nav-link" href="#">
+							<p class="dark-blue">Place Reservation</p><span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li class="nav-item active" style="padding-right: 15px;">
+						<a class="nav-link" href="#">
+							<p class="dark-blue">Reservation Schedule</p><span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li class="nav-item" style="margin-right: 15px;">
+						<img src="picture/user/60070503429-pic.jpg" class="rounded-circle" height="40" width="40">
+					</li>
+					<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">History</a>
+                            <a class="dropdown-item" href="#">Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"> Sign out</a>
+                        </div>
+                    </li>
+				</ul>
+			</div>
+		</nav>
 		<div id="add-building-form">
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
