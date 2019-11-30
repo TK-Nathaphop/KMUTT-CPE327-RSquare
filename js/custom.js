@@ -189,11 +189,12 @@ function delete_detail(F0P0, itsFloor, itsPlace) {
 
   currentFloor = building[0].floor[happenFloor];
   curPlaces = currentFloor.place;
-  $('#place').html('')
+  $(`#placeF${happenFloor}`).html('')
+
   curPlaces.forEach((e, i) => {
     console.log('e ->', e)
 
-    $('#place').append(
+    $(`#placeF${happenFloor}`).append(
       `<div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <h5 id = "h5F${happenFloor}P${i}">${e.placeName}</h5>
@@ -203,7 +204,7 @@ function delete_detail(F0P0, itsFloor, itsPlace) {
             onclick = "${`View_Details('F${happenFloor}P${i}','${happenFloor}','${i}')`}"
             id = "View_DetailsF${happenFloor}P${i}" >
               <span class="dark-blue" data-toggle="modal"
-                data-target="#add_place_popup_F0">View details</span>
+                data-target="#add_place_popup_F${happenFloor}">View details</span>
             </a>
           </div>
         </div>`
@@ -232,13 +233,20 @@ function View_Details(F0P0, itsFloor, itsPlace) {
   $(my_add_place).css({
     display: "none"
   });
-  $("#ModalTitleF0P0").text("Edit Place");
-  $('#Place_NameF0P0').val(curPlaces.placeName)
-  $('#CapacityF0P0').val(curPlaces.placeCapacity)
-  $("#DrumUsageF0P0").prop("checked", curPlaces.placeDrumUsage)
-  $("#ProjectorF0P0").prop("checked", curPlaces.placeProjector)
-  $("#MicrophoneF0P0").prop("checked", curPlaces.placeMicrophone)
-  $("#SpeakerF0P0").prop("checked", curPlaces.placeSpeaker)
+  my_ModalTitle = `#ModalTitleF${itsFloor}P0`
+  my_Place_Name = `#Place_NameF${itsFloor}P0`
+  my_Capacity = `#CapacityF${itsFloor}P0`
+  my_DrumUsage = `#DrumUsageF${itsFloor}P0`
+  my_Projector = `#ProjectorF${itsFloor}P0`
+  my_Microphone = `#MicrophoneF${itsFloor}P0`
+  my_Speaker = `#SpeakerF${itsFloor}P0`
+  $(my_ModalTitle).text("Edit Place");
+  $(my_Place_Name).val(curPlaces.placeName)
+  $(my_Capacity).val(curPlaces.placeCapacity)
+  $(my_DrumUsage).prop("checked", curPlaces.placeDrumUsage)
+  $(my_Projector).prop("checked", curPlaces.placeProjector)
+  $(my_Microphone).prop("checked", curPlaces.placeMicrophone)
+  $(my_Speaker).prop("checked", curPlaces.placeSpeaker)
 }
 
 function add_place(floor) {
@@ -277,13 +285,12 @@ function add_place(floor) {
             onclick = "${`View_Details('F${floor}P${i}','${floor}','${i}')`}"
             id = "View_DetailsF${floor}P${i}" >
               <span class="dark-blue" data-toggle="modal"
-                data-target="#add_place_popup_F0">View details</span>
+                data-target="#add_place_popup_F${floor}">View details</span>
             </a>
           </div>
         </div>`
     )
   });
-  check_Update();
 }
 
 function add_place_popup_btn(floor) {
