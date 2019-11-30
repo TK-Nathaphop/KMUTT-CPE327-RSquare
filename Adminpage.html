@@ -167,6 +167,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Faculty</th>
                                 <th scope="col">Department</th>
+                                <th scope="col">Role</th>
                             </tr>
                         </thead>
                         <tbody id="userList">
@@ -196,7 +197,7 @@
                         row[i].setAttribute("href","Usermanagement.html?id="+data[i]['user_id']+"");
                         row[i].setAttribute("onclick","document.location='Usermanagement.html?id="+data[i]['user_id']+"'");   
                         row[i].setAttribute("style","cursor: pointer");                  
-                        row[i].innerHTML ="<th scope=\"row\">"+ count + " </th><td>"+data[i]['name']+"    "+ data[i]['surname']+"</td><td>"+data[i]['faculty']+"</td><td>  "+data[i]['department']+"</td>";
+                        row[i].innerHTML ="<th scope=\"row\">"+ count + " </th><td>"+data[i]['name']+"    "+ data[i]['surname']+"</td><td>"+data[i]['faculty']+"</td><td>  "+data[i]['department']+"</td><td> "+data[i]['role']+"</td>";
                         container.appendChild(row[i]);
                     }
                     
@@ -232,7 +233,7 @@
                             row[i].setAttribute("href","Usermanagement.html?id="+data[i]['user_id']+"");
                             row[i].setAttribute("onclick","document.location='Usermanagement.html?id="+data[i]['user_id']+"'");   
                             row[i].setAttribute("style","cursor: pointer");                  
-                            row[i].innerHTML ="<th scope=\"row\">"+ count + " </th><td>"+data[i]['name']+"    "+ data[i]['surname']+"</td><td>"+data[i]['faculty']+"</td><td>  "+data[i]['department']+"</td>";
+                            row[i].innerHTML ="<th scope=\"row\">"+ count + " </th><td>"+data[i]['name']+"    "+ data[i]['surname']+"</td><td>"+data[i]['faculty']+"</td><td>  "+data[i]['department']+"</td><td> "+data[i]['role']+"</td>";
                             container.appendChild(row[i]);
                         }
                         // document.getElementById("test").innerHTML = this.responseText;
