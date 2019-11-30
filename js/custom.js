@@ -133,6 +133,7 @@ function deletePlace(fromFloor,fromPlace) {
 
 function deleteFloor(floor) {
   const deleteFloor = "#deleteFloor" + floor
+  // alert("Hello" + floor);
   $("div").remove(deleteFloor);
   building
     .find(el => el.buildingName === building[0].buildingName)
@@ -498,10 +499,41 @@ console.log("euei");
 
 function sendAll() {
   willBeFloor = (building[0].floor.length);
+<<<<<<< HEAD
   updateData();
+=======
+>>>>>>> parent of 3ebb72f... finish add_building
   sendJSON();
   sendIMG(willBeFloor);
 }
+
+// function sendIMG() {
+//   console.log("img send");
+//   const formData = new FormData();
+//   const img1 = document.getElementById("img-building").files[0];
+//   const img2 = document.getElementById("img-blueprint").files[0];
+//   formData.append("img-building", img1);
+//   formData.append("img-blueprint", img2);
+//   fetch("uploadfile.php", {
+//     method: "POST",
+//     body: formData
+//   }).then(async res => {
+//     //   debugging
+//     const data = await res.text();
+//     console.log("img res", data);
+//   });
+// }
+
+// function sendNumIMG() {
+//   fetch("uploadfile.php", {
+//     method: "POST",
+//     body: formData
+//   }).then(async res => {
+//     //   debugging
+//     const data = await res.text();
+//     console.log("img res", data);
+//   });
+// }
 
 function sendIMG(numberFloor) {
   let myNumberFloor = numberFloor;
@@ -550,6 +582,7 @@ function sendJSON() {
     const data = await res.text();
     console.log("server res", data);
   });
+<<<<<<< HEAD
 }
 
 function updateData() {
@@ -570,4 +603,6 @@ function updateData() {
   building[0].buildingName = document.getElementById('Building_Name0').value
   building[0].buildingImage = $("#file_building").val()
   console.log('after mapped', building[0])
+=======
+>>>>>>> parent of 3ebb72f... finish add_building
 }
