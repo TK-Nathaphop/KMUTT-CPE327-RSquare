@@ -285,6 +285,37 @@ function add_place(floor) {
   });
 }
 
+function add_place_edit(floor, place, capacity, drum, projector, microphone, speaker) {
+  happenFloor = floor
+  pushPlace(place, capacity, drum, projector, microphone, speaker)
+  const currentFloor = building[0].floor[floor];
+  const curPlaces = currentFloor.place;
+  console.log("current floor", currentFloor);
+  console.log("curPlaces", curPlaces);
+
+  $(`#placeF${floor}`).html('')
+
+  curPlaces.forEach((e, i) => {
+    console.log('e ->', e)
+
+    $(`#placeF${floor}`).append(
+      `<div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            <h5 id = "h5F${floor}P${i}">${e.placeName}</h5>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+            <a href = "#"
+            onclick = "${`View_Details('F${floor}P${i}','${floor}','${i}')`}"
+            id = "View_DetailsF${floor}P${i}" >
+              <span class="dark-blue" data-toggle="modal"
+                data-target="#add_place_popup_F${floor}">View details</span>
+            </a>
+          </div>
+        </div>`
+    )
+  });
+}
+
 function add_place_edit(floor,place,capacity,drum,projector,microphone,speaker) {
   happenFloor = floor
   pushPlace(place,capacity,drum,projector,microphone,speaker)
@@ -499,41 +530,10 @@ console.log("euei");
 
 function sendAll() {
   willBeFloor = (building[0].floor.length);
-<<<<<<< HEAD
   updateData();
-=======
->>>>>>> parent of 3ebb72f... finish add_building
   sendJSON();
   sendIMG(willBeFloor);
 }
-
-// function sendIMG() {
-//   console.log("img send");
-//   const formData = new FormData();
-//   const img1 = document.getElementById("img-building").files[0];
-//   const img2 = document.getElementById("img-blueprint").files[0];
-//   formData.append("img-building", img1);
-//   formData.append("img-blueprint", img2);
-//   fetch("uploadfile.php", {
-//     method: "POST",
-//     body: formData
-//   }).then(async res => {
-//     //   debugging
-//     const data = await res.text();
-//     console.log("img res", data);
-//   });
-// }
-
-// function sendNumIMG() {
-//   fetch("uploadfile.php", {
-//     method: "POST",
-//     body: formData
-//   }).then(async res => {
-//     //   debugging
-//     const data = await res.text();
-//     console.log("img res", data);
-//   });
-// }
 
 function sendIMG(numberFloor) {
   let myNumberFloor = numberFloor;
@@ -582,7 +582,6 @@ function sendJSON() {
     const data = await res.text();
     console.log("server res", data);
   });
-<<<<<<< HEAD
 }
 
 function updateData() {
@@ -603,6 +602,4 @@ function updateData() {
   building[0].buildingName = document.getElementById('Building_Name0').value
   building[0].buildingImage = $("#file_building").val()
   console.log('after mapped', building[0])
-=======
->>>>>>> parent of 3ebb72f... finish add_building
 }
