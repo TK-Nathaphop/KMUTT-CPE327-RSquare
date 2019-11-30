@@ -82,23 +82,25 @@
                 Responsible Activity Project
               </h4>
               <!--Table of Activity infomation-->
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Project</th>
-                    <th scope="col"> President</th>
-                  </tr>
-                </thead>
-                <tbody id="table1">
-                  <!-- Get data from script -->
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Project</th>
+                      <th scope="col"> President</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table1">
+                    <!-- Get data from script -->
+                  </tbody>
+                </table>
+              </div>
             </div>
             <!-- Popup Add-Activity Button -->
             <div class = "row">
               <div class ="col-sm-10"></div>
               <div class = "col-sm-2">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add Activity</button>
+                <button type="button" class="btn p-3 w-100 btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" >Add Activity</button>
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -153,6 +155,7 @@
               <h4 class="font-weight-bold justify-content-left vdark-blue">
                 Responsible Organization
               </h4>
+              <!--Table of Responsible Organization-->
               <div class = "table-responsive">
                 <table class="table">
                   <thead>
@@ -166,11 +169,11 @@
                 </table>
               </div>
             </div>
-            <!---------------------- Pop-up Row ---------------------->
+            <!-- Popup Add-Activity Button -->
             <div class="row">
               <div class = "col-sm-10"></div>
               <div class = "col-sm-2">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOrganize" data-whatever="@addOrganize">Add Organization</button>
+                <button type="button" class="btn p-3 w-100 btn-primary" data-toggle="modal" data-target="#addOrganize" data-whatever="@addOrganize">Add Organization</button>
 
                 <div class="modal fade" id="addOrganize" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -188,10 +191,10 @@
                           </div>
                               <!-- Input for Searching Event -->
                           <form action="/findOrganization.php" method="get">
-                                <input type ="text" class="form-control" list="organizeList"  id = "organize_search" name="organizeList" placeholder = "Search">
-                                <datalist id="organizeList"> 
-                                  <!-- List of Resonsible for user that can added -->
-                                </datalist>
+                            <input type ="text" class="form-control" list="organizeList"  id = "organize_search" name="organizeList" placeholder = "Search">
+                              <datalist id="organizeList"> 
+                                <!-- List of Resonsible for user that can added -->
+                              </datalist>
                           </form>
                           <br>
                           <!-- Row1 -->
@@ -239,7 +242,7 @@
                 </tbody>
               </table>
               <div class="container text-right">
-                <button type="button" class="btn btn-primary" onclick="myfunction()">
+                <button type="button" class="btn p-3 w-100 btn-primary" onclick="myfunction()">
                   Add Place
                 </button>
               </div>
