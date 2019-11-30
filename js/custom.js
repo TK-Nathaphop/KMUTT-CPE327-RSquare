@@ -661,7 +661,7 @@ function sendJSON() {
   const Building_Name0 = $("#Building_Name0").val();
   const Floor0 = $("#Floor0").val();
   const DrumUsageF0P0 = $("#DrumUsageF0P0").prop("checked");
-  fetch("data.php", {
+  fetch("add_building.php", {
     method: "POST",
     body: JSON.stringify(
       //  {
