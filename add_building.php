@@ -3,14 +3,43 @@
 $rawpost = file_get_contents('php://input');
 $json_txt = str_replace("\\", "", $rawpost);
 $json = json_decode($json_txt);
+
 echo json_encode($json);
-// require_once ('class/databaseConnection.php');
-// $con = new databaseConnection();
-// $con->connect();
-// $orgId = $json->organization_id;
-// $userId = $json->userId;
-// $sql = "UPDATE `organization` SET `advisor`= '".$userId."' WHERE `organization_id` = '". $orgId ."'";
+require_once ('class/databaseConnection.php');
+$con = new databaseConnection();
+$con->connect();
+
+$sql = "SELECT count(`building_id`) FROM `building`";
+$ret=$con->query($sql);
+$building_num = $ret->fetch_row()[0]+1;
+$building_id = 'building_'. $building_num;
+
+$sql = "INSERT INTO `building`(`building_id`, `building`, `picture`, `flag`) VALUES ('".$building_id."','".$json[0]->buildingName."','".$json[0]->buildingImage."',true)";
+$con->query($sql);
 // echo $sql;
-// $con->query($sql);
-// $con->disconnect();
+
+$sql = "SELECT count(`floor_id`) FROM `floor`";
+$ret = $con->query($sql);
+$floor_num = $ret->fetch_row()[0];
+foreach($json[0]->floor as $floor)
+{
+	$floor_num = $floor_num+1;
+	$floor_id = 'floor_'.($floor_num);
+	$sql = "INSERT INTO `floor`(`floor_id`, `floor`, `blueprint`, `flag`, `building_id`) VALUES ('".$floor_id."','".$floor->floorName."','".$floor->floorBlueprint."',1,'".$building_id."')";
+	// echo $sql;
+	$con->query($sql);
+
+	$sql = "SELECT count(`place_id`) FROM `place`";
+	$ret = $con->query($sql);
+	$place_num = $ret->fetch_row()[0];
+	foreach($floor->place as $place)
+	{
+		$place_num = $place_num+1;
+		$place_id = 'place_'.($place_num);
+		$sql = "INSERT INTO `place`(`place_id`, `place`, `capacity`, `flag`, `drum`, `speaker`, `microphone`, `projector`, `floor_id`, `user_id`) VALUES ('".$place_id."','".$place->placeName."',".$place->placeCapacity.",1,".$place->placeDrumUsage.",".$place->placeSpeaker.",".$place->placeMicrophone.",".$place->placeProjector.",'".$floor_id."',NULL)";
+		echo $sql;
+		$con->query($sql);
+	}
+}
+$con->disconnect();
 ?>
