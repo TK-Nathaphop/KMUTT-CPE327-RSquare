@@ -133,7 +133,6 @@ function deletePlace(fromFloor,fromPlace) {
 
 function deleteFloor(floor) {
   const deleteFloor = "#deleteFloor" + floor
-  // alert("Hello" + floor);
   $("div").remove(deleteFloor);
   building
     .find(el => el.buildingName === building[0].buildingName)
@@ -468,37 +467,10 @@ console.log("euei");
 
 function sendAll() {
   willBeFloor = (building[0].floor.length);
+  updateData()
   sendJSON();
   sendIMG(willBeFloor);
 }
-
-// function sendIMG() {
-//   console.log("img send");
-//   const formData = new FormData();
-//   const img1 = document.getElementById("img-building").files[0];
-//   const img2 = document.getElementById("img-blueprint").files[0];
-//   formData.append("img-building", img1);
-//   formData.append("img-blueprint", img2);
-//   fetch("uploadfile.php", {
-//     method: "POST",
-//     body: formData
-//   }).then(async res => {
-//     //   debugging
-//     const data = await res.text();
-//     console.log("img res", data);
-//   });
-// }
-
-// function sendNumIMG() {
-//   fetch("uploadfile.php", {
-//     method: "POST",
-//     body: formData
-//   }).then(async res => {
-//     //   debugging
-//     const data = await res.text();
-//     console.log("img res", data);
-//   });
-// }
 
 function sendIMG(numberFloor) {
   let myNumberFloor = numberFloor;
@@ -547,4 +519,24 @@ function sendJSON() {
     const data = await res.text();
     console.log("server res", data);
   });
+}
+
+function updateData(){
+  const floorTemplate = 'Floor'
+  const blueprintTemplate = 'file_blueprint_'
+  const n = building[0].floor.length
+  const floor = building[0].floor
+  const mappedFloor = floor.map((e, i) => {
+    return {
+      ...e,
+      floorName: document.getElementById(floorTemplate+i).value,
+      floorBlueprint: $("#"+blueprintTemplate+i).val()
+    }
+  })
+  console.log('n floor', n)
+  console.log(building)
+  building[0].floor = mappedFloor
+  building[0].buildingName = document.getElementById('Building_Name0').value
+  building[0].buildingImage = $("#file_building").val()
+  console.log('after mapped', building[0])
 }
