@@ -39,5 +39,6 @@ while($building = $query_bd -> fetch_object())
 	$building ->floor = $floors;
 	$buildings[] = $building;
 }
-echo json_encode($buildings);	
+echo json_encode($buildings);
+$con->disconnect();
 ?>

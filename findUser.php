@@ -67,4 +67,5 @@ else
 
 // Output "no suggestion" if no hint was found or output correct values 
 echo json_encode($ret);
+$con->disconnect();
 ?>

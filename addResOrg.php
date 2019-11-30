@@ -12,4 +12,5 @@ $userId = $json->userId;
 $sql = "UPDATE `organization` SET `advisor`= '".$userId."' WHERE `organization_id` = '". $orgId ."'";
 echo $sql;
 $con->query($sql);
+$con->disconnect();
 ?>
