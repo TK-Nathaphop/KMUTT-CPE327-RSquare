@@ -410,42 +410,42 @@
           {
           if(myObj.position == "coordinator")
             {
-              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
-              $('#edit_select_list').append('<option value="chairman">chairman</option>');
-              $('#edit_select_list').append('<option value="teacher">Staff</option>');
+              $('#edit_select_list').append('<option value="coordinator">Coordinator</option>');
+              $('#edit_select_list').append('<option value="chairman">Chairman</option>');
+              $('#edit_select_list').append('<option value="teacher">Teacher</option>');
             }
           else if(myObj.position == "chairman")
             {
-              $('#edit_select_list').append('<option value="chairman">chairman</option>');
-              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
-              $('#edit_select_list').append('<option value="teacher">teacher</option>');
+              $('#edit_select_list').append('<option value="chairman">Chairman</option>');
+              $('#edit_select_list').append('<option value="coordinator">Coordinator</option>');
+              $('#edit_select_list').append('<option value="teacher">Teacher</option>');
             }
           else if(myObj.position == "teacher" )
             {
-              $('#edit_select_list').append('<option value="teacher">teacher</option>');
-              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
-              $('#edit_select_list').append('<option value="chairman">chairman</option>');
+              $('#edit_select_list').append('<option value="teacher">Teacher</option>');
+              $('#edit_select_list').append('<option value="coordinator">Coordinator</option>');
+              $('#edit_select_list').append('<option value="chairman">Chairman</option>');
             }
           }
         else if(myObj.role == "staff")
           {
             if(myObj.position == "coordinator")
             {
-              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
-              $('#edit_select_list').append('<option value="chairman">chairman</option>');
+              $('#edit_select_list').append('<option value="coordinator">Coordinator</option>');
+              $('#edit_select_list').append('<option value="chairman">Chairman</option>');
               $('#edit_select_list').append('<option value="staff">Staff</option>');
             }
           else if(myObj.position == "chairman")
             {
-              $('#edit_select_list').append('<option value="chairman">chairman</option>');
-              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
-              $('#edit_select_list').append('<option value="staff">teacher</option>');
+              $('#edit_select_list').append('<option value="chairman">Chairman</option>');
+              $('#edit_select_list').append('<option value="coordinator">Coordinator</option>');
+              $('#edit_select_list').append('<option value="staff">Staff</option>');
             }
           else if(myObj.position == "staff" )
             {
-              $('#edit_select_list').append('<option value="staff">teacher</option>');
-              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
-              $('#edit_select_list').append('<option value="chairman">chairman</option>');
+              $('#edit_select_list').append('<option value="staff">Staff</option>');
+              $('#edit_select_list').append('<option value="coordinator">Coordinator</option>');
+              $('#edit_select_list').append('<option value="chairman">Chairman</option>');
             }
           }
         else
@@ -488,12 +488,12 @@
           })
 
           $("#save_btn_position").click(function(){
-            fetch("testGet.php", {
+            fetch("addPosition.php", {
 			      method: "POST",
 			      body: JSON.stringify(position_changed)
 		        }).then(async res => {
               const data = await res.text();
-              console.log("server res", data);
+              console.log("server res" + data);
               window.location.reload();
             });
           })

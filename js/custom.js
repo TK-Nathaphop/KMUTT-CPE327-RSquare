@@ -40,7 +40,8 @@ building
   .floor.push({
     floorName: "Dummy floor",
     floorBlueprint: "",
-    place: []
+    place: [],
+    id:null
   });
 
 //add place
@@ -53,35 +54,23 @@ building
     placeDrumUsage: true,
     placeProjector: true,
     placeMicrophone: true,
-    placeSpeaker: true
+    placeSpeaker: true,
+    id:null
   });
 
-console.log(building);
 //end init
 
-//function for pushFloor
-function pushFloor(
-  floorName,
-  floorBlueprint
-) {
-  building
-    .find(el => el.buildingName === building[0].buildingName)
-    .floor.push({
-      floorName: floorName,
-      floorBlueprint: floorBlueprint,
-      place: []
-    });
-}
-
 function pushFloorDefault(
-  floorNumber
+  floorNumber,
+  id
 ) {
   building
     .find(el => el.buildingName === building[0].buildingName)
     .floor.push({
       floorName: "Dummy floor" + floorNumber,
       floorBlueprint: "",
-      place: []
+      place: [],
+      id:id
     });
 }
 
@@ -92,7 +81,8 @@ function pushPlace(
   placeDrumUsage,
   placeProjector,
   placeMicrophone,
-  placeSpeaker
+  placeSpeaker,
+  id
 ) {
   building
     .find(el => el.buildingName === building[0].buildingName)
@@ -103,14 +93,14 @@ function pushPlace(
       placeDrumUsage: placeDrumUsage,
       placeProjector: placeProjector,
       placeMicrophone: placeMicrophone,
-      placeSpeaker: placeSpeaker
+      placeSpeaker: placeSpeaker,
+      id:id
     });
 }
 
 function pushPlaceDefault(
   floorNumber
 ) {
-  console.log("pushPlaceDefault", floorNumber)
   building
     .find(el => el.buildingName === building[0].buildingName)
     .floor.find(el1 => el1.floorName === building[0].floor[floorNumber].floorName)
@@ -120,7 +110,8 @@ function pushPlaceDefault(
       placeDrumUsage: true,
       placeProjector: true,
       placeMicrophone: true,
-      placeSpeaker: true
+      placeSpeaker: true,
+      id:null
     });
 }
 
@@ -178,7 +169,6 @@ function save_detail(F0P0, itsFloor, itsPlace) {
 }
 
 function delete_detail(F0P0, itsFloor, itsPlace) {
-  console.log(happenFloor, happenPlace)
   deletePlace(happenFloor, happenPlace)
 
   currentFloor = building[0].floor[happenFloor];
@@ -186,7 +176,6 @@ function delete_detail(F0P0, itsFloor, itsPlace) {
   $(`#placeF${happenFloor}`).html('')
 
   curPlaces.forEach((e, i) => {
-    console.log('e ->', e)
 
     $(`#placeF${happenFloor}`).append(
       `<div class="row">
@@ -211,8 +200,6 @@ function View_Details(F0P0, itsFloor, itsPlace) {
   happenFloor = itsFloor
   happenPlace = itsPlace
   const curPlaces = building[0].floor[itsFloor].place[itsPlace]
-  console.log('view curplace', curPlaces)
-  console.log('view detail', F0P0, itsFloor, itsPlace)
   my_add_place = "#add_placeF" + itsFloor;
   my_save_place = "#save_placeF" + itsFloor
   my_delete_place = "#delete_placeF" + itsFloor
@@ -255,17 +242,15 @@ function add_place(floor) {
     $(my_DrumUsage).prop("checked"),
     $(my_Projector).prop("checked"),
     $(my_Microphone).prop("checked"),
-    $(my_Speaker).prop("checked")
+    $(my_Speaker).prop("checked"),
+    null
   )
   const currentFloor = building[0].floor[floor];
   const curPlaces = currentFloor.place;
-  console.log("current floor", currentFloor);
-  console.log("curPlaces", curPlaces);
 
   $(`#placeF${floor}`).html('')
 
   curPlaces.forEach((e, i) => {
-    console.log('e ->', e)
 
     $(`#placeF${floor}`).append(
       `<div class="row">
@@ -285,49 +270,15 @@ function add_place(floor) {
   });
 }
 
-function add_place_edit(floor, place, capacity, drum, projector, microphone, speaker) {
+function add_place_edit(floor,place,capacity,drum,projector,microphone,speaker,id) {
   happenFloor = floor
-  pushPlace(place, capacity, drum, projector, microphone, speaker)
+  pushPlace(place,capacity,drum,projector,microphone,speaker,id)
   const currentFloor = building[0].floor[floor];
   const curPlaces = currentFloor.place;
-  console.log("current floor", currentFloor);
-  console.log("curPlaces", curPlaces);
 
   $(`#placeF${floor}`).html('')
 
   curPlaces.forEach((e, i) => {
-    console.log('e ->', e)
-
-    $(`#placeF${floor}`).append(
-      `<div class="row">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
-            <h5 id = "h5F${floor}P${i}">${e.placeName}</h5>
-          </div>
-          <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-            <a href = "#"
-            onclick = "${`View_Details('F${floor}P${i}','${floor}','${i}')`}"
-            id = "View_DetailsF${floor}P${i}" >
-              <span class="dark-blue" data-toggle="modal"
-                data-target="#add_place_popup_F${floor}">View details</span>
-            </a>
-          </div>
-        </div>`
-    )
-  });
-}
-
-function add_place_edit(floor,place,capacity,drum,projector,microphone,speaker) {
-  happenFloor = floor
-  pushPlace(place,capacity,drum,projector,microphone,speaker)
-  const currentFloor = building[0].floor[floor];
-  const curPlaces = currentFloor.place;
-  console.log("current floor", currentFloor);
-  console.log("curPlaces", curPlaces);
-
-  $(`#placeF${floor}`).html('')
-
-  curPlaces.forEach((e, i) => {
-    console.log('e ->', e)
 
     $(`#placeF${floor}`).append(
       `<div class="row">
@@ -366,14 +317,11 @@ function add_place_popup_btn(floor) {
 
 function add_floor() {
   
-  pushFloorDefault(building[0].floor.length)
+  pushFloorDefault(building[0].floor.length,null)
   const willBeFloor = (building[0].floor.length) - 1;
   const currentFloor = building[0].floor[willBeFloor];
-  console.log("willBeFloor", willBeFloor);
-  console.log("current floor", currentFloor);
-  pushPlaceDefault(willBeFloor)
+  pushPlaceDefault(willBeFloor,null)
   const curPlaces = currentFloor.place;
-  console.log("places", curPlaces);
   // alert("This is floor ");
   $("#floor-template").append(
 `<div class="row nothing" id="deleteFloor${willBeFloor}">
@@ -526,7 +474,163 @@ function add_floor() {
 </div>`);
 }
 
-console.log("euei");
+function add_floor_edit(id)
+{
+  pushFloorDefault(building[0].floor.length,id)
+  const willBeFloor = (building[0].floor.length) - 1;
+  const currentFloor = building[0].floor[willBeFloor];
+  pushPlaceDefault(willBeFloor,id)
+  const curPlaces = currentFloor.place;
+  $("#floor-template").append(
+`<div class="row nothing" id="deleteFloor${willBeFloor}">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <div class="row shadow p-3 mb-3 bg-white rounded">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <div class="form-group">
+          <label for="Floor${willBeFloor}"><span class="dark-blue"><b>Floor</b></span></label>
+          <input type="text" class="form-control" id="Floor${willBeFloor}" placeholder="Floor G" name="Floor${willBeFloor}" />
+        </div>
+        <div class="form-group">
+          <input type="file" id="img_blueprint_${willBeFloor}" name="img[]" class="file" accept="image/*" />
+          <label for="Blueprint"><span class="dark-blue"><b>Blueprint</b></span></label>
+          <div class="input-group">
+            <input type="text" class="form-control" disabled placeholder="Upload File" id="file_blueprint_${willBeFloor}" />
+            <div class="input-group-append">
+              <button onclick="browse_blueprint('${willBeFloor}')" type="button" id="btn" class="browse-blueprint btn btn-dark-blue">
+                Browse...
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <label for="Place"><span class="dark-blue"><b>Place</b></span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="placeF${willBeFloor}">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                <h5 id="h5F${willBeFloor}P0">Dummy Place</h5>
+              </div>
+              <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+                <a href="#" onclick="View_Details('F${willBeFloor}P0','${willBeFloor}','0')" id="View_DetailsF${willBeFloor}P0">
+                  <span class="dark-blue" data-toggle="modal" data-target="#add_place_popup_F${willBeFloor}">View details</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <!-- Button trigger modal -->
+            <button onclick="add_place_popup_btn('${willBeFloor}')" type="button" class="btn btn-dark-blue" data-toggle="modal" data-target="#add_place_popup_F${willBeFloor}" id="add_place_popup_btn_F${willBeFloor}">
+              Add Place
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="add_place_popup_F${willBeFloor}" tabindex="-1" role="dialog" aria-labelledby="add_place_popup_F${willBeFloor}_Title" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title vdark-blue">
+                      <b id="ModalTitleF${willBeFloor}P0" style="padding-left: 1px;">Add Place</b>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                          <div class="form-group">
+                            <label for="Place_NameF${willBeFloor}P0"><span class="dark-blue"><b>Place
+                                  Name</b></span></label>
+                            <input type="text" class="form-control" id="Place_NameF${willBeFloor}P0" placeholder="Dummy place" name="Place_NameF${willBeFloor}P0" />
+                          </div>
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                          <div class="form-group">
+                            <label for="Capacity"><span class="dark-blue"><b>Capacity</b></span></label>
+                            <input type="text" class="form-control" id="CapacityF${willBeFloor}P0" placeholder="50" />
+                          </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                          <div class="form-group">
+                            <p class="vdark-blue" style="padding-top: 80%;">
+                              people
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                          <div class="form-check">
+                            <input onclick="DrumUsage('F${willBeFloor}P0','${willBeFloor}','0')" class="form-check-input" type="checkbox" value="1" id="DrumUsageF${willBeFloor}P0" name="DrumUsageF${willBeFloor}P0"/>
+                            <label class="form-check-label" for="DrumUsageF${willBeFloor}P0">
+                              Drum Usage
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                          <div class="form-check">
+                            <input onclick="Projector('F${willBeFloor}P0','${willBeFloor}','0')" class="form-check-input" type="checkbox" value="1" id="ProjectorF${willBeFloor}P0" name="ProjectorF${willBeFloor}P0"/>
+                            <label class="form-check-label" for="ProjectorF${willBeFloor}P0">
+                              Projector
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                          <div class="form-check">
+                            <input onclick="Microphone('F${willBeFloor}P0','${willBeFloor}','0')" class="form-check-input" type="checkbox" value="1" id="MicrophoneF${willBeFloor}P0" name="MicrophoneF${willBeFloor}P0" />
+                            <label class="form-check-label" for="MicrophoneF${willBeFloor}P0">
+                              Microphone
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                          <div class="form-check">
+                            <input onclick="Speaker('F${willBeFloor}P0','${willBeFloor}','0')" class="form-check-input" type="checkbox" value="1" id="SpeakerF${willBeFloor}P0" name="SpeakerF${willBeFloor}P0" />
+                            <label class="form-check-label" for="SpeakerF${willBeFloor}P0">
+                              Speaker
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button onclick="add_place('${willBeFloor}')" type="button" class="btn btn-dark-blue" id="add_placeF${willBeFloor}" data-dismiss="modal" style="display: block;">
+                      <span id="add_place_text_F${willBeFloor}">Add</span>
+                    </button>
+                    <button onclick="delete_detail('F${willBeFloor}P0','${willBeFloor}','0')" type="button" class="btn btn-outline-dark-blue" id="delete_placeF${willBeFloor}" data-dismiss="modal" style="display: block;">
+                      <span id="add_place_text_F${willBeFloor}">Delete</span>
+                    </button>
+                    <button onclick="save_detail('F${willBeFloor}P0','${willBeFloor}','0')" type="button" class="btn btn-dark-blue" id="save_placeF${willBeFloor}" data-dismiss="modal" style="display: block;">
+                      <span id="add_place_text_F${willBeFloor}">Save</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+        <button type="button" onclick="deleteFloor('${willBeFloor}')" class="close" name="deleteFloor${willBeFloor}" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>`);
+}
 
 function sendAll() {
   willBeFloor = (building[0].floor.length);
@@ -564,16 +668,13 @@ function sendJSON() {
   const Building_Name0 = $("#Building_Name0").val();
   const Floor0 = $("#Floor0").val();
   const DrumUsageF0P0 = $("#DrumUsageF0P0").prop("checked");
-  console.log("Building_Name0", Building_Name0);
-  console.log("Floor0", Floor0);
-  console.log("DrumUsage0", DrumUsageF0P0);
   fetch("data.php", {
     method: "POST",
     body: JSON.stringify(
-      // 	{
-      // 	Building_Name0: Building_Name0,
-      // 	Floor0: Floor0,
-      // 	DrumUsageF0P0: DrumUsageF0P0
+      //  {
+      //  Building_Name0: Building_Name0,
+      //  Floor0: Floor0,
+      //  DrumUsageF0P0: DrumUsageF0P0
       // }
       building
     )
@@ -596,10 +697,7 @@ function updateData() {
       floorBlueprint: $("#" + blueprintTemplate + i).val()
     }
   })
-  console.log('n floor', n)
-  console.log(building)
   building[0].floor = mappedFloor
   building[0].buildingName = document.getElementById('Building_Name0').value
   building[0].buildingImage = $("#file_building").val()
-  console.log('after mapped', building[0])
 }

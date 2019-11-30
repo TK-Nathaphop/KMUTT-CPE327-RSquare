@@ -41,6 +41,14 @@ class databaseConnection
 			die("Failed: ".$this->con->connect_error);
     	return $res;
   	}
+
+    public function disconnect()
+    {
+      $res = $this->con->close();
+    if(!$res)
+      die("Failed: ".$this->con->connect_error);
+      return $res;
+    }
   	
 }
 

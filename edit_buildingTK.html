@@ -158,15 +158,16 @@
         data = JSON.parse(this.responseText);
         console.log(data);
         document.getElementById('Building_Name0').setAttribute("value", data.building); 
-        document.getElementById('file_building').setAttribute("value", data.picture);
+        // document.getElementById('file_building').setAttribute("value", '/picture/building/'+data.picture);
         let count,drum,projector,microphone,speaker;
         for(let i = 0,maxFloor = data.floor.length; i<maxFloor; i++)
         {	
 
-        	add_floor();
+        	add_floor_edit(data.floor[i].floor_id);
+        	//data.floor[i].floor_id
         	count = i+1;
         	document.getElementById('Floor'+count).setAttribute("value", data.floor[i].floor);
-        	document.getElementById('file_blueprint_'+count).setAttribute("value", data.floor[i].blueprint);
+        	// document.getElementById('file_blueprint_'+count).setAttribute("value", data.floor[i].blueprint);
         	happenFloor = count;
         	happenPlace = 0;
         	delete_detail('','','');
@@ -188,7 +189,7 @@
         			speaker = true;
         		else
         			speaker = false;
-        		add_place_edit(count, data.floor[i].place[j].place, data.floor[i].place[j].capacity, drum, projector, microphone, speaker);
+        		add_place_edit(count, data.floor[i].place[j].place, data.floor[i].place[j].capacity, drum, projector, microphone, speaker,data.floor[i].place[j].place_id);
         	}
 
         }
