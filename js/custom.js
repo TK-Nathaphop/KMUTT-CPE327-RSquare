@@ -131,48 +131,41 @@ function deletePlace(fromFloor,fromPlace) {
     .place.splice(fromPlace, 1)
 }
 
+function deleteFloor(floor) {
+  const deleteFloor = "#deleteFloor" + floor
+  $("div").remove(deleteFloor);
+  building
+    .find(el => el.buildingName === building[0].buildingName)
+    .floor.splice(floor, 1)
+}
+
 $(document).on("click", ".browse-building", function () {
-  $("#img-building").click();
-  $("#img-building").change(function (e) {
+  $("#img_building").click();
+  $("#img_building").change(function (e) {
     var fileName = e.target.files[0].name;
-    $("#file-building").val(fileName);
+    $("#file_building").val(fileName);
   });
 });
 
-$(document).on("click", ".browse-blueprint", function () {
-  $("#img-blueprint").click();
-  $("#img-blueprint").change(function (e) {
-    var fileName = e.target.files[0].name;
-    $("#file-blueprint").val(fileName);
-  });
-});
+function browse_blueprint(floor) {
+    $(`#img_blueprint_${floor}`).click();
+    $(`#img_blueprint_${floor}`).change(function (e) {
+      console.log('browse upload on click', e.target);
+      var fileName = e.target.files[0].name;
+      $(`#file_blueprint_${floor}`).val(fileName);
+    });
+}
 
 function DrumUsage(F0P0, itsFloor, itsPlace) {
-  var DrumUsage = "#DrumUsage" + F0P0;
-  if ($("DrumUsageF0P0").prop("checked") === true) $("DrumUsageF0P0").val("1");
-  else $("DrumUsageF0P0").val("0");
-  // console.log($("DrumUsageF0P0").val())
 }
 
 function Projector(F0P0, itsFloor, itsPlace) {
-  var Projector = "#Projector" + F0P0;
-  if ($(Projector).prop("checked") === true) $(Projector).val("1");
-  else $(Projector).val("0");
-  // console.log($(Projector).val())
 }
 
 function Microphone(F0P0, itsFloor, itsPlace) {
-  var Microphone = "#Microphone" + F0P0;
-  if ($(Microphone).prop("checked") === true) $(Microphone).val("1");
-  else $(Microphone).val("0");
-  // console.log($(Microphone).val())
 }
 
 function Speaker(F0P0, itsFloor, itsPlace) {
-  var Speaker = "#Speaker" + F0P0;
-  if ($(Speaker).prop("checked") === true) $(Speaker).val("1");
-  else $(Speaker).val("0");
-  // console.log($(Speaker).val())
 }
 
 function save_detail(F0P0, itsFloor, itsPlace) {
@@ -219,8 +212,6 @@ function View_Details(F0P0, itsFloor, itsPlace) {
   const curPlaces = building[0].floor[itsFloor].place[itsPlace]
   console.log('view curplace', curPlaces)
   console.log('view detail', F0P0, itsFloor, itsPlace)
-  // console.log(F0P0)
-  // alert("View_Details" + F0P0)
   my_add_place = "#add_placeF" + itsFloor;
   my_save_place = "#save_placeF" + itsFloor
   my_delete_place = "#delete_placeF" + itsFloor
@@ -312,11 +303,6 @@ function add_place_popup_btn(floor) {
 
 function add_floor() {
   
-  /** from add_place
-   * const currentFloor = building[0].floor[floor];
-   * const curPlaces = currentFloor.place;
-   */
-  
   pushFloorDefault(building[0].floor.length)
   const willBeFloor = (building[0].floor.length) - 1;
   const currentFloor = building[0].floor[willBeFloor];
@@ -336,12 +322,12 @@ function add_floor() {
           <input type="text" class="form-control" id="Floor${willBeFloor}" placeholder="Floor G" name="Floor${willBeFloor}" />
         </div>
         <div class="form-group">
-          <input type="file" id="img-blueprint" name="img[]" class="file" accept="image/*" />
+          <input type="file" id="img_blueprint_${willBeFloor}" name="img[]" class="file" accept="image/*" />
           <label for="Blueprint"><span class="dark-blue"><b>Blueprint</b></span></label>
           <div class="input-group">
-            <input type="text" class="form-control" disabled placeholder="Upload File" id="file-blueprint" />
+            <input type="text" class="form-control" disabled placeholder="Upload File" id="file_blueprint_${willBeFloor}" />
             <div class="input-group-append">
-              <button type="button" id="btn" class="browse-blueprint btn btn-dark-blue">
+              <button onclick="browse_blueprint('${willBeFloor}')" type="button" id="btn" class="browse-blueprint btn btn-dark-blue">
                 Browse...
               </button>
             </div>
@@ -474,32 +460,83 @@ function add_floor() {
       </div>
     </div>
   </div>
-</div>`
-);
+</div>`);
 }
 
-function deleteFloor(floor) {
-  const deleteFloor = "#deleteFloor" + floor
-  alert("Hello" + floor);
-  $("div").remove(deleteFloor);
+console.log("euei");
 
+function sendAll() {
+  willBeFloor = (building[0].floor.length);
+  updateData()
+  sendJSON();
+  sendIMG(willBeFloor);
 }
 
-function check_Update() {
-  // building.forEach((element_building, index_building) => {
-  //   console.log("Element", element_building)
-  //   console.log("myindex", index_building)
-  //   element_building.floor.forEach((element_floor, index_floor) => {
-  //     console.log("Element", element_floor)
-  //     console.log("myindex", index_floor)
-  //   })
-  // })
-  // building.forEach(function (element_building, index_building) {
-  //   console.log("Element", element_building)
-  //   console.log("myindex", index_building)
-  //   element_building.floor.forEach(function (element_floor, index_floor) {
-  //     console.log("Element", element_floor)
-  //     console.log("myindex", index_floor)
-  //   })
-  // })
+function sendIMG(numberFloor) {
+  let myNumberFloor = numberFloor;
+  let img_blueprint_id
+  console.log("img send", myNumberFloor);
+  const formData = new FormData();
+  const img_building = document.getElementById("img_building").files[0];
+  // const img_blueprint_0 = document.getElementById("img_blueprint_0").files[0];
+  formData.append("myNumberFloor", myNumberFloor);
+  formData.append("img_building", img_building);
+  
+  for (let index = 0; index < myNumberFloor; index++) {
+    img_blueprint_id = "img_blueprint_" + index
+    formData.append(img_blueprint_id, document.getElementById(img_blueprint_id).files[0]);
+  }
+
+  fetch("uploadfile.php", {
+    method: "POST",
+    body: formData
+  }).then(async res => {
+    //   debugging
+    const data = await res.text();
+    console.log("img res", data);
+  });
+}
+
+function sendJSON() {
+  const Building_Name0 = $("#Building_Name0").val();
+  const Floor0 = $("#Floor0").val();
+  const DrumUsageF0P0 = $("#DrumUsageF0P0").prop("checked");
+  console.log("Building_Name0", Building_Name0);
+  console.log("Floor0", Floor0);
+  console.log("DrumUsage0", DrumUsageF0P0);
+  fetch("data.php", {
+    method: "POST",
+    body: JSON.stringify(
+      // 	{
+      // 	Building_Name0: Building_Name0,
+      // 	Floor0: Floor0,
+      // 	DrumUsageF0P0: DrumUsageF0P0
+      // }
+      building
+    )
+  }).then(async res => {
+    //   debugging
+    const data = await res.text();
+    console.log("server res", data);
+  });
+}
+
+function updateData(){
+  const floorTemplate = 'Floor'
+  const blueprintTemplate = 'file_blueprint_'
+  const n = building[0].floor.length
+  const floor = building[0].floor
+  const mappedFloor = floor.map((e, i) => {
+    return {
+      ...e,
+      floorName: document.getElementById(floorTemplate+i).value,
+      floorBlueprint: $("#"+blueprintTemplate+i).val()
+    }
+  })
+  console.log('n floor', n)
+  console.log(building)
+  building[0].floor = mappedFloor
+  building[0].buildingName = document.getElementById('Building_Name0').value
+  building[0].buildingImage = $("#file_building").val()
+  console.log('after mapped', building[0])
 }
