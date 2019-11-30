@@ -8,8 +8,8 @@ echo json_encode($json);
 require_once ('class/databaseConnection.php');
 $con = new databaseConnection();
 $con->connect();
-$placeId = $json->place;
-$userId = $json->id;
-$sql = "UPDATE `event` SET `advisor`= NULL WHERE `place_id` = '".$placeId."'";
+$eventId = $json->eventId;
+$userId = $json->userId;
+$sql = "UPDATE `event` SET `advisor`= NULL WHERE `place_id` = '".$eventId."'";
 $con->query($sql);
 ?>

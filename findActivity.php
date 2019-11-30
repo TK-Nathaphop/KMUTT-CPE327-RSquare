@@ -17,7 +17,7 @@ $con = new databaseConnection();
 $con->connect();
 
 
-$res_act = $con->query("SELECT * FROM `event` WHERE `advisor` != '".$userId."'");
+$res_act = $con->query("SELECT * FROM `event` WHERE `advisor` != '".$userId."' OR `advisor` IS NULL");
 $acts = array();
 while($item = $res_act -> fetch_object())
 {
