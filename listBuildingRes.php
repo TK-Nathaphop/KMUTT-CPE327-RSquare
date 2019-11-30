@@ -15,13 +15,13 @@ $buildings = array();
 while($building = $query_bd -> fetch_object())
 {
     $buildingId = $building->building_id;
-    $sql = "SELECT * FROM `floor` WHERE `building_id` = '".$buildingId."'" ;
+    $sql = "SELECT * FROM `floor` WHERE `flag` = true AND `building_id` = '".$buildingId."'" ;
     $query_f = $con->query($sql);
     $floors = array();
     while($floor = $query_f -> fetch_object())
     {
         $floorId = $floor->floor_id;
-        $sql = "SELECT * FROM `place` WHERE `floor_id` = '".$floorId."'";
+        $sql = "SELECT * FROM `place` WHERE `flag` = true AND `floor_id` = '".$floorId."'";
         $query_p = $con->query($sql);
         $places = array();
         while($place = $query_p -> fetch_object())
