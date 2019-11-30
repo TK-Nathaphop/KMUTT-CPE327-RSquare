@@ -19,11 +19,13 @@ $con->connect();
 //Query activity
 $sql = "SELECT * FROM `building` WHERE  `flag` = true AND `building_id` = '" . $buildingId."'";
 $query_bd = $con->query($sql);
-$building = $query_bd -> fetch_object();
-$sql = "SELECT * FROM `floor` WHERE  `flag` = true AND `building_id` = '".$buildingId."'" ;
-$query_f = $con->query($sql);
-$floors = array();
-while($floor = $query_f -> fetch_object())
+$buildings = array();
+while($building = $query_bd -> fetch_object())
+{
+	$sql = "SELECT * FROM `floor` WHERE  `flag` = true AND `building_id` = '".$buildingId."'" ;
+	$query_f = $con->query($sql);
+	$floors = array();
+	while($floor = $query_f -> fetch_object())
 	{
 		$floorId = $floor->floor_id;
 		$sql = "SELECT * FROM `place` WHERE `flag` = true AND `floor_id` = '" .$floorId."'";
@@ -34,6 +36,8 @@ while($floor = $query_f -> fetch_object())
 		$floor->place = $places;
 		$floors[] = $floor;
 	}
-$building ->floor = $floors;
-echo json_encode($building);	
+	$building ->floor = $floors;
+	$buildings[] = $building;
+}
+echo json_encode($buildings);	
 ?>
