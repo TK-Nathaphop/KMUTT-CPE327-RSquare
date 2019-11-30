@@ -72,7 +72,7 @@
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title vdark-blue" style="padding-left: 1px;" id="editModal">Position Edtiting</h5>
+                          <h5 class="modal-title vdark-blue" style="padding-left: 1px;" id="editModal">Position Editing</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -85,7 +85,7 @@
                           </div>
                           <form>
                             <div class="form-group">
-                              <h5 for="exampleFormControlSelect1">Edit Position</h5>
+
                               <select class="form-control" id="edit_select_list">
                                 <!-- Get option from Jquery -->
                               </select>
@@ -399,9 +399,10 @@
         a.setAttribute("data-target","#editModal");
         a.setAttribute("data-toggle","modal");
         a.setAttribute("id","edit_modal_btn");
-        if(myObj.position == "student")//student is not able to edit position
+        if(myObj.role == "student")//student is not able to edit position
           {
-          a.innerHTML = ""
+          var deleteButton = document.getElementById("add-act-popup-btn").remove();
+          var deleteButton = document.getElementById("add-place-popup-btn").remove();
           }
         else{
           a.innerHTML = "<u style=\"color: blue;\">Edit</u>"
@@ -528,11 +529,11 @@
         let container = document.getElementById("table2");
         let tr_comp;
         acts = JSON.parse(this.responseText);
+        console.log(acts);
         for (i=0; i<acts.length; i++)
         {
           tr_comp = document.createElement("tr");
           tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteAct('"+ acts[i].event_id +"')\"><u style=\"color: red;\">Delete</u></a></td>";
-         
           container.appendChild(tr_comp);
         }
       }
@@ -560,7 +561,11 @@
           rowAct[i].innerHTML =  dataAct[i].event
           container.appendChild(rowAct[i]);
         }
-
+        if(myObj.role == "student")//student is not able to edit position
+          {
+            var deleteButton = document.getElementById("add-org-popup-btn").remove();
+          }
+        
         $(document).ready(function()
         {
           $("#act_search").change(function()
@@ -762,6 +767,7 @@
     {
       if (this.readyState == 4 && this.status == 200)
         buildings = JSON.parse(this.responseText);
+        
     };
     xmlhttp.open("GET", "listBuildingRes.php?userId="+id , true);
     xmlhttp.send();
@@ -828,6 +834,7 @@
             td_comp.appendChild(a);
             tr_comp.appendChild(td_comp);
             container.appendChild(tr_comp);
+            
           }
         }
       } 
