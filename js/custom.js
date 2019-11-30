@@ -133,6 +133,7 @@ function deletePlace(fromFloor,fromPlace) {
 
 function deleteFloor(floor) {
   const deleteFloor = "#deleteFloor" + floor
+  // alert("Hello" + floor);
   $("div").remove(deleteFloor);
   building
     .find(el => el.buildingName === building[0].buildingName)
@@ -256,6 +257,68 @@ function add_place(floor) {
     $(my_Microphone).prop("checked"),
     $(my_Speaker).prop("checked")
   )
+  const currentFloor = building[0].floor[floor];
+  const curPlaces = currentFloor.place;
+  console.log("current floor", currentFloor);
+  console.log("curPlaces", curPlaces);
+
+  $(`#placeF${floor}`).html('')
+
+  curPlaces.forEach((e, i) => {
+    console.log('e ->', e)
+
+    $(`#placeF${floor}`).append(
+      `<div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            <h5 id = "h5F${floor}P${i}">${e.placeName}</h5>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+            <a href = "#"
+            onclick = "${`View_Details('F${floor}P${i}','${floor}','${i}')`}"
+            id = "View_DetailsF${floor}P${i}" >
+              <span class="dark-blue" data-toggle="modal"
+                data-target="#add_place_popup_F${floor}">View details</span>
+            </a>
+          </div>
+        </div>`
+    )
+  });
+}
+
+function add_place_edit(floor, place, capacity, drum, projector, microphone, speaker) {
+  happenFloor = floor
+  pushPlace(place, capacity, drum, projector, microphone, speaker)
+  const currentFloor = building[0].floor[floor];
+  const curPlaces = currentFloor.place;
+  console.log("current floor", currentFloor);
+  console.log("curPlaces", curPlaces);
+
+  $(`#placeF${floor}`).html('')
+
+  curPlaces.forEach((e, i) => {
+    console.log('e ->', e)
+
+    $(`#placeF${floor}`).append(
+      `<div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            <h5 id = "h5F${floor}P${i}">${e.placeName}</h5>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+            <a href = "#"
+            onclick = "${`View_Details('F${floor}P${i}','${floor}','${i}')`}"
+            id = "View_DetailsF${floor}P${i}" >
+              <span class="dark-blue" data-toggle="modal"
+                data-target="#add_place_popup_F${floor}">View details</span>
+            </a>
+          </div>
+        </div>`
+    )
+  });
+}
+
+function add_place_edit(floor,place,capacity,drum,projector,microphone,speaker) {
+  happenFloor = floor
+  pushPlace(place,capacity,drum,projector,microphone,speaker)
   const currentFloor = building[0].floor[floor];
   const curPlaces = currentFloor.place;
   console.log("current floor", currentFloor);
@@ -467,7 +530,7 @@ console.log("euei");
 
 function sendAll() {
   willBeFloor = (building[0].floor.length);
-  updateData()
+  updateData();
   sendJSON();
   sendIMG(willBeFloor);
 }
@@ -521,7 +584,7 @@ function sendJSON() {
   });
 }
 
-function updateData(){
+function updateData() {
   const floorTemplate = 'Floor'
   const blueprintTemplate = 'file_blueprint_'
   const n = building[0].floor.length
@@ -529,8 +592,8 @@ function updateData(){
   const mappedFloor = floor.map((e, i) => {
     return {
       ...e,
-      floorName: document.getElementById(floorTemplate+i).value,
-      floorBlueprint: $("#"+blueprintTemplate+i).val()
+      floorName: document.getElementById(floorTemplate + i).value,
+      floorBlueprint: $("#" + blueprintTemplate + i).val()
     }
   })
   console.log('n floor', n)

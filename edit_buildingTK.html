@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- using bootstrap 4.3.1 -->
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<script src="js/jquery-3.4.1.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/custom.css" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+	<link rel="icon" href="picture/logo/Artboard 1logo.png" />
+	<script src="js/jquery-3.4.1.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+	<script src="js/custom.js"></script>
+	<title>R-SQUARE</title>
+</head>
+
+<body>
+	<!-- <div id="nav-placeholder"> </div>
+        <script>
+            $.get("navigationbar.html", function(data){
+                $("#nav-placeholder").replaceWith(data);
+            });
+        </script> -->
+	<div class="container">
+		<div id="add-building-form">
+			<div class="row">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+					<div class="d-flex justify-content-center">
+						<h1 class="vdark-blue"><b>Edit Building</b></h1>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+					<div class="form-group">
+						<label for="Building-Name"><span class="dark-blue"><b>Building Name</b></span></label>
+						<input type="text" class="form-control" id="Building_Name0" name="Building_Name0"
+							placeholder="Witsawa Wattana Building" />
+					</div>
+				</div>
+				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+					<div class="form-group">
+						<input type="file" id="img_building" name="img[]" class="file" accept="image/*" />
+						<label for="Building_Image"><span class="dark-blue"><b>Building Image</b></span></label>
+						<div class="input-group">
+							<input type="text" class="form-control" disabled placeholder="Upload File"
+								id="file_building" />
+							<div class="input-group-append">
+								<button type="button" id="btn" class="browse-building btn btn-dark-blue">
+									Browse...
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row p-3">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="floor-template">
+					<!-- Add Floor here -->
+
+				</div>
+			</div>
+			<div class="row p-3 mb-3">
+				<div class="col-sm-4 col-md-6 col-lg-8 col-xl-8"></div>
+				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+				</div>
+				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+					<button onclick="add_floor()" type="button" class="btn btn-dark-blue" data-toggle="modal" id="add_floor"
+						style="width:100%">
+						Add floor
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 col-md-6 col-lg-8 col-xl-8"></div>
+				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+					<button type="button" class="btn btn-secondary" data-toggle="modal" id="btn-cancel"
+						style="width:100%">
+						Cancel
+					</button>
+				</div>
+				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+					<button onclick="sendAll()" type="submit" class="btn btn-dark-blue" data-toggle="modal"
+						id="btn-save" style="width:100%">
+						Save
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<!-- <script>
+	console.log("euei");
+
+	function sendAll() {
+		sendJSON();
+		sendIMG();
+	}
+
+	function sendIMG() {
+		console.log("img send");
+		const formData = new FormData();
+		const img1 = document.getElementById("img_building").files[0];
+		const img2 = document.getElementById("img_blueprint_0").files[0];
+		formData.append("img_building", img1);
+		formData.append("img_blueprint_0", img2);
+
+		fetch("uploadfile.php", {
+			method: "POST",
+			body: formData
+		}).then(async res => {
+			//   debugging
+			const data = await res.text();
+			console.log("img res", data);
+		});
+	}
+
+	function sendJSON() {
+		const Building_Name0 = $("#Building_Name0").val();
+		const Floor0 = $("#Floor0").val();
+		const DrumUsageF0P0 = $("#DrumUsageF0P0").prop("checked");
+		console.log("Building_Name0", Building_Name0);
+		console.log("Floor0", Floor0);
+		console.log("DrumUsage0", DrumUsageF0P0);
+		fetch("data.php", {
+			method: "POST",
+			body:
+			 JSON.stringify(
+			// 	{
+			// 	Building_Name0: Building_Name0,
+			// 	Floor0: Floor0,
+			// 	DrumUsageF0P0: DrumUsageF0P0
+			// }
+			building
+			)
+		}).then(async res => {
+			//   debugging
+			const data = await res.text();
+			console.log("server res", data);
+		});
+	}
+</script> -->
+<script>
+	const urlParams = new URLSearchParams(window.location.search);
+    var building_id = urlParams.get("id");
+    var data;
+
+    console.log(building_id);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200)
+     {
+        data = JSON.parse(this.responseText);
+        console.log(data);
+        document.getElementById('Building_Name0').setAttribute("value", data.building); 
+        document.getElementById('file_building').setAttribute("value", data.picture);
+        let count,drum,projector,microphone,speaker;
+        for(let i = 0,maxFloor = data.floor.length; i<maxFloor; i++)
+        {	
+
+        	add_floor();
+        	count = i+1;
+        	document.getElementById('Floor'+count).setAttribute("value", data.floor[i].floor);
+        	document.getElementById('file_blueprint_'+count).setAttribute("value", data.floor[i].blueprint);
+        	happenFloor = count;
+        	happenPlace = 0;
+        	delete_detail('','','');
+        	for(let j = 0, maxPlace = data.floor[i].place.length; j < maxPlace; j++)
+        	{
+        		if(data.floor[i].place[j].drum == 1)
+        			drum = true;
+        		else
+        			drum = false;
+        		if(data.floor[i].place[j].projector == 1)
+        			projector = true;
+        		else
+        			projector = false;
+        		if(data.floor[i].place[j].microphone == 1)
+        			microphone = true;
+        		else
+        			microphone = false;
+        		if(data.floor[i].place[j].speaker == 1)
+        			speaker = true;
+        		else
+        			speaker = false;
+        		add_place_edit(count, data.floor[i].place[j].place, data.floor[i].place[j].capacity, drum, projector, microphone, speaker);
+        	}
+
+        }
+      }
+    };
+    xmlhttp.open("GET", "getBuilding.php?buildingId=" + building_id , true);
+    xmlhttp.send();
+</script>
+</html>
