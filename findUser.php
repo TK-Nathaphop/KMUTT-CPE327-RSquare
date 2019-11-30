@@ -4,7 +4,7 @@ require_once ('class/databaseConnection.php');
 $con = new databaseConnection();
 $con->connect();
 
-$res_user = $con->query("SELECT * FROM user WHERE `role` != 'student'");
+$res_user = $con->query("SELECT * FROM user");
 $users = array();
 while($item = $res_user -> fetch_object())
 {
