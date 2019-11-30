@@ -61,7 +61,7 @@
               <div class="row" >
                 <h4 class="vdark-blue">Postion:&nbsp&nbsp</h4>
                 <h4 id="position"></h4>
-                </div>
+              </div>
             </div>
             <!--Column of Detail User2-->
             <div class="col-5">
@@ -74,7 +74,7 @@
                   <h4 id="department"></h4>
                 </div>
             </div>
-          <div class ="container">
+          </div>
             <br> <!-- Space between row 1 and row 2 -->
             <!--------------------------------Second Row------------------------------>
             <div class="row">
@@ -247,11 +247,10 @@
                 </button>
               </div>
             </div>
-          </div>
           <!-- /Card of Connent -->
-        </div>
       </div>
     </div>
+  </div>
   </body>
   <!-- Script For First Row -->
   <script>
@@ -264,20 +263,22 @@
       if (this.readyState == 4 && this.status == 200) {
         myObj = JSON.parse(this.responseText);
         console.log(myObj);
-        var container = document.getElementById("name").innerHTML = myObj.name+' '+myObj.surname
-        var container = document.getElementById("faculty").innerHTML = myObj.faculty
-        var container = document.getElementById("position").innerHTML = myObj.position
-        var container = document.getElementById("role").innerHTML = myObj.role
-        var container = document.getElementById("department").innerHTML = myObj.department
-        var containerPicture = document.getElementById("picture");
+        var user_name = document.getElementById("name").innerHTML = myObj.name+' '+myObj.surname
+        var user_faculty = document.getElementById("faculty").innerHTML = myObj.faculty
+        var user_postion = document.getElementById("position").innerHTML = myObj.position
+        var user_role = document.getElementById("role").innerHTML = myObj.role
+        var user_department = document.getElementById("department").innerHTML = myObj.department
+        var user_picture = document.getElementById("picture");
+        //Edit button for position
+        var edit_position = document.createElement("a")
+        edit_position.setAttribute("onclick","confirmDelete")
+
         var div = document.createElement(div);
-        containerPicture.innerHTML = "<img src=\"picture/user/"  + myObj.picture+ "\" class=\"rounded-circle\" height = \" 150\" width= \" 150\" >" + "<br><br>"
+        user_picture.innerHTML = "<img src=\"picture/user/"  + myObj.picture+ "\" class=\"rounded-circle\" height = \" 150\" width= \" 150\" >" + "<br><br>"
         //"<div class = \"row\">"
         // +"<h4 class =  \"vdark-blue\"> Name:</h4>" + ' '+"<h4>"+myObj.name + ' ' + myObj.surname +"</h4>"+"</div>"
         // +"<div class = \"row\">"+"<h4 class =  \"vdark-blue\"> Faculty:</h4>" +' '+"<h4>"+ myObj.faculty+"</h4>"+"</div>"
         // +"<div class = \"row\">"+"<h4 class =  \"vdark-blue\"> Position:</h4>" +' '+"<h4>"+ myObj.position+"</h4>"+"</div>";
-          
-        
       }
     };
     xmlhttp.open("GET", "getUser.php?userId=" + id , true);
@@ -345,7 +346,8 @@
           $("#btn1").click(function(){
             fetch("testGet.php", {
 			      method: "POST",
-			      body: JSON.stringify(dataAdd)
+			      body: JSON.stringify(dataAdd.event_id)
+            
 		        }).then(async res => {
           //   debugging
               const data = await res.text();
@@ -401,7 +403,7 @@
           });
           
           $("#btn2").click(function(){
-            fetch("showOrganizeAdd.php", {
+            fetch("testGet.php", {
 			      method: "POST",
 			      body: JSON.stringify(addOrganize)
 		        }).then(async res => {
