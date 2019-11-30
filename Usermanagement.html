@@ -71,6 +71,42 @@
               <div class="row" >
                 <span class="vdark-blue">Postion:&nbsp&nbsp</span>
                 <span id="position"></span>
+                <div class="col" id = "edit_position">
+
+                  <!-- Edit modal pop-up -->
+                  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" 
+                  aria-labelledby="exampleModalLabel" data-toggle ="modal"aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="editModal">Modal title</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h4>Edit</h4>
+                          <div class="dropdown">
+                              <div class="dropdown-menu" aria-labelledby="edit_dropdown_btn" id="edit_dropdown_list">
+                                <a class="dropdown-item" href="#">Something else here</a>
+                              </div>
+                          </div>
+                          <form>
+                            <div class="form-group">
+                              <label for="exampleFormControlSelect1">Example select</label>
+                              <select class="form-control" id="edit_select_list">
+                                <!-- Get option from Jquery -->
+                              </select>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" id="save_btn_position">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 </div>
             </div>
             <!--Column of Detail User2-->
@@ -298,8 +334,8 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     var id = urlParams.get("id");
-    var myObj , activityObj ; 
-
+    let myObj; 
+    let position_changed;
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -312,17 +348,116 @@
         var containerPicture = document.getElementById("picture");
         var div = document.createElement(div);
         containerPicture.innerHTML = "<img src=\"picture/user/"  + myObj.picture+ "\" class=\"rounded-circle\" height = \" 150\" width= \" 150\" >" + "<br><br>"
-        //"<div class = \"row\">"
-        // +"<h4 class =  \"vdark-blue\"> Name:</h4>" + ' '+"<h4>"+myObj.name + ' ' + myObj.surname +"</h4>"+"</div>"
-        // +"<div class = \"row\">"+"<h4 class =  \"vdark-blue\"> Faculty:</h4>" +' '+"<h4>"+ myObj.faculty+"</h4>"+"</div>"
-        // +"<div class = \"row\">"+"<h4 class =  \"vdark-blue\"> Position:</h4>" +' '+"<h4>"+ myObj.position+"</h4>"+"</div>";
-          
-        
+        //Edit button for position
+        var a = document.createElement("a");
+        a.setAttribute("onclick","editPosition('"+myObj+"')");
+        a.setAttribute("data-target","#editModal");
+        a.setAttribute("data-toggle","modal");
+        a.setAttribute("id","edit_modal_btn");
+        a.innerHTML = "<u>Edit</u>"
+        var edit_position = document.getElementById("edit_position");
+        //All of Option
+        var option = document.createElement("option");
+        edit_position.appendChild(a);
+        if(myObj.role == "teacher")
+          {
+          if(myObj.position == "coordinator")
+            {
+              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
+              $('#edit_select_list').append('<option value="chairman">chairman</option>');
+              $('#edit_select_list').append('<option value="teacher">Staff</option>');
+            }
+          else if(myObj.position == "chairman")
+            {
+              $('#edit_select_list').append('<option value="chairman">chairman</option>');
+              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
+              $('#edit_select_list').append('<option value="teacher">teacher</option>');
+            }
+          else if(myObj.position == "teacher" )
+            {
+              $('#edit_select_list').append('<option value="teacher">teacher</option>');
+              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
+              $('#edit_select_list').append('<option value="chairman">chairman</option>');
+            }
+          }
+        else if(myObj.role == "staff")
+          {
+            if(myObj.position == "coordinator")
+            {
+              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
+              $('#edit_select_list').append('<option value="chairman">chairman</option>');
+              $('#edit_select_list').append('<option value="staff">Staff</option>');
+            }
+          else if(myObj.position == "chairman")
+            {
+              $('#edit_select_list').append('<option value="chairman">chairman</option>');
+              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
+              $('#edit_select_list').append('<option value="staff">teacher</option>');
+            }
+          else if(myObj.position == "staff" )
+            {
+              $('#edit_select_list').append('<option value="staff">teacher</option>');
+              $('#edit_select_list').append('<option value="coordinator">coordinator</option>');
+              $('#edit_select_list').append('<option value="chairman">chairman</option>');
+            }
+          }
+        else
+          {
+            $('#edit_select_list').append('<option value="student">student</option>');
+          }
+
+        $(document).ready(function(){
+          $("#edit_select_list").change(function(){
+            if($(this).val() =='staff')
+              {
+                myObj.position = 'staff';
+                position_changed = myObj;
+                console.log(position_changed);
+              }
+            else if($(this).val() == 'coordinator')
+              {
+                myObj.position = 'coordinator';
+                position_changed = myObj;
+                console.log(position_changed);
+              }
+            else if($(this).val() == 'teacher')
+              {
+                myObj.position = 'teacher';
+                position_changed = myObj;
+                console.log(position_changed);
+              }
+            else if($(this).val() == 'chairman')
+              {
+                myObj.position = 'chairman';
+                position_changed = myObj;
+                console.log(position_changed);
+              }
+            else
+              {
+                myObj.position = 'student';
+                position_changed = myObj;
+                console.log(position_changed);
+              }
+          })
+
+          $("#save_btn_position").click(function(){
+            fetch("testGet.php", {
+			      method: "POST",
+			      body: JSON.stringify(position_changed)
+		        }).then(async res => {
+              const data = await res.text();
+              console.log("server res", data);
+              window.location.reload();
+            });
+          })
+
+        });
+         
       }
     };
     xmlhttp.open("GET", "getUser.php?userId=" + id , true);
     xmlhttp.send();
-
+  
   </script>
 
   <!-- Script for activity -->
