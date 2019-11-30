@@ -178,7 +178,7 @@
         </div>
         <script>           
             // function linkPage(){
-            //     windows.location = "UserManagement.html?id="+data[i]['user_id']"";
+            //     windows.location = "Usermanagement.html?id="+data[i]['user_id']"";
             // }
             var row = new Array();
             var xmlhttp = new XMLHttpRequest();
@@ -193,8 +193,8 @@
                         var count = i+1;
                         var link = document.createElement("a");
                         row[i] = document.createElement("tr");
-                        row[i].setAttribute("href","UserManagement.html?id="+data[i]['user_id']+"");
-                        row[i].setAttribute("onclick","document.location='UserManagement.html?id="+data[i]['user_id']+"'");   
+                        row[i].setAttribute("href","Usermanagement.html?id="+data[i]['user_id']+"");
+                        row[i].setAttribute("onclick","document.location='Usermanagement.html?id="+data[i]['user_id']+"'");   
                         row[i].setAttribute("style","cursor: pointer");                  
                         row[i].innerHTML ="<th scope=\"row\">"+ count + " </th><td>"+data[i]['name']+"    "+ data[i]['surname']+"</td><td>"+data[i]['faculty']+"</td><td>  "+data[i]['department']+"</td>";
                         container.appendChild(row[i]);
@@ -226,13 +226,15 @@
                         var container = document.getElementById("userList");
                         var data = JSON.parse(this.responseText);
                         for(var i=0; i<data.length &&i<10;i++)
-                            {
-                                var count = i+1; 
-                                row[i] = document.createElement("tr");
-                                row[i].innerHTML ="<th scope=\"row\">"+ count + " </th><td>"+data[i]['name']+"    "+ data[i]['surname']+"</td><td>"+data[i]['faculty']+"</td><td>"+data[i]['department']+"</td>";
-                                row[i].innerHTML ="<a href=\"UserManagement.html#"+data[i]['user_id']+"\"><th scope=\"row\">"+ count + " </th><td>"+data[i]['name']+"    "+ data[i]['surname']+"</td><td>"+data[i]['faculty']+"</td><td>"+data[i]['department']+"</td></a>";
-                                container.appendChild(row[i]);
-                            }
+                        {
+                            var count = i+1; 
+                            row[i] = document.createElement("tr");
+                            row[i].setAttribute("href","Usermanagement.html?id="+data[i]['user_id']+"");
+                            row[i].setAttribute("onclick","document.location='Usermanagement.html?id="+data[i]['user_id']+"'");   
+                            row[i].setAttribute("style","cursor: pointer");                  
+                            row[i].innerHTML ="<th scope=\"row\">"+ count + " </th><td>"+data[i]['name']+"    "+ data[i]['surname']+"</td><td>"+data[i]['faculty']+"</td><td>  "+data[i]['department']+"</td>";
+                            container.appendChild(row[i]);
+                        }
                         // document.getElementById("test").innerHTML = this.responseText;
                     }
                 };
