@@ -14,4 +14,5 @@ while($item = $res -> fetch_object())
 	$ret[] = $item;
 }
 echo json_encode($ret);	
+$con->disconnect();
 ?>

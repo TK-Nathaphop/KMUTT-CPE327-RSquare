@@ -10,4 +10,5 @@ $position = $json->position;
 $userId = $json->user_id;
 $sql = "UPDATE `user` SET `position`= '".$position."' WHERE `user_id` = '". $userId ."'";
 $con->query($sql);
+$con->disconnect();
 ?>

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-<html>
   <head>
     <!-- using bootstrap 4.3.1 -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/custom.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
@@ -23,12 +22,12 @@
 
 
     <!--CSS-->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
-    />
+    /> -->
   </head>
   <body>
     <div id="nav-placeholder"> </div>
@@ -180,7 +179,7 @@
           <div class="row">
             <div class = "col-sm-10"></div>
             <div class="col-sm-2">
-              <button type="button" class="btn btn-primary btn-block " data-toggle="modal" data-target="#add-act-popup" id="add-act-popup-btn"> Add Activity </button>
+              <button type="button" class="btn btn-dark-blue btn-block " data-toggle="modal" data-target="#add-act-popup" id="add-act-popup-btn"> Add Activity </button>
               <!-- Modal add activity -->
               <div class="modal fade" id="add-act-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -215,7 +214,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" id="btn1" data-dismiss="modal" style="display: block;">
+                      <button type="button" class="btn btn-dark-blue" id="btn1" data-dismiss="modal" style="display: block;">
                         <span id="add-place-text">Add</span>
                       </button>
                     </div>
@@ -241,7 +240,7 @@
               </tbody>
             </table>
             <div class="container text-right">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-org-popup" id="add-org-popup-btn"> Add Organization </button>
+              <button type="button" class="btn btn-dark-blue" data-toggle="modal" data-target="#add-org-popup" id="add-org-popup-btn"> Add Organization </button>
 
               <!-- Modal add organization -->
               <div class="modal fade" id="add-org-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
@@ -277,7 +276,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" id="btn2" data-dismiss="modal" style="display: block;">
+                      <button type="button" class="btn btn-dark-blue" id="btn2" data-dismiss="modal" style="display: block;">
                         <span id="add-place-text">Add</span>
                       </button>
                     </div>
@@ -309,7 +308,7 @@
           <div class="row">
             <div class="col-sm-10"></div>
             <div class="col-sm-2">
-                <button type="button" class="btn btn-primary btn-block vdark-blue" data-toggle="modal" data-target="#add-place-popup" id="add-place-popup-btn" onclick = "   initial()"> Add Place </button>
+                <button type="button" class="btn btn-dark-blue btn-block " data-toggle="modal" data-target="#add-place-popup" id="add-place-popup-btn" onclick = "   initial()"> Add Place </button>
     
                 <!-- Modal Add building -->
                 <div class="modal fade" id="add-place-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
@@ -360,7 +359,7 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button onclick="addBuildingRes()" type="button" class="btn btn-primary" id="save" data-dismiss="modal" style="display: block;">
+                        <button onclick="addBuildingRes()" type="button" class="btn btn-dark-blue" id="save" data-dismiss="modal" style="display: block;">
                           <span id="add-place-text">Add</span>
                         </button>
                       </div>
@@ -371,7 +370,7 @@
           </div>
           <!-- End of Fourth -->
           <div class="row">
-            <button class="btn btn-primary" onclick="goBack()">Back</button>
+            <button class="btn btn-dark-blue" type = "button"onclick="goBack()">Back</button>
           </div>
         </div>
       </div>
@@ -400,12 +399,18 @@
         a.setAttribute("data-target","#editModal");
         a.setAttribute("data-toggle","modal");
         a.setAttribute("id","edit_modal_btn");
-        a.innerHTML = "<u>Edit</u>"
+        if(myObj.position == "student")
+          {
+          a.innerHTML = ""
+          }
+        else{
+          a.innerHTML = "<u style=\"color: blue;\">Edit</u>"
+        }
         var edit_position = document.getElementById("edit_position");
         //All of Option
         var option = document.createElement("option");
         edit_position.appendChild(a);
-        //Condition of the position option changed
+        //Condition for position option change
         if(myObj.role == "teacher")
           {
           if(myObj.position == "coordinator")
@@ -452,7 +457,7 @@
           {
             $('#edit_select_list').append('<option value="student">student</option>');
           }
-
+        //button Save positon From Edit
         $(document).ready(function(){
           $("#edit_select_list").change(function(){
             if($(this).val() =='staff')
@@ -523,7 +528,7 @@
         for (i=0; i<acts.length; i++)
         {
           tr_comp = document.createElement("tr");
-          tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteAct('"+ acts[i].event_id +"')\"><u>Delete</u></a></td>";
+          tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteAct('"+ acts[i].event_id +"')\"><u style=\"color: red;\">Delete</u></a></td>";
          
           container.appendChild(tr_comp);
         }
@@ -640,7 +645,7 @@
         for (i=0; i<orgs.length; i++)
         {
           tr_comp = document.createElement("tr");
-          tr_comp.innerHTML = "<td>" + orgs[i].organization + "</td><td>" + orgs[i].president_name + " " + orgs[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteOrg('"+ orgs[i].organization_id +"')\"><u>Delete</u></a></td>";
+          tr_comp.innerHTML = "<td>" + orgs[i].organization + "</td><td>" + orgs[i].president_name + " " + orgs[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteOrg('"+ orgs[i].organization_id +"')\"><u style=\"color: red;\">Delete</u></a></td>";
          
           container.appendChild(tr_comp);
         }
@@ -815,7 +820,7 @@
             // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
             a = document.createElement("a");
             a.setAttribute("onclick","confirmDelete('"+ building_res[i].floor[j].place[k].place_id +"')");
-            a.innerHTML = "<u>Delete</u>"
+            a.innerHTML = "<u style=\"color: red;\">Delete</u>"
             td_comp.appendChild(a);
             tr_comp.appendChild(td_comp);
             container.appendChild(tr_comp);
@@ -892,7 +897,7 @@
               // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
               a = document.createElement("a");
               a.setAttribute("onclick","confirmDelete('"+ building_res[i].floor[j].place[k].place_id +"')");
-              a.innerHTML = "<u>Delete</u>"
+              a.innerHTML = "<u style=\"color: red;\">Delete</u>"
               td_comp.appendChild(a);
               tr_comp.appendChild(td_comp);
               container.appendChild(tr_comp);
