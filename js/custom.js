@@ -58,7 +58,6 @@ building
     id:null
   });
 
-console.log(building);
 //end init
 
 function pushFloorDefault(
@@ -102,7 +101,6 @@ function pushPlace(
 function pushPlaceDefault(
   floorNumber
 ) {
-  console.log("pushPlaceDefault", floorNumber)
   building
     .find(el => el.buildingName === building[0].buildingName)
     .floor.find(el1 => el1.floorName === building[0].floor[floorNumber].floorName)
@@ -171,7 +169,6 @@ function save_detail(F0P0, itsFloor, itsPlace) {
 }
 
 function delete_detail(F0P0, itsFloor, itsPlace) {
-  console.log(happenFloor, happenPlace)
   deletePlace(happenFloor, happenPlace)
 
   currentFloor = building[0].floor[happenFloor];
@@ -179,7 +176,6 @@ function delete_detail(F0P0, itsFloor, itsPlace) {
   $(`#placeF${happenFloor}`).html('')
 
   curPlaces.forEach((e, i) => {
-    console.log('e ->', e)
 
     $(`#placeF${happenFloor}`).append(
       `<div class="row">
@@ -204,8 +200,6 @@ function View_Details(F0P0, itsFloor, itsPlace) {
   happenFloor = itsFloor
   happenPlace = itsPlace
   const curPlaces = building[0].floor[itsFloor].place[itsPlace]
-  console.log('view curplace', curPlaces)
-  console.log('view detail', F0P0, itsFloor, itsPlace)
   my_add_place = "#add_placeF" + itsFloor;
   my_save_place = "#save_placeF" + itsFloor
   my_delete_place = "#delete_placeF" + itsFloor
@@ -253,13 +247,10 @@ function add_place(floor) {
   )
   const currentFloor = building[0].floor[floor];
   const curPlaces = currentFloor.place;
-  console.log("current floor", currentFloor);
-  console.log("curPlaces", curPlaces);
 
   $(`#placeF${floor}`).html('')
 
   curPlaces.forEach((e, i) => {
-    console.log('e ->', e)
 
     $(`#placeF${floor}`).append(
       `<div class="row">
@@ -279,18 +270,15 @@ function add_place(floor) {
   });
 }
 
-function add_place_edit(floor,place,capacity,drum,projector,microphone,speaker) {
+function add_place_edit(floor,place,capacity,drum,projector,microphone,speaker,id) {
   happenFloor = floor
-  pushPlace(place,capacity,drum,projector,microphone,speaker)
+  pushPlace(place,capacity,drum,projector,microphone,speaker,id)
   const currentFloor = building[0].floor[floor];
   const curPlaces = currentFloor.place;
-  console.log("current floor", currentFloor);
-  console.log("curPlaces", curPlaces);
 
   $(`#placeF${floor}`).html('')
 
   curPlaces.forEach((e, i) => {
-    console.log('e ->', e)
 
     $(`#placeF${floor}`).append(
       `<div class="row">
@@ -332,8 +320,6 @@ function add_floor() {
   pushFloorDefault(building[0].floor.length,null)
   const willBeFloor = (building[0].floor.length) - 1;
   const currentFloor = building[0].floor[willBeFloor];
-  console.log("willBeFloor", willBeFloor);
-  console.log("current floor", currentFloor);
   pushPlaceDefault(willBeFloor,null)
   const curPlaces = currentFloor.place;
   // alert("This is floor ");
@@ -648,41 +634,15 @@ function add_floor_edit(id)
 
 function sendAll() {
   willBeFloor = (building[0].floor.length);
+  updateData();
   sendJSON();
   sendIMG(willBeFloor);
 }
 
-// function sendIMG() {
-//   console.log("img send");
-//   const formData = new FormData();
-//   const img1 = document.getElementById("img-building").files[0];
-//   const img2 = document.getElementById("img-blueprint").files[0];
-//   formData.append("img-building", img1);
-//   formData.append("img-blueprint", img2);
-//   fetch("uploadfile.php", {
-//     method: "POST",
-//     body: formData
-//   }).then(async res => {
-//     //   debugging
-//     const data = await res.text();
-//     console.log("img res", data);
-//   });
-// }
-
-// function sendNumIMG() {
-//   fetch("uploadfile.php", {
-//     method: "POST",
-//     body: formData
-//   }).then(async res => {
-//     //   debugging
-//     const data = await res.text();
-//     console.log("img res", data);
-//   });
-// }
-
 function sendIMG(numberFloor) {
   let myNumberFloor = numberFloor;
   let img_blueprint_id
+  console.log("img send", myNumberFloor);
   const formData = new FormData();
   const img_building = document.getElementById("img_building").files[0];
   // const img_blueprint_0 = document.getElementById("img_blueprint_0").files[0];
@@ -711,10 +671,10 @@ function sendJSON() {
   fetch("data.php", {
     method: "POST",
     body: JSON.stringify(
-      // 	{
-      // 	Building_Name0: Building_Name0,
-      // 	Floor0: Floor0,
-      // 	DrumUsageF0P0: DrumUsageF0P0
+      //  {
+      //  Building_Name0: Building_Name0,
+      //  Floor0: Floor0,
+      //  DrumUsageF0P0: DrumUsageF0P0
       // }
       building
     )
@@ -723,4 +683,21 @@ function sendJSON() {
     const data = await res.text();
     console.log("server res", data);
   });
+}
+
+function updateData() {
+  const floorTemplate = 'Floor'
+  const blueprintTemplate = 'file_blueprint_'
+  const n = building[0].floor.length
+  const floor = building[0].floor
+  const mappedFloor = floor.map((e, i) => {
+    return {
+      ...e,
+      floorName: document.getElementById(floorTemplate + i).value,
+      floorBlueprint: $("#" + blueprintTemplate + i).val()
+    }
+  })
+  building[0].floor = mappedFloor
+  building[0].buildingName = document.getElementById('Building_Name0').value
+  building[0].buildingImage = $("#file_building").val()
 }
