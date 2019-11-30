@@ -499,6 +499,10 @@ console.log("euei");
 
 function sendAll() {
   willBeFloor = (building[0].floor.length);
+<<<<<<< HEAD
+  updateData();
+=======
+>>>>>>> parent of 3ebb72f... finish add_building
   sendJSON();
   sendIMG(willBeFloor);
 }
@@ -578,4 +582,27 @@ function sendJSON() {
     const data = await res.text();
     console.log("server res", data);
   });
+<<<<<<< HEAD
+}
+
+function updateData() {
+  const floorTemplate = 'Floor'
+  const blueprintTemplate = 'file_blueprint_'
+  const n = building[0].floor.length
+  const floor = building[0].floor
+  const mappedFloor = floor.map((e, i) => {
+    return {
+      ...e,
+      floorName: document.getElementById(floorTemplate + i).value,
+      floorBlueprint: $("#" + blueprintTemplate + i).val()
+    }
+  })
+  console.log('n floor', n)
+  console.log(building)
+  building[0].floor = mappedFloor
+  building[0].buildingName = document.getElementById('Building_Name0').value
+  building[0].buildingImage = $("#file_building").val()
+  console.log('after mapped', building[0])
+=======
+>>>>>>> parent of 3ebb72f... finish add_building
 }
