@@ -34,12 +34,6 @@ while($item = $res_act -> fetch_object())
     $organizations[] = $item;
 }
 
-//Get search from interface
-if(isset($_GET["search"]))
-    $search = $_GET["search"];
-else
-    $search = "";
-
 $ret = array();
 // lookup all hints from array if $q is different from "" 
 if ($search !== "")

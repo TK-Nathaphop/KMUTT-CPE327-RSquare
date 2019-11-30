@@ -2,13 +2,14 @@
 
 $rawpost = file_get_contents('php://input');
 $json_txt = str_replace("\\", "", $rawpost);
-// echo $json_txt;
 $json = json_decode($json_txt);
+// echo json_encode($json);
 require_once ('class/databaseConnection.php');
 $con = new databaseConnection();
 $con->connect();
-$placeId = $json->place;
-$userId = $json->id;
-$sql = "UPDATE `place` SET `user_id`= NULL WHERE `place_id` = '".$placeId."'";
+$orgId = $json->organization_id;
+$userId = $json->userId;
+$sql = "UPDATE `organization` SET `advisor`= '".$userId."' WHERE `organization_id` = '". $orgId ."'";
+echo $sql;
 $con->query($sql);
 ?>

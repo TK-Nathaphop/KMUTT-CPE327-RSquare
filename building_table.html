@@ -18,6 +18,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
     <title>R-SQUARE</title>
+    <link rel="icon" href="picture/logo/Artboard 1logo.png" />
 
     
     <link href="MDB-Free/css/style.css" rel="stylesheet">
@@ -37,93 +38,89 @@
   <body>
     <!-- /Head of the Card -->
     <div class="container">
-      <div class="container-content">
-        <div class="row justify-content-center"><h1 class="vdark-blue">View User</h1></div>
-        <div class="card-content">                   
+    <div class="container-content">
+    <div class="card-content">                   
+      <div class="row">
+        <h4 class="font-weight-bold justify-content-left vdark-blue">Responsible Place</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Building</th>
+              <th scope="col">Floor</th>
+              <th scope ="col">Place</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id ="table4">
+
+          </tbody>
+        </table>
+        <div class="container text-right">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-place-popup" id="add-place-popup-btn" onclick = "initial3()"> Add Place </button>
+
+<div class="modal fade" id="add-place-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title vdark-blue"><b id="ModalTitleF0P0" style="padding-left: 1px;">Add Place</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- Modal Body for add building -->
+      <div class="modal-body" >
+        <div class="container-fluid">
+          <!-- First row for building and floor -->
           <div class="row">
-            <h4 class="font-weight-bold text-lg-left text-primary">Responsible Place</h4>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Building</th>
-                  <th scope="col">Floor</th>
-                  <th scope ="col">Place</th>
-                  <th></th>
-                </tr>
-                </thead>
-               <tbody id ="table4">
-              </tbody>
-            </table>
-            <div class="container text-right">
-               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-place-popup" 
-               id="add-place-popup-btn" onclick = "initial()"> Add Place </button>
-
-        <div class="modal fade" id="add-place-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title vdark-blue"><b id="ModalTitleF0P0" style="padding-left: 1px;">Add Place</b></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-
-              <!-- Modal Body for add building -->
-              <div class="modal-body" >
-                <div class="container-fluid">
-                  <!-- First row for building and floor -->
-                  <div class="row">
-                    <!-- Building -->
-                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                      <label for="Capacity"><span class="dark-blue"><b>Building</b></span></label>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                      <form>
-                        <select id="buildingList" onchange ="changeBuilding()" class="selectpicker">
-                        
-                        </select>
-                      </form>
-                    </div>
-                     <!-- Floor -->
-                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                        <label for="Capacity"><span
-                            class="dark-blue"><b>Floor</b></span></label>
-                    </div>
-                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                      <form>
-                        <select id="floorList" onchange="changeFloor()" class="selectpicker">
-                        
-                        </select>
-                      </form>
-                    </div>
-                  </div>
-                  <!-- Second row for building and floor -->
-                  <div class="row">
-                    <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-                      <label for="Capacity"><span class="dark-blue"><b>Place</b></span></label>
-                    </div>
-                    <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11"></div>
-                  </div>
-                  <div id="placeList">
-                    
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button onclick="addBuildingRes()" type="button" class="btn btn-primary"
-                  id="save" data-dismiss="modal" style="display: block;">
-                  <span id="add-place-text">Add</span>
-                </button>
-              </div>
+            <!-- Building -->
+            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+              <label for="Capacity"><span class="dark-blue"><b>Building</b></span></label>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+              <form>
+                <select id="buildingList" onchange ="changeBuilding()" class="selectpicker">
+                  
+                </select>
+              </form>
+            </div>
+            <!-- Floor -->
+            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+              <label for="Capacity"><span class="dark-blue"><b>Floor</b></span></label>
+            </div>
+            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+              <form>
+                <select id="floorList" onchange="changeFloor()" class="selectpicker">
+                  
+                </select>
+              </form>
             </div>
           </div>
-        </div>
-
+          <!-- Second row for building and floor -->
+          <div class="row">
+            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+              <label for="Capacity"><span class="dark-blue"><b>Place</b></span></label>
+            </div>
+            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
             </div>
           </div>
-          
+          <div id="placeList">
+         
+          </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <button onclick="addBuildingRes()" type="button" class="btn btn-primary" id="save" data-dismiss="modal" style="display: block;">
+          <span id="add-place-text">Add</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>  
+    </div>
     </div>
   </body>
 
@@ -131,8 +128,6 @@
   <script>
   var id = '60070503429'; // initial id
   var buildings;  // all building variable
-  var add = new Array();
-  var amound;
   
     /** Get all building list **/
     var xmlhttp = new XMLHttpRequest();
@@ -306,7 +301,7 @@
       } 
   }
 
-  function initial()
+  function initial3()
   {
     let xmlload = new XMLHttpRequest();
     xmlload.onreadystatechange = function()
