@@ -161,11 +161,22 @@ function Speaker(F0P0, itsFloor, itsPlace) {
 }
 
 function save_detail(F0P0, itsFloor, itsPlace) {
-  var Place_Name = "#Place_Name" + F0P0;
-  var up_save_h5 = "#h5" + F0P0;
+  var my_Place_Name = `#Place_NameF${happenFloor}P0`;
+  var up_save_h5 = `#h5F${happenFloor}P${happenPlace}`;
+  my_Place_Name = `#Place_NameF${happenFloor}P0`
+  my_Capacity = `#CapacityF${happenFloor}P0`
+  my_DrumUsage = `#DrumUsageF${happenFloor}P0`
+  my_Projector = `#ProjectorF${happenFloor}P0`
+  my_Microphone = `#MicrophoneF${happenFloor}P0`
+  my_Speaker = `#SpeakerF${happenFloor}P0`
   // console.log($("#Place-NameF0P0").val());
-  if ($(Place_Name).val() == "") $(up_save_h5).text("Dummy place");
-  else $(up_save_h5).text($(Place_Name).val());
+  building[0].floor[happenFloor].place[happenPlace].placeName = $(my_Place_Name).val()
+  building[0].floor[happenFloor].place[happenPlace].placeCapacity = $(my_Capacity).val()
+  building[0].floor[happenFloor].place[happenPlace].placeDrumUsage = $(my_DrumUsage).prop("checked")
+  building[0].floor[happenFloor].place[happenPlace].placeProjector = $(my_Projector).prop("checked")
+  building[0].floor[happenFloor].place[happenPlace].placeMicrophone = $(my_Microphone).prop("checked")
+  building[0].floor[happenFloor].place[happenPlace].placeSpeaker = $(my_Speaker).prop("checked")
+  $(up_save_h5).text($(my_Place_Name).val());
 }
 
 function delete_detail(F0P0, itsFloor, itsPlace) {
