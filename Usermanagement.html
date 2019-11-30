@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-<html>
   <head>
     <!-- using bootstrap 4.3.1 -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/custom.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
@@ -19,16 +18,15 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
     <title>R-SQUARE</title>
-    <link rel="icon" href="picture/logo/Artboard 1logo.png" />
 
 
     <!--CSS-->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
-    />
+    /> -->
   </head>
   <body>
     <div id="nav-placeholder"> </div>
@@ -180,7 +178,7 @@
           <div class="row">
             <div class = "col-sm-10"></div>
             <div class="col-sm-2">
-              <button type="button" class="btn btn-primary btn-block " data-toggle="modal" data-target="#add-act-popup" id="add-act-popup-btn"> Add Activity </button>
+              <button type="button" class="btn btn-dark-blue btn-block " data-toggle="modal" data-target="#add-act-popup" id="add-act-popup-btn"> Add Activity </button>
               <!-- Modal add activity -->
               <div class="modal fade" id="add-act-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -241,7 +239,7 @@
               </tbody>
             </table>
             <div class="container text-right">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-org-popup" id="add-org-popup-btn"> Add Organization </button>
+              <button type="button" class="btn btn-dark-blue" data-toggle="modal" data-target="#add-org-popup" id="add-org-popup-btn"> Add Organization </button>
 
               <!-- Modal add organization -->
               <div class="modal fade" id="add-org-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
@@ -309,7 +307,7 @@
           <div class="row">
             <div class="col-sm-10"></div>
             <div class="col-sm-2">
-                <button type="button" class="btn btn-primary btn-block vdark-blue" data-toggle="modal" data-target="#add-place-popup" id="add-place-popup-btn" onclick = "   initial()"> Add Place </button>
+                <button type="button" class="btn btn-dark-blue btn-block " data-toggle="modal" data-target="#add-place-popup" id="add-place-popup-btn" onclick = "   initial()"> Add Place </button>
     
                 <!-- Modal Add building -->
                 <div class="modal fade" id="add-place-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
@@ -371,7 +369,7 @@
           </div>
           <!-- End of Fourth -->
           <div class="row">
-            <button class="btn btn-primary" onclick="goBack()">Back</button>
+            <button class="btn btn-dark-blue" type = "button"onclick="goBack()">Back</button>
           </div>
         </div>
       </div>
@@ -400,12 +398,18 @@
         a.setAttribute("data-target","#editModal");
         a.setAttribute("data-toggle","modal");
         a.setAttribute("id","edit_modal_btn");
-        a.innerHTML = "<u>Edit</u>"
+        if(myObj.position == "student")
+          {
+          a.innerHTML = ""
+          }
+        else{
+          a.innerHTML = "<u>Edit</u>"
+        }
         var edit_position = document.getElementById("edit_position");
         //All of Option
         var option = document.createElement("option");
         edit_position.appendChild(a);
-        //Condition of the position option changed
+        //Condition for position option change
         if(myObj.role == "teacher")
           {
           if(myObj.position == "coordinator")
@@ -452,7 +456,7 @@
           {
             $('#edit_select_list').append('<option value="student">student</option>');
           }
-
+        //button Save positon From Edit
         $(document).ready(function(){
           $("#edit_select_list").change(function(){
             if($(this).val() =='staff')
