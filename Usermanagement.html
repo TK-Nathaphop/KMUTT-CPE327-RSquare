@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/custom.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-        <link rel="icon" href="images/logo/Artboard 1logo.png">
-        <script src="js/jquery-3.4.1.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/custom.js"></script>
-        <!-- asdsadsad-->
-    
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-        <link rel="stylesheet" href="dist/css/bootstrap-select.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--<script src="dist/js/bootstrap-select.js"></script> -->
+<html>
+  <head>
+    <!-- using bootstrap 4.3.1 -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <!-- import logo Rsquare and Head -->
+    <link rel="icon" href="images/logo/Artboard 1logo.png" />
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    <title>R-SQUARE</title>
+    <link rel="icon" href="picture/logo/Artboard 1logo.png" />
 
-        <title>R-Square</title>
-        <link rel="icon" href="picture/logo/Artboard 1logo.png" />
-    </head>
+    
+    <link href="MDB-Free/css/style.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="MDB-Free/js/mdb.min.js"></script>
+    <!--CSS-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
   <body>
-      <div id="nav-placeholder"> </div>
-        <script>
-            $.get("navigationbar.html", function(data){
-                $("#nav-placeholder").replaceWith(data);
-            });
-        </script>
+    <div id="nav-placeholder"> </div>
+      <script>
+          $.get("navigationbar.html", function(data){
+              $("#nav-placeholder").replaceWith(data);
+          });
+      </script>
     <!-- /Head of the Card -->
     <div class="container">
       <div class="container">
         <div class="row justify-content-center">
           <h1 class="vdark-blue">View User</h1>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid"><br>
           <!--------------------------------First Row------------------------------>
           <div class="row">
             <div class="col-3">
@@ -51,219 +61,249 @@
             <!--Column of Detail User1-->
             <div class="col-4" id ="display_info">
               <div class="row" >
-                <h4 class="vdark-blue">Name:&nbsp&nbsp&nbsp&nbsp</h4>
-                <h4 id="name"></h4>
+                <span class="vdark-blue">Name:&nbsp&nbsp&nbsp&nbsp</span>
+                <span id="name"></span>
               </div>
               <div class="row" >
-                <h4 class="vdark-blue">Faculty:&nbsp&nbsp</h4>
-                <h4 id="faculty"></h4>
+                <span class="vdark-blue">Faculty:&nbsp&nbsp</span>
+                <span id="faculty"></span>
               </div>
               <div class="row" >
-                <h4 class="vdark-blue">Postion:&nbsp&nbsp</h4>
-                <h4 id="position"></h4>
+                <span class="vdark-blue">Postion:&nbsp&nbsp</span>
+                <span id="position"></span>
                 </div>
             </div>
             <!--Column of Detail User2-->
             <div class="col-5">
               <div class = "row">
-                <h4 class="vdark-blue">Role:&nbsp</h4>
-                <h4 id="role"></h4>
+                <span class="vdark-blue">Role:&nbsp</span>
+                <span id="role"></span>
               </div>
               <div class = "row">
-                  <h4 class="vdark-blue">Department:&nbsp</h4>
-                  <h4 id="department"></h4>
+                  <span class="vdark-blue">Department:&nbsp</span>
+                  <span id="department"></span>
                 </div>
             </div>
-          <div class ="container">
-            <br> <!-- Space between row 1 and row 2 -->
-            <!--------------------------------Second Row------------------------------>
-            <div class="row">
-              <h4 class="font-weight-bold justify-content-left vdark-blue ">
-                Responsible Activity Project
-              </h4>
-              <!--Table of Activity infomation-->
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Project</th>
-                      <th scope="col"> President</th>
-                    </tr>
-                  </thead>
-                  <tbody id="table1">
-                    <!-- Get data from script -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- Popup Add-Activity Button -->
-            <div class = "row">
-              <div class ="col-sm-10"></div>
-              <div class = "col-sm-2">
-                <button type="button" class="btn p-3 w-100 btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" >Add Activity</button>
+          </div><br>
+          <!--------------------------------Second Row------------------------------>
+          <div class="row">
+            <h4 class="font-weight-bold justify-content-left vdark-blue">Responsible Activity</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Activity</th>
+                  <th scope="col">President</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id ="table2">
+    
+              </tbody>
+            </table>
+            <div class="container text-right">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-act-popup" id="add-act-popup-btn"> Add Activity </button>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-
-                    <!---------------------- Popup content ---------------------->
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        <div class="container-fluid">
-                          <div class = "row justify-content-center">
-                            <h3 class="vdark-blue font-weight-bold text-center"> Add Activity</h3>
-                          </div>
-                          <!---------------------- searching ---------------------->
-                          <div class ="row">
-                            <h4 class = "vdark-blue">Search</h4>
-                          </div>
-                          <!-- Input for Searching Event -->
-                          <form action="/findActivity.php" method="get">
-                            <input type ="text" class="form-control" list="myList" id = "search" name="myList" placeholder = "Search">
-                            <datalist id="myList"> 
-                              <!-- List of Resonsible for user that can added -->
-                            </datalist>
-                          </form>
-                          <br>
-                          <!-- Row1 -->
-                          <div class="row">
-                            <h4 class="vdark-blue" id="org">Activity Name:&nbsp</h4>
-                            <h4 id=org_txt> </h4>
-                          </div>
-                          <!-- Row2 -->
-                          <div class="row">
-                            <h4 class = "vdark-blue">President:&nbsp</h4>
-                            <h4 id=pre_org_txt> </h4>
-                          </div>
-                          <!-- Row3 -->
-                          <div class="row ">
-                            <div class="col-md-10"></div>
-                            <div class = "col-sm-2">
-                              <input class="btn btn-primary" type="submit" value="Submit" id ="btn1">
-                            </div>
-                          </div>
-                          <br>
+              <!-- Modal add activity -->
+              <div class="modal fade" id="add-act-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title vdark-blue"><b id="ModalTitleF0P0" style="padding-left: 1px;">Add Activity</b></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="container-fluid">
+                        <div class = "row">
+                        </div>
+                        <div class ="row">
+                          <span class = "dark-blue">Search</span>
+                        </div>
+                        <form action="/findActivity.php" method="get">
+                          <input type ="text" class="form-control" list="actList" id = "act_search" name="actList" placeholder = "Search">
+                          <datalist id="actList"> 
+                            
+                          </datalist>
+                        </form>
+                        <div class="row">
+                          <span class="dark-blue" id="org">Activity Name:&nbsp</span>
+                          <span id="activity_name"> </span>
+                        </div>
+                        <div class="row">
+                          <span class = "dark-blue">President:&nbsp</span>
+                          <span id="activity_pres"> </span>
                         </div>
                       </div>
                     </div>
-                    <!-- End of Content -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" id="btn1" data-dismiss="modal" style="display: block;">
+                        <span id="add-place-text">Add</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!--------------------------------Third Row------------------------------>
-            <div class="row">
-              <h4 class="font-weight-bold justify-content-left vdark-blue">
-                Responsible Organization
-              </h4>
-              <!--Table of Responsible Organization-->
-              <div class = "table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Organization Name</th>
-                      <th scope="col">President</th>
-                    </tr>
-                  </thead>
-                  <tbody id="table3">
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- Popup Add-Activity Button -->
-            <div class="row">
-              <div class = "col-sm-10"></div>
-              <div class = "col-sm-2">
-                <button type="button" class="btn p-3 w-100 btn-primary" data-toggle="modal" data-target="#addOrganize" data-whatever="@addOrganize">Add Organization</button>
+              <!-- End of modal -->
 
-                <div class="modal fade" id="addOrganize" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-  
-                        <!---------------------- Popup content ---------------------->
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        <div class="container-fluid">
-                          <div class = "row justify-content-center">
-                            <h3 class="vdark-blue font-weight-bold text-center"> Add Organization</h3>
-                          </div>
-                              <!---------------------- searching ---------------------->
-                          <div class ="row">
-                            <h4 class = "vdark-blue">Search</h4>
-                          </div>
-                              <!-- Input for Searching Event -->
-                          <form action="/findOrganization.php" method="get">
-                            <input type ="text" class="form-control" list="organizeList"  id = "organize_search" name="organizeList" placeholder = "Search">
-                              <datalist id="organizeList"> 
-                                <!-- List of Resonsible for user that can added -->
-                              </datalist>
-                          </form>
-                          <br>
-                          <!-- Row1 -->
-                          <div class="row">
-                            <h4 class="vdark-blue" id="org">Organization Name:&nbsp</h4>
-                            <h5 id="organize"> </h5>
-                          </div>
-                          <!-- Row2 -->
-                          <div class="row">
-                            <h4 class = "vdark-blue">President:&nbsp</h4>
-                            <h4 id="organizeName"> </h4>
-                          </div>
-                          <!-- Row3 -->
-                          <div class="row ">
-                            <div class="col-md-10"></div>
-                            <div class = "col-sm-2">
-                              <input class="btn btn-primary" type="submit" value="Submit" id ="btn2">
-                            </div>
-                          </div>
+            </div>
+          </div><br>
+          <!--------------------------------Third Row------------------------------>
+          <div class="row">
+            <h4 class="font-weight-bold justify-content-left vdark-blue">Responsible Organization</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Organization</th>
+                  <th scope="col">President</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id ="table3">
+    
+              </tbody>
+            </table>
+            <div class="container text-right">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-org-popup" id="add-org-popup-btn"> Add Organization </button>
 
-                          <br>
+              <!-- Modal add organization -->
+              <div class="modal fade" id="add-org-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title vdark-blue"><b id="ModalTitleF0P0" style="padding-left: 1px;">Add Organization</b></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="container-fluid">
+                        <div class = "row">
+                        </div>
+                        <div class ="row">
+                          <span class = "dark-blue">Search</span>
+                        </div>
+                        <form action="/findOrganization.php" method="get">
+                          <input type ="text" class="form-control" list="organizeList" id = "organize_search" name="organizeList" placeholder = "Search">
+                          <datalist id="organizeList"> 
+                            
+                          </datalist>
+                        </form>
+                        <div class="row">
+                          <span class="dark-blue" id="org">Organization Name:&nbsp</span>
+                          <span id="organize"> </span>
+                        </div>
+                        <div class="row">
+                          <span class = "dark-blue">President:&nbsp</span>
+                          <span id="organizeName"> </span>
                         </div>
                       </div>
                     </div>
-                        <!-- End of Content -->
-                   </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" id="btn2" data-dismiss="modal" style="display: block;">
+                        <span id="add-place-text">Add</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-                
+              <!-- End of modal -->
+
             </div>
-            <!--------------------------------fourth Row------------------------------>
-            <div class="row">
-              <h4 class="font-weight-bold justify-content-left vdark-blue">
-                Responsible Place
-              </h4>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Building</th>
-                    <th scope="col">Floor</th>
-                    <th scope ="col">Place</th>
-                  </tr>
-                </thead>
-                <tbody id ="table4">
-                </tbody>
-              </table>
-              <div class="container text-right">
-                <button type="button" class="btn p-3 w-100 btn-primary" onclick="myfunction()">
-                  Add Place
-                </button>
+          </div><br>
+          <!--------------------------------fourth Row------------------------------>
+          <div class="row">
+            <h4 class="font-weight-bold justify-content-left vdark-blue">Responsible Place</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Building</th>
+                  <th scope="col">Floor</th>
+                  <th scope ="col">Place</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id ="table4">
+  
+              </tbody>
+            </table>
+            <div class="container text-right">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-place-popup" id="add-place-popup-btn" onclick = "   initial()"> Add Place </button>
+    
+              <!-- Modal Add building -->
+              <div class="modal fade" id="add-place-popup" tabindex="-1" role="dialog" aria-labelledby="add-place-popup-Title" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title vdark-blue"><b id="ModalTitleF0P0" style="padding-left: 1px;">Add Place</b></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <!-- Modal Body for add building -->
+                    <div class="modal-body" >
+                      <div class="container-fluid">
+                        <!-- First row for building and floor -->
+                        <div class="row">
+                          <!-- Building -->
+                          <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <label for="Capacity"><span class="dark-blue"><b>Building</b></span></label>
+                          </div>
+                          <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            <form>
+                              <select id="buildingList" onchange ="changeBuilding()" class="selectpicker"></select>
+
+                            </form>
+                          </div>
+                          <!-- Floor -->
+                          <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <label for="Capacity"><span class="dark-blue"><b>Floor</b></span></label>
+                          </div>
+                          <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <form>
+                              <select id="floorList" onchange="changeFloor()" class="selectpicker"></select>
+                            </form>
+                          </div>
+                        </div>
+                        <!-- Second row for building and floor -->
+                        <div class="row">
+                          <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+                            <label for="Capacity"><span class="dark-blue"><b>Place</b></span></label>
+                          </div>
+                          <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11">
+                          </div>
+                        </div>
+                        <div id="placeList">
+                       
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button onclick="addBuildingRes()" type="button" class="btn btn-primary" id="save" data-dismiss="modal" style="display: block;">
+                        <span id="add-place-text">Add</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <!-- End of modal -->
+
             </div>
           </div>
           <!-- /Card of Connent -->
         </div>
       </div>
-    </div>
-  </body>
+    </div><br><br>
   <!-- Script For First Row -->
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get("id");
+    var id = urlParams.get("id");
     var myObj , activityObj ; 
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         myObj = JSON.parse(this.responseText);
-        console.log(myObj);
         var container = document.getElementById("name").innerHTML = myObj.name+' '+myObj.surname
         var container = document.getElementById("faculty").innerHTML = myObj.faculty
         var container = document.getElementById("position").innerHTML = myObj.position
@@ -284,89 +324,158 @@
     xmlhttp.send();
 
   </script>
-  <!-- Script For Second Row -->
-  <script>
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var myObj = JSON.parse(this.responseText);
 
-      var container = document.getElementById("table1");
-      var tableCon = document.createElement("tr")
-      tableCon.innerHTML = 
-      "<td>"+myObj.event+"</td>"
-      +"<td>"+myObj.president_name+' '+myObj.president_surname+"</td>";
-      container.appendChild(tableCon);
+  <!-- Script for activity -->
+  <script>
+  var acts;  // all organization variable
+  
+    /** Display organization **/
+    var xmlhttp = new XMLHttpRequest();
+     xmlhttp.onreadystatechange = function()
+     {
+      if (this.readyState == 4 && this.status == 200)
+      {
+        let container = document.getElementById("table2");
+        let tr_comp;
+        acts = JSON.parse(this.responseText);
+        for (i=0; i<acts.length; i++)
+        {
+          tr_comp = document.createElement("tr");
+          tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteAct('"+ acts[i].event_id +"')\"><u>Delete</u></a></td>";
+         
+          container.appendChild(tr_comp);
+        }
       }
     };
-      xmlhttp.open("GET", "getActivity.php?userId="+ id , true);
+      xmlhttp.open("GET", "getActivity.php?userId=" + id , true);
       xmlhttp.send();
-  </script>
-  <!-- SCRIPT FOR ADD ACTIVITY -->
-  <script>
-    var row = new Array();
-    var xmlhttp = new XMLHttpRequest();
-    let data;
-    let dataAdd;
-    xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      data = JSON.parse(this.responseText);
-      var container = document.getElementById("myList");
-      for(var i=0; i<data.length;i++)
+
+  /* Finding organization */
+  var xmlhttp2 = new XMLHttpRequest;
+  let rowAct = new Array();
+  let dataAct;
+  var addAct;
+  xmlhttp2.onreadystatechange = function()
+  {
+    if (this.readyState == 4 && this.status == 200)
+    {
+      dataAct = JSON.parse(this.responseText);
+      var container = document.getElementById("actList");
+      for(var i=0; i<dataAct.length;i++)
         {
-            row[i] = document.createElement("option");
-            row[i].setAttribute("class","search_list")
-            row[i].setAttribute("id","org_text")
-            row[i].value = data[i].event_id;
-            row[i].innerHTML =  data[i].event
-            container.appendChild(row[i]);
+          rowAct[i] = document.createElement("option");
+          rowAct[i].setAttribute("class","search_list")
+          // rowAct[i].setAttribute("id","organize")
+          rowAct[i].value = dataAct[i].event_id;
+          rowAct[i].innerHTML =  dataAct[i].event
+          container.appendChild(rowAct[i]);
         }
 
-        $(document).ready(function(){
-          $("#search").change(function(){
+        $(document).ready(function()
+        {
+          $("#act_search").change(function()
+          {
             if($(this).val() == '')// If There's no text in search box, it will show nothing
               {
               }
             else{
-              var result = document.getElementById("search").value; //Get data to searching
+              var result = document.getElementById("act_search").value; //Get data to searching
               //Searching for event in Index
-              for(var j=0; j<data.length;j++){
+              for(var j=0; j<dataAct.length;j++)
+              {
                 //Print event when it found
-                if(data[j].event_id == result){
-                  document.getElementById("org_txt").innerHTML = data[j].event;
-                  document.getElementById("pre_org_txt").innerHTML = data[j].student_name +' '+data[j].student_surname;
-                  dataAdd = data[j];
-                  console.log(dataAdd);
-                  }
+                if(
+                  dataAct[j].event_id == result)
+                    {
+                    document.getElementById("activity_name").innerHTML = dataAct[j].event
+                    document.getElementById("activity_pres").innerHTML = dataAct[j].student_name +' '+dataAct[j].student_surname
+                    addAct = dataAct[j];
+                    addAct.id = id;
+                    }
                 }
               }
           });
           
-          $("#btn1").click(function(){
-            fetch("testGet.php", {
-			      method: "POST",
-			      body: JSON.stringify(dataAdd)
-		        }).then(async res => {
-          //   debugging
-              const data = await res.text();
-              console.log("server res", data);
-            });
+          $("#btn1").click(function()
+          {
+            // console.log(addAct);
+            if(addAct == null)
+              alert('Please find the organization first!');
+            else
+            {
+              fetch("addResAct.php",
+              {
+                method: "POST",
+                body: JSON.stringify(addAct)
+              }).then(async res => {
+          //       debugging
+                  const data = await res.text();
+                  console.log("server res" + data);
+                  window.location.reload();
+                });
+            }
           })      
         });
 
       }
     };
-      xmlhttp.open("GET", "findActivity.php?userId=" + id, true);
-      xmlhttp.send();
-  </script>
-  <!-- SCRIPT FOR ADD ORGANIZATION -->
+      xmlhttp2.open("GET", "findActivity.php?userId=" + id, true);
+      xmlhttp2.send();
+
+  function confirmDeleteAct(act_id)
+  {
+    let r = confirm("Do you want to delete?");
+    if (r == true)
+    {
+      let ret = '{ "eventId":"' + act_id + '",' +
+                '"id":"' + id + '"}'
+      console.log(ret);
+      fetch("delResAct.php", {
+      method: "POST",
+      body: ret
+    }).then(async res => {
+    const data = await res.text();
+    console.log("server res" + data);
+    window.location.reload();
+    });
+    }
+  }
+</script>
+
+  <!-- Script for Organization -->
   <script>
-    let rowOrganize = new Array();
+  var orgs;  // all organization variable
+  
+    /** Display organization **/
     var xmlhttp = new XMLHttpRequest();
-    let dataOrganize;
-    let addOrganzie;
-    xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+     xmlhttp.onreadystatechange = function()
+     {
+      if (this.readyState == 4 && this.status == 200)
+      {
+        let container = document.getElementById("table3");
+        let tr_comp;
+        orgs = JSON.parse(this.responseText);
+        for (i=0; i<orgs.length; i++)
+        {
+          tr_comp = document.createElement("tr");
+          tr_comp.innerHTML = "<td>" + orgs[i].organization + "</td><td>" + orgs[i].president_name + " " + orgs[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteOrg('"+ orgs[i].organization_id +"')\"><u>Delete</u></a></td>";
+         
+          container.appendChild(tr_comp);
+        }
+      }
+    };
+      xmlhttp.open("GET", "getOrganization.php?userId=" + id , true);
+      xmlhttp.send();
+
+  /* Finding organization */
+  var xmlhttp2 = new XMLHttpRequest;
+  let rowOrganize = new Array();
+  let dataOrganize;
+  var addOrganize;
+  xmlhttp2.onreadystatechange = function()
+  {
+    if (this.readyState == 4 && this.status == 200)
+    {
       dataOrganize = JSON.parse(this.responseText);
       var container = document.getElementById("organizeList");
       console.log(dataOrganize);
@@ -380,88 +489,422 @@
           container.appendChild(rowOrganize[i]);
         }
 
-        $(document).ready(function(){
-          $("#organize_search").change(function(){
+        $(document).ready(function()
+        {
+          $("#organize_search").change(function()
+          {
             if($(this).val() == '')// If There's no text in search box, it will show nothing
               {
               }
-            else
-            {
+            else{
               var result = document.getElementById("organize_search").value; //Get data to searching
               //Searching for event in Index
-              for(var j=0; j<dataOrganize.length;j++){
+              for(var j=0; j<dataOrganize.length;j++)
+              {
                 //Print event when it found
-                if(dataOrganize[j].organization_id == result){
-                  document.getElementById("organize").innerHTML = dataOrganize[j].organization
-                  document.getElementById("organizeName").innerHTML = dataOrganize[j].student_name +' '+dataOrganize[j].student_surname
-                  addOrganize = dataOrganize[j];
-                  console.log(addOrganize);
-                  }
+                if(
+                  dataOrganize[j].organization_id == result)
+                    {
+                    document.getElementById("organize").innerHTML = dataOrganize[j].organization
+                    document.getElementById("organizeName").innerHTML = dataOrganize[j].student_name +' '+dataOrganize[j].student_surname
+                    addOrganize = dataOrganize[j];
+                    addOrganize.userId = id;
+                    }
                 }
               }
           });
           
-          $("#btn2").click(function(){
-            fetch("showOrganizeAdd.php", {
-			      method: "POST",
-			      body: JSON.stringify(addOrganize)
-		        }).then(async res => {
-          //   debugging
-              const data = await res.text();
-              console.log("server res", data);
-            });
+          $("#btn2").click(function()
+          {
+            // console.log(addOrganize);
+            if(addOrganize == null)
+              alert('Please find the organization first!');
+            else
+            {
+              fetch("addResOrg.php",
+              {
+                method: "POST",
+                body: JSON.stringify(addOrganize)
+              }).then(async res => {
+          //       debugging
+                  const data = await res.text();
+                  console.log("server res" + data);
+                  window.location.reload();
+                });
+            }
           })      
         });
 
       }
     };
-      xmlhttp.open("GET", "findOrganization.php?userId=" + id, true);
-      xmlhttp.send();
-  </script>
-  <!-- Script For Third Row -->
-  <script>
-     var xmlhttp = new XMLHttpRequest();
-     xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var myObj = JSON.parse(this.responseText);
-  
-        var container = document.getElementById("table3");
-        var tableCon = document.createElement("tr")
-        tableCon.innerHTML = "<td>"+myObj.organization+"</td><td>"+myObj.president_name+" "+myObj.president_surname+"</td>";
-        container.appendChild(tableCon);
-        }
-      };
-      xmlhttp.open("GET", "getOrganization.php?userId="+ id , true);
-      xmlhttp.send();
-  </script>
-  <!-- script for last row -->
-  <script>
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var myObj = JSON.parse(this.responseText);
+      xmlhttp2.open("GET", "findOrganization.php?userId=" + id, true);
+      xmlhttp2.send();
 
-        var container = document.getElementById("table4");
-        var tableCon = document.createElement("tr")
-        var i = 0;
-        var j = 0;
-        for (i in myObj)
+  function confirmDeleteOrg(org_id)
+  {
+    let r = confirm("Do you want to delete?");
+    if (r == true)
+    {
+      let ret = '{ "orgId":"' + org_id + '",' +
+                '"id":"' + id + '"}'
+      console.log(ret);
+      fetch("delResOrg.php", {
+      method: "POST",
+      body: ret
+    }).then(async res => {
+    // const data = await res.text();
+    // console.log("server res" + data);
+    window.location.reload();
+    });
+    }
+  }
+
+</script>
+
+  <!-- Script for building -->
+ <script>
+  var buildings;  // all building variable
+  
+    /** Get all building list **/
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function()
+    {
+      if (this.readyState == 4 && this.status == 200)
+        buildings = JSON.parse(this.responseText);
+    };
+    xmlhttp.open("GET", "listBuildingRes.php?userId="+id , true);
+    xmlhttp.send();
+
+
+    /** Display table building **/
+  var xmlhttp2 = new XMLHttpRequest();
+  xmlhttp2.onreadystatechange = function()
+  {
+    if (this.readyState == 4 && this.status == 200)
+    {
+      let building_res = JSON.parse(this.responseText);
+      let container = document.getElementById("table4");
+      let tr_comp;
+      let td_comp;
+      let new_build = true;
+      let new_floor = true;
+      let i,j,k;
+      let a;
+      for (i=0;i<building_res.length;i++)
+      {
+        tr_comp = document.createElement("tr");
+        td_comp = document.createElement("td");
+        td_comp.rowSpan = building_res[i].count_place;
+        td_comp.innerHTML = building_res[i].building;;
+        tr_comp.appendChild(td_comp);
+        new_build = true;
+        // container.appendChild(tableCon);
+        for(j=0; j<building_res[i].floor.length; j++)
+        {
+          if(new_build)
           {
-          rowBuilding = "<td rowspawn="+myObj[i].floor.length+">"+myObj[i].building+"</td>";
-                  
-          for(j in myObj[i].floor)
+            td_comp = document.createElement("td");
+            new_build = false;
+          }
+          else
+          {
+            tr_comp = document.createElement("tr");
+            td_comp = document.createElement("td");
+          }
+          td_comp.rowSpan = building_res[i].floor[j].place.length;
+          td_comp.innerHTML = building_res[i].floor[j].floor;
+          tr_comp.appendChild(td_comp);
+          new_floor = true;
+          for(k=0; k< building_res[i].floor[j].place.length; k++)
+          {
+            if(new_floor)
             {
-            rowBuilding = rowBuilding+"<tr rowspawn="+myObj[i].floor.length+">"+myObj[i].building+"</td>";
-            for(k in myObj[i].floor[j].place)
-              tableCon.innerHTML = "<td>"+myObj[i].building+"</td>"+
-                "<td>"+myObj[i].floor[j]['floor']+"</td>"+
-                "<td>"+myObj[i].floor[j].place[k]['place']+"</td>";
-                  }
-                  container.appendChild(tableCon);
-                } 
+              td_comp = document.createElement("td");
+              new_floor = false;
+            }
+            else
+            {
+              tr_comp = document.createElement("tr");
+              td_comp = document.createElement("td");
+            }
+            td_comp.innerHTML = building_res[i].floor[j].place[k].place;
+            tr_comp.appendChild(td_comp);
+            td_comp = document.createElement("td");
+            // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
+            a = document.createElement("a");
+            a.setAttribute("onclick","confirmDelete('"+ building_res[i].floor[j].place[k].place_id +"')");
+            a.innerHTML = "<u>Delete</u>"
+            td_comp.appendChild(a);
+            tr_comp.appendChild(td_comp);
+            container.appendChild(tr_comp);
+          }
+        }
+      } 
+    }
+  };
+  xmlhttp2.open("GET", "getResponsiblePlace.php?userId="+id , true);
+  xmlhttp2.send();
+
+
+  function removeTableBuilding()
+  {
+    let container = document.getElementById("table4");
+    container.querySelectorAll('*').forEach(n => n.remove());
+  }
+  
+  function displayTableBuilding()
+  {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function()
+    {
+      if (this.readyState == 4 && this.status == 200)
+      {
+        let building_res = JSON.parse(this.responseText);
+        let container = document.getElementById("table4");
+        let tr_comp;
+        let td_comp;
+        let new_build = true;
+        let new_floor = true;
+        let i,j,k;
+        let a;
+        for (i=0;i<building_res.length;i++)
+        {
+          tr_comp = document.createElement("tr");
+          td_comp = document.createElement("td");
+          td_comp.rowSpan = building_res[i].count_place;
+          td_comp.innerHTML = building_res[i].building;;
+          tr_comp.appendChild(td_comp);
+          new_build = true;
+          // container.appendChild(tableCon);
+          for(j=0; j<building_res[i].floor.length; j++)
+          {
+            if(new_build)
+            {
+              td_comp = document.createElement("td");
+              new_build = false;
+            }
+            else
+            {
+              tr_comp = document.createElement("tr");
+              td_comp = document.createElement("td");
+            }
+            td_comp.rowSpan = building_res[i].floor[j].place.length;
+            td_comp.innerHTML = building_res[i].floor[j].floor;
+            tr_comp.appendChild(td_comp);
+            new_floor = true;
+            for(k=0; k< building_res[i].floor[j].place.length; k++)
+            {
+              if(new_floor)
+              {
+                td_comp = document.createElement("td");
+                new_floor = false;
+              }
+              else
+              {
+                tr_comp = document.createElement("tr");
+                td_comp = document.createElement("td");
+              }
+              td_comp.innerHTML = building_res[i].floor[j].place[k].place;
+              tr_comp.appendChild(td_comp);
+              td_comp = document.createElement("td");
+              // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
+              a = document.createElement("a");
+              a.setAttribute("onclick","confirmDelete('"+ building_res[i].floor[j].place[k].place_id +"')");
+              a.innerHTML = "<u>Delete</u>"
+              td_comp.appendChild(a);
+              tr_comp.appendChild(td_comp);
+              container.appendChild(tr_comp);
+            }
+          }
+        }  
       }
     };
-    xmlhttp.open("GET", "getResponsiblePlace.php?userId=60070503429" , true);
+    xmlhttp.open("GET", "getResponsiblePlace.php?userId="+id , true);
     xmlhttp.send();
+  }
+
+  /* List option of building */
+  function listBuilding()
+  {
+    let item;
+    let buildingContainer = document.getElementById("buildingList");
+    for(let i=0; i<buildings.length;i++)
+      {
+        item = document.createElement("option");
+        item.value = buildings[i].building_id;
+        item.innerHTML =  buildings[i].building;
+        buildingContainer.appendChild(item);
+        $(buildingContainer).ready(function() {
+   $('.selectpicker').selectpicker();
+});
+      } 
+  }
+
+  function initial()
+  {
+    let xmlload = new XMLHttpRequest();
+    xmlload.onreadystatechange = function()
+    {
+      if (this.readyState == 4 && this.status == 200)
+        buildings = JSON.parse(this.responseText);
+    };
+    xmlload.open("GET", "listBuildingRes.php?userId="+id , true);
+    xmlload.send();
+
+    removeFloor();
+    removePlace();
+    listBuilding();
+    listFloor();
+    listPlace();
+  }
+
+  function changeBuilding()
+  {
+    removeFloor();
+    listFloor();
+    removePlace();
+    listPlace();
+  }
+
+  function changeFloor()
+  {
+    removePlace();
+    listPlace();
+  }
+
+  /* List option of floor */
+  function listFloor()
+  {
+    // let row = new Array();
+    let building_id = document.getElementById("buildingList").value;
+    let floorContainer = document.getElementById("floorList");
+    let item;
+    for(let i=0; i<buildings.length;i++)
+    {
+      //Print event when it found
+      if(buildings[i].building_id == building_id)
+      {
+        for(let j=0; j<buildings[i].floor.length; j++)
+        {
+          item = document.createElement("option");
+          item.value = buildings[i].floor[j].floor_id;
+          item.innerHTML =  buildings[i].floor[j].floor;
+          floorContainer.appendChild(item);
+        }
+        $(floorContainer).ready(function() {
+   $('.selectpicker').selectpicker();
+});
+        break;
+      }
+    }
+  }
+
+  /* List option of place */
+  function listPlace()
+  {
+    // let row = new Array();
+    let building_id = document.getElementById("buildingList").value;
+    let floor_id = document.getElementById("floorList").value;
+    let placeContainer = document.getElementById("placeList");
+    let item;
+    for(let i=0; i<buildings.length;i++)
+    {
+      //Print event when it found
+      if(buildings[i].building_id == building_id)
+      {
+        for(let j=0; j<buildings[i].floor.length; j++)
+        {
+          if(buildings[i].floor[j].floor_id == floor_id)
+          {
+            for(let k=0; k<buildings[i].floor[j].place.length; k++)
+            {
+              check = document.createElement("div");
+              check.setAttribute("class","form-check form-check-inline");
+              input = document.createElement("input");
+              input.setAttribute("class","form-check-input");
+              input.setAttribute("type","checkbox");
+              input.setAttribute("id","option"+k);
+              input.setAttribute("value",buildings[i].floor[j].place[k].place_id);
+              if(buildings[i].floor[j].place[k].res)
+              {
+                input.setAttribute("disabled",'');
+                input.setAttribute("checked",'');
+              }
+              label = document.createElement("label");
+              label.setAttribute("class", "form-check-label");
+              label.setAttribute("for", "option"+k);
+              label.innerHTML = buildings[i].floor[j].place[k].place;
+              check.appendChild(input);
+              check.appendChild(label);
+              placeContainer.appendChild(check);
+            }
+            break;
+          }
+        }
+        break;
+      }
+    }
+  }
+
+  function removeFloor()
+  {
+    let floorContainer = document.getElementById("floorList");
+    floorContainer.querySelectorAll('*').forEach(n => n.remove());
+  }
+
+  function removePlace()
+  {
+    let placeContainer = document.getElementById("placeList");
+    placeContainer.querySelectorAll('*').forEach(n => n.remove());
+  }
+
+  function confirmDelete(placeId)
+  {
+    let r = confirm("Do you want to delete?");
+    if (r == true)
+    {
+      let ret = '{ "place":"' + placeId + '",' +
+                '"id":"' + id + '"}'
+      console.log(ret);
+      fetch("delResBuilding.php", {
+      method: "POST",
+      body: ret
+    }).then(async res => {
+    const data = await res.text();
+    console.log("server res" + data);
+    window.location.reload();
+    });
+    }
+  }
+
+  function addBuildingRes()
+  {
+    let building = $("#buildingList").val();
+    let floor = $("#floorList").val();
+    let placeContainer = document.getElementById("placeList");
+    var place = new Array();
+    for(let i = 0, max = document.getElementById("placeList").childElementCount; i < max;i++)
+    {
+      item = document.getElementById("option"+i)
+      if(item.checked)
+        place.push(item.value)
+
+    }
+    place = JSON.stringify(place)
+    let ret = '{ "building":"' + building + '",'+
+                '"floor":"' + floor + '",' +
+                '"place":' + place + ',' +
+                '"id":"' + id + '"}'
+    json = JSON.parse(ret)
+    fetch("addResBuilding.php", {
+      method: "POST",
+      body: ret
+    }).then(async res => {
+    // removeTableBuilding();
+    // displayTableBuilding();
+    window.location.reload();
+    });
+  }
   </script>
+  </body>
 </html>
