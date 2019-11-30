@@ -25,7 +25,7 @@
 //Start init
 
 //add building
-var happenFloor,happenPlace
+var happenFloor,happenPlace = 0
 const building = [];
 
 building.push({
@@ -96,7 +96,7 @@ function pushPlace(
 ) {
   building
     .find(el => el.buildingName === building[0].buildingName)
-    .floor.find(el1 => el1.floorName === building[0].floor[0].floorName)
+    .floor.find(el1 => el1.floorName === building[0].floor[happenFloor].floorName)
     .place.push({
       placeName: placeName,
       placeCapacity: placeCapacity,
@@ -212,7 +212,7 @@ function delete_detail(F0P0, itsFloor, itsPlace) {
 }
 
 function View_Details(F0P0, itsFloor, itsPlace) {
-  let my_add_place;
+  let my_add_place,my_delete_place,my_save_place
   happenFloor = itsFloor
   happenPlace = itsPlace
   const curPlaces = building[0].floor[itsFloor].place[itsPlace]
@@ -221,10 +221,12 @@ function View_Details(F0P0, itsFloor, itsPlace) {
   // console.log(F0P0)
   // alert("View_Details" + F0P0)
   my_add_place = "#add_placeF" + itsFloor;
-  $("#save").css({
+  my_save_place = "#save_placeF" + itsFloor
+  my_delete_place = "#delete_placeF" + itsFloor
+  $(my_save_place).css({
     display: "block"
   });
-  $("#delete_place").css({
+  $(my_delete_place).css({
     display: "block"
   });
   $(my_add_place).css({
@@ -240,25 +242,32 @@ function View_Details(F0P0, itsFloor, itsPlace) {
 }
 
 function add_place(floor) {
+  happenFloor = floor
+  my_Place_Name = `#Place_NameF${floor}P0`
+  my_Capacity = `#CapacityF${floor}P0`
+  my_DrumUsage = `#DrumUsageF${floor}P0`
+  my_Projector = `#ProjectorF${floor}P0`
+  my_Microphone = `#MicrophoneF${floor}P0`
+  my_Speaker = `#SpeakerF${floor}P0`
   pushPlace(
-    $("#Place_NameF0P0").val(),
-    $("#CapacityF0P0").val(),
-    $("#DrumUsageF0P0").prop("checked"),
-    $("#ProjectorF0P0").prop("checked"),
-    $("#MicrophoneF0P0").prop("checked"),
-    $("#SpeakerF0P0").prop("checked")
-  );
+    $(my_Place_Name).val(),
+    $(my_Capacity).val(),
+    $(my_DrumUsage).prop("checked"),
+    $(my_Projector).prop("checked"),
+    $(my_Microphone).prop("checked"),
+    $(my_Speaker).prop("checked")
+  )
   const currentFloor = building[0].floor[floor];
   const curPlaces = currentFloor.place;
   console.log("current floor", currentFloor);
-  console.log("places", curPlaces);
+  console.log("curPlaces", curPlaces);
 
-  $('#place').html('')
+  $(`#placeF${floor}`).html('')
 
   curPlaces.forEach((e, i) => {
     console.log('e ->', e)
 
-    $('#place').append(
+    $(`#placeF${floor}`).append(
       `<div class="row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <h5 id = "h5F${floor}P${i}">${e.placeName}</h5>
@@ -278,15 +287,18 @@ function add_place(floor) {
 }
 
 function add_place_popup_btn(floor) {
+  happenFloor = floor
   $("#ModalTitleF0P0").text("Add Place");
-  my_add_place = "#add_placeF" + floor;
+  my_add_place = "#add_placeF" + floor
+  my_save_place = "#save_placeF" + floor
+  my_delete_place = "#delete_placeF" + floor
   $(my_add_place).css({
     display: "block"
   });
-  $("#delete_place").css({
+  $(my_delete_place).css({
     display: "none"
   });
-  $("#save").css({
+  $(my_save_place).css({
     display: "none"
   });
 }
@@ -299,178 +311,164 @@ function add_floor() {
    */
   
   pushFloorDefault(building[0].floor.length)
-  const currentFloor = (building[0].floor.length) - 1;
+  const willBeFloor = (building[0].floor.length) - 1;
+  const currentFloor = building[0].floor[willBeFloor];
+  console.log("willBeFloor", willBeFloor);
   console.log("current floor", currentFloor);
-  pushPlaceDefault(currentFloor)
+  pushPlaceDefault(willBeFloor)
   const curPlaces = currentFloor.place;
   console.log("places", curPlaces);
   // alert("This is floor ");
   $("#floor-template").append(
-    `<div class="row nothing" id="deleteFloor${currentFloor}">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <div class="row shadow p-3 mb-3 bg-white rounded">
-            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                <div class="form-group">
-                    <label for="Floor${currentFloor}"><span class="dark-blue"><b>Floor</b></span></label>
-                    <input type="text" class="form-control" id="Floor${currentFloor}" placeholder="Floor G" name="Floor${currentFloor}"/>
-                </div>
-                <div class="form-group">
-                    <input type="file" id="img-blueprint" name="img[]" class="file" accept="image/*" />
-                    <label for="Blueprint"><span class="dark-blue"><b>Blueprint</b></span></label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" disabled placeholder="Upload File"
-                            id="file-blueprint" />
-                        <div class="input-group-append">
-                            <button type="button" id="btn" class="browse-blueprint btn btn-dark-blue">
-                                Browse...
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <label for="Place"><span class="dark-blue"><b>Place</b></span></label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="place">
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
-                                <h5 id="h5F${currentFloor}P0"> Dummy Place </h5>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-                                <a href="#" onclick="View_Details('F${currentFloor}P0','${currentFloor}','0')" id="View_DetailsF${currentFloor}P0">
-                                    <span class="dark-blue" data-toggle="modal" data-target="#add_place_popup_F0">View
-                                        details</span>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <!-- Button trigger modal -->
-                        <button onclick="add_place_popup_btn('0')" type="button" class="btn btn-dark-blue"
-                            data-toggle="modal" data-target="#add_place_popup_F0" id="add_place_popup_btn_F0">
-                            Add Place
-                        </button>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="add_place_popup_F0" tabindex="-1" role="dialog"
-                            aria-labelledby="add_place_popup_F0_Title" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title vdark-blue">
-                                            <b id="ModalTitleF${currentFloor}P0" style="padding-left: 1px;">Add Place</b>
-                                        </h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-                                                    <div class="form-group">
-                                                        <label for="Place_NameF${currentFloor}P0"><span class="dark-blue"><b>Place
-                                                                    Name</b></span></label>
-                                                        <input type="text" class="form-control" id="Place_NameF${currentFloor}P0"
-                                                            placeholder="Dummy place" name="Place_NameF${currentFloor}P0" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-                                                    <div class="form-group">
-                                                        <label for="Capacity"><span
-                                                                class="dark-blue"><b>Capacity</b></span></label>
-                                                        <input type="text" class="form-control" id="CapacityF${currentFloor}P0"
-                                                            placeholder="50" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                                    <div class="form-group">
-                                                        <p class="vdark-blue" style="padding-top: 80%;">
-                                                            people
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                                    <div class="form-check">
-                                                        <input onclick="DrumUsage('F${currentFloor}P0','${currentFloor}','0')"
-                                                            class="form-check-input" type="checkbox" value="1"
-                                                            id="DrumUsageF${currentFloor}P0" name="DrumUsageF${currentFloor}P0" />
-                                                        <label class="form-check-label" for="DrumUsageF${currentFloor}P0">
-                                                            Drum Usage
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                                    <div class="form-check">
-                                                        <input onclick="Projector('F${currentFloor}P0','${currentFloor}','0')"
-                                                            class="form-check-input" type="checkbox" value="1"
-                                                            id="ProjectorF${currentFloor}P0" name="ProjectorF${currentFloor}P0" />
-                                                        <label class="form-check-label" for="ProjectorF${currentFloor}P0">
-                                                            Projector
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                                    <div class="form-check">
-                                                        <input onclick="Microphone('F${currentFloor}P0','${currentFloor}','0')"
-                                                            class="form-check-input" type="checkbox" value="1"
-                                                            id="MicrophoneF${currentFloor}P0" name="MicrophoneF${currentFloor}P0" />
-                                                        <label class="form-check-label" for="MicrophoneF${currentFloor}P0">
-                                                            Microphone
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                                    <div class="form-check">
-                                                        <input onclick="Speaker('F${currentFloor}P0','${currentFloor}','0')"
-                                                            class="form-check-input" type="checkbox" value="1"
-                                                            id="SpeakerF${currentFloor}P0" name="SpeakerF${currentFloor}P0" />
-                                                        <label class="form-check-label" for="SpeakerF${currentFloor}P0">
-                                                            Speaker
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button onclick="add_place('0')" type="button" class="btn btn-dark-blue"
-                                            id="add_placeF0" data-dismiss="modal" style="display: block;">
-                                            <span id="add_place_text_F0">Add</span>
-                                        </button>
-                                        <button onclick="save_detail('F${currentFloor}P0','${currentFloor}','0')" type="button"
-                                            class="btn btn-dark-blue" id="save" data-dismiss="modal"
-                                            style="display: block;">
-                                            <span id="add_place_text_F0">Save</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
-                <button type="button" onclick="deleteFloor('${currentFloor}')" class="close" name="deleteFloor${currentFloor}" data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+`<div class="row nothing" id="deleteFloor${willBeFloor}">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <div class="row shadow p-3 mb-3 bg-white rounded">
+      <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <div class="form-group">
+          <label for="Floor${willBeFloor}"><span class="dark-blue"><b>Floor</b></span></label>
+          <input type="text" class="form-control" id="Floor${willBeFloor}" placeholder="Floor G" name="Floor${willBeFloor}" />
         </div>
+        <div class="form-group">
+          <input type="file" id="img-blueprint" name="img[]" class="file" accept="image/*" />
+          <label for="Blueprint"><span class="dark-blue"><b>Blueprint</b></span></label>
+          <div class="input-group">
+            <input type="text" class="form-control" disabled placeholder="Upload File" id="file-blueprint" />
+            <div class="input-group-append">
+              <button type="button" id="btn" class="browse-blueprint btn btn-dark-blue">
+                Browse...
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <label for="Place"><span class="dark-blue"><b>Place</b></span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="placeF${willBeFloor}">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                <h5 id="h5F${willBeFloor}P0">Dummy Place</h5>
+              </div>
+              <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+                <a href="#" onclick="View_Details('F${willBeFloor}P0','${willBeFloor}','0')" id="View_DetailsF${willBeFloor}P0">
+                  <span class="dark-blue" data-toggle="modal" data-target="#add_place_popup_F${willBeFloor}">View details</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <!-- Button trigger modal -->
+            <button onclick="add_place_popup_btn('${willBeFloor}')" type="button" class="btn btn-dark-blue" data-toggle="modal" data-target="#add_place_popup_F${willBeFloor}" id="add_place_popup_btn_F${willBeFloor}">
+              Add Place
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="add_place_popup_F${willBeFloor}" tabindex="-1" role="dialog" aria-labelledby="add_place_popup_F${willBeFloor}_Title" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title vdark-blue">
+                      <b id="ModalTitleF${willBeFloor}P0" style="padding-left: 1px;">Add Place</b>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                          <div class="form-group">
+                            <label for="Place_NameF${willBeFloor}P0"><span class="dark-blue"><b>Place
+                                  Name</b></span></label>
+                            <input type="text" class="form-control" id="Place_NameF${willBeFloor}P0" placeholder="Dummy place" name="Place_NameF${willBeFloor}P0" />
+                          </div>
+                        </div>
+                        <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                          <div class="form-group">
+                            <label for="Capacity"><span class="dark-blue"><b>Capacity</b></span></label>
+                            <input type="text" class="form-control" id="CapacityF${willBeFloor}P0" placeholder="50" />
+                          </div>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                          <div class="form-group">
+                            <p class="vdark-blue" style="padding-top: 80%;">
+                              people
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                          <div class="form-check">
+                            <input onclick="DrumUsage('F${willBeFloor}P0','${willBeFloor}','0')" class="form-check-input" type="checkbox" value="1" id="DrumUsageF${willBeFloor}P0" name="DrumUsageF${willBeFloor}P0"/>
+                            <label class="form-check-label" for="DrumUsageF${willBeFloor}P0">
+                              Drum Usage
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                          <div class="form-check">
+                            <input onclick="Projector('F${willBeFloor}P0','${willBeFloor}','0')" class="form-check-input" type="checkbox" value="1" id="ProjectorF${willBeFloor}P0" name="ProjectorF${willBeFloor}P0"/>
+                            <label class="form-check-label" for="ProjectorF${willBeFloor}P0">
+                              Projector
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                          <div class="form-check">
+                            <input onclick="Microphone('F${willBeFloor}P0','${willBeFloor}','0')" class="form-check-input" type="checkbox" value="1" id="MicrophoneF${willBeFloor}P0" name="MicrophoneF${willBeFloor}P0" />
+                            <label class="form-check-label" for="MicrophoneF${willBeFloor}P0">
+                              Microphone
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                          <div class="form-check">
+                            <input onclick="Speaker('F${willBeFloor}P0','${willBeFloor}','0')" class="form-check-input" type="checkbox" value="1" id="SpeakerF${willBeFloor}P0" name="SpeakerF${willBeFloor}P0" />
+                            <label class="form-check-label" for="SpeakerF${willBeFloor}P0">
+                              Speaker
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button onclick="add_place('${willBeFloor}')" type="button" class="btn btn-dark-blue" id="add_placeF${willBeFloor}" data-dismiss="modal" style="display: block;">
+                      <span id="add_place_text_F${willBeFloor}">Add</span>
+                    </button>
+                    <button onclick="delete_detail('F${willBeFloor}P0','${willBeFloor}','0')" type="button" class="btn btn-outline-dark-blue" id="delete_placeF${willBeFloor}" data-dismiss="modal" style="display: block;">
+                      <span id="add_place_text_F${willBeFloor}">Delete</span>
+                    </button>
+                    <button onclick="save_detail('F${willBeFloor}P0','${willBeFloor}','0')" type="button" class="btn btn-dark-blue" id="save_placeF${willBeFloor}" data-dismiss="modal" style="display: block;">
+                      <span id="add_place_text_F${willBeFloor}">Save</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+        <button type="button" onclick="deleteFloor('${willBeFloor}')" class="close" name="deleteFloor${willBeFloor}" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     </div>
+  </div>
 </div>`
-  );
+);
 }
 
 function deleteFloor(floor) {
