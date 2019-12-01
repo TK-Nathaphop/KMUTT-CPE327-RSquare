@@ -440,6 +440,7 @@
         containerPicture.innerHTML = "<img src=\"picture/user/" + myObj.picture + "\" class=\"rounded-circle\" height = \" 150\" width= \" 150\" >" + "<br><br>"
         //Edit button for position
         var a = document.createElement("a");
+        a.setAttribute("href","")
         a.setAttribute("onclick", "editPosition('" + myObj + "')");
         a.setAttribute("data-target", "#editModal");
         a.setAttribute("data-toggle", "modal");
@@ -562,7 +563,7 @@
 
         for (i = 0; i < acts.length; i++) {
           tr_comp = document.createElement("tr");
-          tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname + "</td>" + "<td><a onclick=\"confirmDeleteAct('" + acts[i].event_id + "')\"><u style=\"color: red;\">Delete</u></a></td>";
+          tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname + "</td>" + "<td><a href=\"\" onclick=\"confirmDeleteAct('" + acts[i].event_id + "')\"><u style=\"color: red;\">Delete</u></a></td>";
           container.appendChild(tr_comp);
         }
 
@@ -672,7 +673,7 @@
 
         for (i = 0; i < acts.length; i++) {
           tr_comp = document.createElement("tr");
-          tr_comp.innerHTML = "<td>" + orgs[i].organization + "</td><td>" + orgs[i].president_name + " " + orgs[i].president_surname + "</td>" + "<td><a onclick=\"confirmDeleteOrg('" + orgs[i].organization_id + "')\"><u style=\"color: red;\">Delete</u></a></td>";
+          tr_comp.innerHTML = "<td>" + orgs[i].organization + "</td><td>" + orgs[i].president_name + " " + orgs[i].president_surname + "</td>" + "<td><a href=\"\" onclick=\"confirmDeleteOrg('" + orgs[i].organization_id + "')\"><u style=\"color: red;\">Delete</u></a></td>";
           container.appendChild(tr_comp);
         }
 
@@ -826,6 +827,7 @@
               td_comp = document.createElement("td");
               // <a id="myLink" href="#" onclick="MyFunction();">link text</a>
               a = document.createElement("a");
+              a.setAttribute("href","")
               a.setAttribute("onclick", "confirmDelete('" + building_res[i].floor[j].place[k].place_id + "')");
               a.innerHTML = "<u style=\"color: red;\">Delete</u>"
               td_comp.appendChild(a);
