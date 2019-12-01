@@ -557,9 +557,10 @@
         for (i=0; i<acts.length; i++)
         {
           tr_comp = document.createElement("tr");
-          tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteAct('"+ acts[i].event_id +"')\"><u style=\"color: red;\">Delete</u></a></td>";
+          tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname+"</td>"+"<td id =\"delete_btn\"><a onclick=\"confirmDeleteAct('"+ acts[i].event_id +"')\"><ustyle=\"color: red;\">Delete</u></a></td>";
           container.appendChild(tr_comp);
         }
+       
       }
     };
       xmlhttp.open("GET", "getActivity.php?userId=" + id , true);
