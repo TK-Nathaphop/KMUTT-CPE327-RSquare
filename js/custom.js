@@ -636,11 +636,15 @@ function add_floor_edit(id)
 </div>`);
 }
 
-function sendAll() {
+function sendAll(select) {
   willBeFloor = (building[0].floor.length);
   updateData();
-  sendJSON();
+  if(select == 1)
+    sendJSONAdd();
+  else
+    sendJSONEdit();
   sendIMG(willBeFloor);
+  location.replace("Adminpage.html");
 }
 
 function sendIMG(numberFloor) {
@@ -668,18 +672,29 @@ function sendIMG(numberFloor) {
   });
 }
 
-function sendJSON() {
+function sendJSONAdd() {
   const Building_Name0 = $("#Building_Name0").val();
   const Floor0 = $("#Floor0").val();
   const DrumUsageF0P0 = $("#DrumUsageF0P0").prop("checked");
   fetch("add_building.php", {
     method: "POST",
     body: JSON.stringify(
-      //  {
-      //  Building_Name0: Building_Name0,
-      //  Floor0: Floor0,
-      //  DrumUsageF0P0: DrumUsageF0P0
-      // }
+      building
+    )
+  }).then(async res => {
+    //   debugging
+    const data = await res.text();
+    console.log("server res" + data);
+  });
+}
+
+function sendJSONEdit() {
+  const Building_Name0 = $("#Building_Name0").val();
+  const Floor0 = $("#Floor0").val();
+  const DrumUsageF0P0 = $("#DrumUsageF0P0").prop("checked");
+  fetch("edit_building.php", {
+    method: "POST",
+    body: JSON.stringify(
       building
     )
   }).then(async res => {
@@ -705,4 +720,19 @@ function updateData() {
   building[0].floor = mappedFloor
   building[0].buildingName = document.getElementById('Building_Name0').value
   building[0].buildingImage = $("#file_building").val()
+}
+
+function DeleteData(building_id)
+{
+  fetch("deleteBuilding.php", {
+    method: "POST",
+    body: JSON.stringify(
+      building_id
+    )
+  }).then(async res => {
+    //   debugging
+    const data = await res.text();
+    console.log("server res" + data);
+    location.replace("Adminpage.html");
+  });
 }
