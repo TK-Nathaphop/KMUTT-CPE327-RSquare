@@ -35,38 +35,6 @@ foreach($json[0]->floor as $floor)
 		echo $sql;
 		$con->query($sql);
 	}
-		// $sql = "SELECT count(`place_id`) FROM `place`";
-		// $ret = $con->query($sql);
-		// $place_num = $ret->fetch_row()[0];
-		// foreach($floor->place as $place)
-		// {
-		// 	if($place->placeDrumUsage == 1)
-  //   	    	$drum = 'true';
-  //   	    else
-  //   	    	$drum = 'false';
-  //   	    if($place->placeProjector == 1)
-  //   	    	$projector = 'true';
-  //   	    else
-  //   	    	$projector = 'false';
-  //   	    if($place->placeMicrophone == 1)
-  //   	    	$microphone = 'true';
-  //   	    else
-  //   	    	$microphone = 'false';
-  //   	    if($place->placeSpeaker == 1)
-  //   	    	$speaker = 'true';
-  //   	    else
-  //   	    	$speaker = 'false';
-  //   	    if($place->placeCapacity == null)
-  //       		$capacity = 0;
-  //       	else
-  //       		$capacity = $place->placeCapacity;
-	
-		// 	$place_num = $place_num+1;
-		// 	$place_id = 'place_'.($place_num);
-		// 	$sql = "INSERT INTO `place`(`place_id`, `place`, `capacity`, `flag`, `drum`, `speaker`, `microphone`, `projector`, `floor_id`, `user_id`) 	VALUES ('".$place_id."','".$place->placeName."',".$capacity.",1,".$drum.",".$speaker.",".$microphone.",".$projector.",'".$floor_id."',NULL)";
-		// 	echo $sql;
-		// 	$con->query($sql);
-		// }
 	
 	$sql = "SELECT count(`place_id`) FROM `place`";
 	$ret = $con->query($sql);
