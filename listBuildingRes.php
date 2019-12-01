@@ -9,7 +9,7 @@ $con = new databaseConnection();
 $con->connect();
 
 //Query activity
-$sql = "SELECT * FROM `building`";
+$sql = "SELECT * FROM `building` WHERE  `flag` = true";
 $query_bd = $con->query($sql);
 $buildings = array();
 while($building = $query_bd -> fetch_object())
