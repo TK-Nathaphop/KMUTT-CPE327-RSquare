@@ -720,3 +720,15 @@ function updateData() {
   building[0].buildingName = document.getElementById('Building_Name0').value
   building[0].buildingImage = $("#file_building").val()
 }
+
+function DeleteData(building_id)
+{
+  fetch("deleteBuilding.php", {
+    method: "POST",
+    body: {building:building_id}
+  }).then(async res => {
+    //   debugging
+    const data = await res.text();
+    console.log("server res" + data);
+  });
+}
