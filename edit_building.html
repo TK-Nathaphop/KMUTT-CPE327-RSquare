@@ -123,6 +123,7 @@
 			</div>
 		</div>
 	</div>
+	<br>
 </body>
 <!-- <script>
 	console.log("euei");
@@ -187,7 +188,7 @@
      {
         data = JSON.parse(this.responseText);
         document.getElementById('Building_Name0').setAttribute("value", data.building); 
-        document.getElementById('btn-delete').setAttribute("onclick", "DeleteData('"+data.building_id+"')"); 
+        document.getElementById('btn-delete').setAttribute("onclick", "confirmDelete()"); 
         // document.getElementById('file_building').setAttribute("value", '/picture/building/'+data.picture);
         let count,drum,projector,microphone,speaker;
         building[0].id = data.building_id;
@@ -227,5 +228,13 @@
     };
     xmlhttp.open("GET", "getBuilding.php?buildingId=" + building_id , true);
     xmlhttp.send();
+
+    function confirmDelete()
+    {
+      let r = confirm("Do you want to delete building?");
+      if (r == true) {
+        DeleteData(data.building_id);
+      }
+    }
 </script>
 </html>

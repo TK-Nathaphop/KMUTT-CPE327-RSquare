@@ -685,6 +685,7 @@ function sendJSONAdd() {
     const data = await res.text();
     console.log("server res" + data);
     location.replace("Adminpage.html");
+    console.log('redirect');
   });
 }
 
