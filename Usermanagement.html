@@ -294,12 +294,16 @@
                         <div class ="row">
                           <span class = "dark-blue">Search</span>
                         </div>
-                        <form action="/findOrganization.php" method="get">
+                        <!-- <form action="/findOrganization.php" method="get">
                           <input type ="text" class="form-control" list="organizeList" id = "organize_search" name="organizeList" placeholder = "Search">
                           <datalist id="organizeList"> 
                             
                           </datalist>
-                        </form>
+                        </form> -->
+                        <div class="form-group">
+                            <select class="form-control" id="organizeList">
+                            </select>
+                          </div>
                         <div class="row">
                           <span class="dark-blue" id="org">Organization Name:&nbsp</span>
                           <span id="organize"> </span>
@@ -565,22 +569,14 @@
         let tr_comp;
         acts = JSON.parse(this.responseText);
         console.log(acts);
-        if(myObj.role == "student")
-          for (i=0; i<acts.length; i++)
-          {
-            tr_comp = document.createElement("tr");
-            tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname;
-              container.appendChild(tr_comp);
-          }
-        else
-          {
+        
             for (i=0; i<acts.length; i++)
             {
             tr_comp = document.createElement("tr");
             tr_comp.innerHTML = "<td>" + acts[i].event + "</td><td>" + acts[i].president_name + " " + acts[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteAct('"+ acts[i].event_id +"')\"><u style=\"color: red;\">Delete</u></a></td>";
               container.appendChild(tr_comp);
             }
-          }
+
       }
     };
       xmlhttp.open("GET", "getActivity.php?userId=" + id , true);
@@ -697,23 +693,14 @@
         let container = document.getElementById("table3");
         let tr_comp;
         orgs = JSON.parse(this.responseText);
-        
-        if(myObj.role == "student")
-          for (i=0; i<acts.length; i++)
-          {
-            tr_comp = document.createElement("tr");
-            tr_comp.innerHTML = "<td>" + orgs[i].organization + "</td><td>" + orgs[i].president_name + " " + orgs[i].president_surname+"</td>";
-            container.appendChild(tr_comp);
-          }
-        else
-          {
+  
             for (i=0; i<acts.length; i++)
             {
               tr_comp = document.createElement("tr");
               tr_comp.innerHTML = "<td>" + orgs[i].organization + "</td><td>" + orgs[i].president_name + " " + orgs[i].president_surname+"</td>"+"<td><a onclick=\"confirmDeleteOrg('"+ orgs[i].organization_id +"')\"><u style=\"color: red;\">Delete</u></a></td>";
               container.appendChild(tr_comp);
             }
-          }
+
       }
     };
       xmlhttp.open("GET", "getOrganization.php?userId=" + id , true);
@@ -743,13 +730,13 @@
 
         $(document).ready(function()
         {
-          $("#organize_search").change(function()
+          $("#organizeList").change(function()
           {
             if($(this).val() == '')// If There's no text in search box, it will show nothing
               {
               }
             else{
-              var result = document.getElementById("organize_search").value; //Get data to searching
+              var result = document.getElementById("organizeList").value; //Get data to searching
               //Searching for event in Index
               for(var j=0; j<dataOrganize.length;j++)
               {
