@@ -115,7 +115,7 @@
 					</button>
 				</div>
 				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-					<button onclick="sendAll()" type="submit" class="btn btn-dark-blue" data-toggle="modal"
+					<button onclick="sendAll(2)" type="submit" class="btn btn-dark-blue" data-toggle="modal"
 						id="btn-save" style="width:100%">
 						Save
 					</button>
@@ -189,6 +189,7 @@
         document.getElementById('Building_Name0').setAttribute("value", data.building); 
         // document.getElementById('file_building').setAttribute("value", '/picture/building/'+data.picture);
         let count,drum,projector,microphone,speaker;
+        building[0].id = data.building_id;
         //Delete first floor
         init_edit();
         for(let i = 0, maxFloor = data.floor.length; i<maxFloor; i++)
