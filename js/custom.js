@@ -725,7 +725,9 @@ function DeleteData(building_id)
 {
   fetch("deleteBuilding.php", {
     method: "POST",
-    body: {building:building_id}
+    body: JSON.stringify(
+      building_id
+    )
   }).then(async res => {
     //   debugging
     const data = await res.text();

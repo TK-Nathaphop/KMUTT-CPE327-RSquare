@@ -1,236 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-	<!-- using bootstrap 4.3.1 -->
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<script src="js/jquery-3.4.1.js"></script>
-	<link rel="stylesheet" href="css/bootstrap.css" />
-	<link rel="stylesheet" href="css/custom.css" />
-	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-	<link rel="icon" href="picture/logo/Artboard 1logo.png" />
-	<script src="js/jquery-3.4.1.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-	<script src="js/custom.js"></script>
-	<title>R-SQUARE</title>
-</head>
+$rawpost = file_get_contents('php://input');
+$json_txt = str_replace("\\", "", $rawpost);
+$json = json_decode($json_txt);
 
-<body>
-	<div class="container">
-		<nav class="navbar navbar-expand-lg navbar-light bg-white" style="padding-left: 0px; padding-right: 0px;">
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-				aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-				<a class="navbar-brand" href="Adminpage.html">
-					<img src="picture/logo/Artboard 1logo.png" width="30" height="30" class="d-inline-block align-top" alt=""/>
-					<span class="vdark-blue"><b>R-SQUARE</b></span>
-				</a>
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-2 my-2 my-lg-0 toRside">
-					<li class="nav-item active" style="padding-right: 15px;">
-						<a class="nav-link" href="#">
-							<p class="dark-blue">Place Reservation</p><span class="sr-only">(current)</span>
-						</a>
-					</li>
-					<li class="nav-item active" style="padding-right: 15px;">
-						<a class="nav-link" href="#">
-							<p class="dark-blue">Reservation Schedule</p><span class="sr-only">(current)</span>
-						</a>
-					</li>
-					<li class="nav-item" style="margin-right: 15px;">
-						<img src="picture/user/60070503429-pic.jpg" class="rounded-circle" height="40" width="40">
-					</li>
-					<li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">History</a>
-                            <a class="dropdown-item" href="#">Setting</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"> Sign out</a>
-                        </div>
-                    </li>
-				</ul>
-			</div>
-		</nav>
-		<div id="add-building-form">
-			<div class="row">
-				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-					<div class="d-flex justify-content-center">
-						<h1 class="vdark-blue"><b>Edit Building</b></h1>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-					<div class="form-group">
-						<label for="Building-Name"><span class="dark-blue"><b>Building Name</b></span></label>
-						<input type="text" class="form-control" id="Building_Name0" name="Building_Name0"
-							placeholder="Witsawa Wattana Building" />
-					</div>
-				</div>
-				<div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-					<div class="form-group">
-						<input type="file" id="img_building" name="img[]" class="file" accept="image/*" />
-						<label for="Building_Image"><span class="dark-blue"><b>Building Image</b></span></label>
-						<div class="input-group">
-							<input type="text" class="form-control" disabled placeholder="Upload File"
-								id="file_building" />
-							<div class="input-group-append">
-								<button type="button" id="btn" class="browse-building btn btn-dark-blue">
-									Browse...
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row p-3">
-				<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="floor-template">
-					<!-- Add Floor here -->
+echo json_encode($json);
+require_once ('class/databaseConnection.php');
+$con = new databaseConnection();
+$con->connect();
 
-				</div>
-			</div>
-			<div class="row p-3 mb-3">
-				<div class="col-sm-4 col-md-6 col-lg-8 col-xl-8"></div>
-				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-				</div>
-				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-					<button onclick="add_floor()" type="button" class="btn btn-dark-blue" data-toggle="modal" id="add_floor"
-						style="width:100%">
-						Add floor
-					</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4 col-md-6 col-lg-8 col-xl-8"></div>
-				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-					<button type="button" class="btn btn-secondary" data-toggle="modal" id="btn-delete"
-						style="width:100%">
-						Delete
-					</button>
-				</div>
-				<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-					<button onclick="sendAll(2)" type="submit" class="btn btn-dark-blue" data-toggle="modal"
-						id="btn-save" style="width:100%">
-						Save
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-<!-- <script>
-	console.log("euei");
-
-	function sendAll() {
-		sendJSON();
-		sendIMG();
+$building_id = $json[0]->id;
+$sql = "UPDATE `building` SET `building`='".$json[0]->buildingName."',`picture`='".$json[0]->buildingImage."' WHERE `building_id` = '".$building_id."'";
+$con->query($sql);
+echo $sql;
+$condition_f = array();
+$condition_p = array();
+$sql = "SELECT count(`floor_id`) FROM `floor`";
+$ret = $con->query($sql);
+$floor_num = $ret->fetch_row()[0];
+foreach($json[0]->floor as $floor)
+{
+	if($floor->id == null)
+	{
+		$floor_num = $floor_num+1;
+		$floor_id = 'floor_'.($floor_num);
+		$sql = "INSERT INTO `floor`(`floor_id`, `floor`, `blueprint`, `flag`, `building_id`) VALUES ('".$floor_id."','".$floor->floorName."','".$floor->floorBlueprint."',1,'".$building_id."')";
+		echo $sql;
+		$con->query($sql);
+	
+		$sql = "SELECT count(`place_id`) FROM `place`";
+		$ret = $con->query($sql);
+		$place_num = $ret->fetch_row()[0];
+		foreach($floor->place as $place)
+		{
+			if($place->placeDrumUsage == 1)
+    	    	$drum = 'true';
+    	    else
+    	    	$drum = 'false';
+    	    if($place->placeProjector == 1)
+    	    	$projector = 'true';
+    	    else
+    	    	$projector = 'false';
+    	    if($place->placeMicrophone == 1)
+    	    	$microphone = 'true';
+    	    else
+    	    	$microphone = 'false';
+    	    if($place->placeSpeaker == 1)
+    	    	$speaker = 'true';
+    	    else
+    	    	$speaker = 'false';
+    	    if($place->placeCapacity == null)
+        		$capacity = 0;
+        	else
+        		$capacity = $place->placeCapacity;
+	
+			$place_num = $place_num+1;
+			$place_id = 'place_'.($place_num);
+			$sql = "INSERT INTO `place`(`place_id`, `place`, `capacity`, `flag`, `drum`, `speaker`, `microphone`, `projector`, `floor_id`, `user_id`) 	VALUES ('".$place_id."','".$place->placeName."',".$capacity.",1,".$drum.",".$speaker.",".$microphone.",".$projector.",'".$floor_id."',NULL)";
+			echo $sql;
+			$con->query($sql);
+		}
 	}
-<<<<<<< HEAD
-
-	function sendIMG() {
-		console.log("img send");
-		const formData = new FormData();
-		const img1 = document.getElementById("img_building").files[0];
-		const img2 = document.getElementById("img_blueprint_0").files[0];
-		formData.append("img_building", img1);
-		formData.append("img_blueprint_0", img2);
-
-		fetch("uploadfile.php", {
-			method: "POST",
-			body: formData
-		}).then(async res => {
-			//   debugging
-			const data = await res.text();
-			console.log("img res", data);
-		});
-	}
-
-	function sendJSON() {
-		const Building_Name0 = $("#Building_Name0").val();
-		const Floor0 = $("#Floor0").val();
-		const DrumUsageF0P0 = $("#DrumUsageF0P0").prop("checked");
-		console.log("Building_Name0", Building_Name0);
-		console.log("Floor0", Floor0);
-		console.log("DrumUsage0", DrumUsageF0P0);
-		fetch("data.php", {
-			method: "POST",
-			body:
-			 JSON.stringify(
-			// 	{
-			// 	Building_Name0: Building_Name0,
-			// 	Floor0: Floor0,
-			// 	DrumUsageF0P0: DrumUsageF0P0
-			// }
-			building
-			)
-		}).then(async res => {
-			//   debugging
-			const data = await res.text();
-			console.log("server res", data);
-		});
-	}
-</script> -->
-<script>
-	const urlParams = new URLSearchParams(window.location.search);
-    var building_id = urlParams.get("id");
-    var data;
-
-    console.log(building_id);
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200)
-     {
-        data = JSON.parse(this.responseText);
-        document.getElementById('Building_Name0').setAttribute("value", data.building); 
-        document.getElementById('btn-delete').setAttribute("onclick", "DeleteData('"+data.building_id+"')"); 
-        // document.getElementById('file_building').setAttribute("value", '/picture/building/'+data.picture);
-        let count,drum,projector,microphone,speaker;
-        building[0].id = data.building_id;
-        //Delete first floor
-        init_edit();
-        for(let i = 0, maxFloor = data.floor.length; i<maxFloor; i++)
-        {	
-        	//Delete auto generate place
-        	// init_place_edit(i);
-        	add_floor_edit(data.floor[i].floor_id);
-        	//data.floor[i].floor_id
-        	document.getElementById('Floor'+i).setAttribute("value", data.floor[i].floor);
-        	// document.getElementById('file_blueprint_'+count).setAttribute("value", data.floor[i].blueprint);
-        	for(let j = 0, maxPlace = data.floor[i].place.length; j < maxPlace; j++)
-        	{
-        		if(data.floor[i].place[j].drum == 1)
-        			drum = true;
-        		else
-        			drum = false;
-        		if(data.floor[i].place[j].projector == 1)
-        			projector = true;
-        		else
-        			projector = false;
-        		if(data.floor[i].place[j].microphone == 1)
-        			microphone = true;
-        		else
-        			microphone = false;
-        		if(data.floor[i].place[j].speaker == 1)
-        			speaker = true;
-        		else
-        			speaker = false;
-        		add_place_edit(i, data.floor[i].place[j].place, data.floor[i].place[j].capacity, drum, projector, microphone, speaker,data.floor[i].place[j].place_id);
-        	}
-
-        }
-      }
-    };
-    xmlhttp.open("GET", "getBuilding.php?buildingId=" + building_id , true);
-    xmlhttp.send();
-</script>
-</html>
-=======
 	else
 	{
 		$floor_id = $floor->id;
@@ -258,14 +88,19 @@
     	    	$speaker = 'true';
     	    else
     	    	$speaker = 'false';
+    	    if($place->placeCapacity == null)
+        		$capacity = 0;
+        	else
+        		$capacity = $place->placeCapacity;
 	
 			if($place->id == null)
 			{
 				$place_num = $place_num+1;
 				$place_id = 'place_'.($place_num);
-				$sql = "INSERT INTO `place`(`place_id`, `place`, `capacity`, `flag`, `drum`, `speaker`, `microphone`, `projector`, `floor_id`, `user_id`) VALUES ('".$place_id."','".$place->placeName."',".$place->placeCapacity.",1,".$drum.",".$speaker.",".$microphone.",".$projector.",'". $floor_id."',NULL)";
+				$sql = "INSERT INTO `place`(`place_id`, `place`, `capacity`, `flag`, `drum`, `speaker`, `microphone`, `projector`, `floor_id`, `user_id`) VALUES ('".$place_id."','".$place->placeName."',".$capacity.",1,".$drum.",".$speaker.",".$microphone.",".$projector.",'". $floor_id."',NULL)";
 				echo $sql;
 				$con->query($sql);
+				$condition_p[] = "`place_id` != '".$place_id."'";
 			}
 			else
 			{
@@ -275,27 +110,26 @@
 				$condition_p[] = "`place_id` != '".$place->id."'";
 			}
 		}
+		if(count($condition_p) != 0)
+		{
+			$command = $condition_p[0];
+			for($i=1; $i<count($condition_p); $i++)
+				$command = $command.' AND '.$condition_p[$i];
+			$sql = "UPDATE `place` SET `flag` = 0 WHERE ".$command." AND `floor_id` = '".$floor_id."'";
+			echo $sql;
+			$con->query($sql);
+		}
 		$condition_f[] = "`floor_id` != '".$floor->id."'";
 	}
-	if(count($condition_p) != 0)
-	{
-		$command = $condition_p[0];
-		for($i=1; $i<count($condition_p); $i++)
-			$command = $command.' AND '.$condition_p[$i];
-		$sql = "UPDATE `place` SET `flag` = 0 WHERE ".$command;
-		echo $sql;
-		$con->query($sql);
-	}
-	if(count($condition_f) != 0)
-	{
-		$command = $condition_f[0];
-		for($i=1; $i<count($condition_f); $i++)
-			$command = $command.' AND '.$condition_f[$i];
-		$sql = "UPDATE `floor` SET `flag` = 0 WHERE ".$command;
-		echo $sql;
-		$con->query($sql);
-	}
+}
+if(count($condition_f) != 0)
+{
+	$command = $condition_f[0];
+	for($i=1; $i<count($condition_f); $i++)
+		$command = $command.' AND '.$condition_f[$i];
+	$sql = "UPDATE `floor` SET `flag` = 0 WHERE ".$command." AND `building_id` = '".$building_id."'";
+	echo $sql;
+	$con->query($sql);
 }
 $con->disconnect();
 ?>
->>>>>>> parent of 6a88c4c... edit building
