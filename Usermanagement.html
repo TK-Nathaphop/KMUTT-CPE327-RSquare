@@ -20,8 +20,9 @@
     <title>R-Square</title>
     <link rel="icon" href="picture/logo/Artboard 1logo.png" />
 
-
+    
     <!--CSS-->
+  
   </head>
   <body>
     <!-- /Head of the Card -->
@@ -221,12 +222,22 @@
                         <div class ="row">
                           <span class = "dark-blue">Search</span>
                         </div>
-                        <form action="/findActivity.php" method="get">
+                        <!-- <form action="/findActivity.php" method="get">
                           <input type ="text" class="form-control" list="actList" id = "act_search" name="actList" placeholder = "Search">
                           <datalist id="actList"> 
                             
                           </datalist>
-                        </form>
+                        </form> -->
+                        <!-- <form action="/findActivity.php" method="get">
+                          <input type ="text" class="form-control" list="actList" id = "act_search" name="actList" placeholder = "Search">
+                          <datalist id="actList"> 
+                            
+                          </datalist> -->
+                          <div class="form-group">
+                              <select class="form-control" id="actList">
+                              </select>
+                            </div>
+                        
                         <div class="row">
                           <span class="dark-blue" id="org">Activity Name:&nbsp</span>
                           <span id="activity_name"> </span>
@@ -577,6 +588,7 @@
     {
       dataAct = JSON.parse(this.responseText);
       var container = document.getElementById("actList");
+      console.log(dataAct);
       for(var i=0; i<dataAct.length;i++)
         {
           rowAct[i] = document.createElement("option");
@@ -593,13 +605,13 @@
         
         $(document).ready(function()
         {
-          $("#act_search").change(function()
-          {
+          $("#actList").change(function()
+          {          
             if($(this).val() == '')// If There's no text in search box, it will show nothing
               {
               }
             else{
-              var result = document.getElementById("act_search").value; //Get data to searching
+              var result = document.getElementById("actList").value; //Get data to searching
               //Searching for event in Index
               for(var j=0; j<dataAct.length;j++)
               {
