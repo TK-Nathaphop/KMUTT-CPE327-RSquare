@@ -644,6 +644,7 @@ function sendAll(select) {
   else
     sendJSONEdit();
   sendIMG(willBeFloor);
+  location.replace("Adminpage.html");
 }
 
 function sendIMG(numberFloor) {
@@ -732,5 +733,6 @@ function DeleteData(building_id)
     //   debugging
     const data = await res.text();
     console.log("server res" + data);
+    location.replace("Adminpage.html");
   });
 }
