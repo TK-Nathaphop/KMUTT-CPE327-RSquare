@@ -27,100 +27,100 @@ foreach($json[0]->floor as $floor)
 		$sql = "INSERT INTO `floor`(`floor_id`, `floor`, `blueprint`, `flag`, `building_id`) VALUES ('".$floor_id."','".$floor->floorName."','".$floor->floorBlueprint."',1,'".$building_id."')";
 		echo $sql;
 		$con->query($sql);
-	
-		$sql = "SELECT count(`place_id`) FROM `place`";
-		$ret = $con->query($sql);
-		$place_num = $ret->fetch_row()[0];
-		foreach($floor->place as $place)
-		{
-			if($place->placeDrumUsage == 1)
-    	    	$drum = 'true';
-    	    else
-    	    	$drum = 'false';
-    	    if($place->placeProjector == 1)
-    	    	$projector = 'true';
-    	    else
-    	    	$projector = 'false';
-    	    if($place->placeMicrophone == 1)
-    	    	$microphone = 'true';
-    	    else
-    	    	$microphone = 'false';
-    	    if($place->placeSpeaker == 1)
-    	    	$speaker = 'true';
-    	    else
-    	    	$speaker = 'false';
-    	    if($place->placeCapacity == null)
-        		$capacity = 0;
-        	else
-        		$capacity = $place->placeCapacity;
-	
-			$place_num = $place_num+1;
-			$place_id = 'place_'.($place_num);
-			$sql = "INSERT INTO `place`(`place_id`, `place`, `capacity`, `flag`, `drum`, `speaker`, `microphone`, `projector`, `floor_id`, `user_id`) 	VALUES ('".$place_id."','".$place->placeName."',".$capacity.",1,".$drum.",".$speaker.",".$microphone.",".$projector.",'".$floor_id."',NULL)";
-			echo $sql;
-			$con->query($sql);
-		}
 	}
 	else
 	{
 		$floor_id = $floor->id;
-		$sql = "UPDATE `floor` SET `floor`='".$floor->floorName."',`blueprint`='".$floor->floorBlueprint."' WHERE `floor_id`= '".$floor->id."'";
+		$sql = "UPDATE `floor` SET `floor`='".$floor->floorName."',`blueprint`='".$floor->floorBlueprint."' WHERE `floor_id`= '".$floor_id."'";
 		echo $sql;
 		$con->query($sql);
-		$sql = "SELECT count(`place_id`) FROM `place`";
-		$ret = $con->query($sql);
-		$place_num = $ret->fetch_row()[0];
-		foreach($floor->place as $place)
-		{
-			if($place->placeDrumUsage == 1)
-    	    	$drum = 'true';
-    	    else
-    	    	$drum = 'false';
-    	    if($place->placeProjector == 1)
-    	    	$projector = 'true';
-    	    else
-    	    	$projector = 'false';
-    	    if($place->placeMicrophone == 1)
-    	    	$microphone = 'true';
-    	    else
-    	    	$microphone = 'false';
-    	    if($place->placeSpeaker == 1)
-    	    	$speaker = 'true';
-    	    else
-    	    	$speaker = 'false';
-    	    if($place->placeCapacity == null)
-        		$capacity = 0;
-        	else
-        		$capacity = $place->placeCapacity;
+	}
+		// $sql = "SELECT count(`place_id`) FROM `place`";
+		// $ret = $con->query($sql);
+		// $place_num = $ret->fetch_row()[0];
+		// foreach($floor->place as $place)
+		// {
+		// 	if($place->placeDrumUsage == 1)
+  //   	    	$drum = 'true';
+  //   	    else
+  //   	    	$drum = 'false';
+  //   	    if($place->placeProjector == 1)
+  //   	    	$projector = 'true';
+  //   	    else
+  //   	    	$projector = 'false';
+  //   	    if($place->placeMicrophone == 1)
+  //   	    	$microphone = 'true';
+  //   	    else
+  //   	    	$microphone = 'false';
+  //   	    if($place->placeSpeaker == 1)
+  //   	    	$speaker = 'true';
+  //   	    else
+  //   	    	$speaker = 'false';
+  //   	    if($place->placeCapacity == null)
+  //       		$capacity = 0;
+  //       	else
+  //       		$capacity = $place->placeCapacity;
 	
-			if($place->id == null)
-			{
-				$place_num = $place_num+1;
-				$place_id = 'place_'.($place_num);
-				$sql = "INSERT INTO `place`(`place_id`, `place`, `capacity`, `flag`, `drum`, `speaker`, `microphone`, `projector`, `floor_id`, `user_id`) VALUES ('".$place_id."','".$place->placeName."',".$capacity.",1,".$drum.",".$speaker.",".$microphone.",".$projector.",'". $floor_id."',NULL)";
-				echo $sql;
-				$con->query($sql);
-				$condition_p[] = "`place_id` != '".$place_id."'";
-			}
-			else
-			{
-				$sql = "UPDATE `place` SET `place`='".$place->placeName."',`capacity`=".$place->placeCapacity.",`drum`=".$drum.", `speaker`=".$speaker.",`microphone`=".$microphone.",`projector`=".$projector." WHERE `place_id`= '".$place->id."'";
-				echo $sql;
-				$con->query($sql);
-				$condition_p[] = "`place_id` != '".$place->id."'";
-			}
-		}
-		if(count($condition_p) != 0)
+		// 	$place_num = $place_num+1;
+		// 	$place_id = 'place_'.($place_num);
+		// 	$sql = "INSERT INTO `place`(`place_id`, `place`, `capacity`, `flag`, `drum`, `speaker`, `microphone`, `projector`, `floor_id`, `user_id`) 	VALUES ('".$place_id."','".$place->placeName."',".$capacity.",1,".$drum.",".$speaker.",".$microphone.",".$projector.",'".$floor_id."',NULL)";
+		// 	echo $sql;
+		// 	$con->query($sql);
+		// }
+	
+	$sql = "SELECT count(`place_id`) FROM `place`";
+	$ret = $con->query($sql);
+	$place_num = $ret->fetch_row()[0];
+	foreach($floor->place as $place)
+	{
+		if($place->placeDrumUsage == 1)
+        	$drum = 'true';
+        else
+        	$drum = 'false';
+        if($place->placeProjector == 1)
+        	$projector = 'true';
+        else
+        	$projector = 'false';
+        if($place->placeMicrophone == 1)
+        	$microphone = 'true';
+        else
+        	$microphone = 'false';
+        if($place->placeSpeaker == 1)
+        	$speaker = 'true';
+        else
+        	$speaker = 'false';
+        if($place->placeCapacity == null)
+    		$capacity = 0;
+    	else
+    		$capacity = $place->placeCapacity;
+	
+		if($place->id == null)
 		{
-			$command = $condition_p[0];
-			for($i=1; $i<count($condition_p); $i++)
-				$command = $command.' AND '.$condition_p[$i];
-			$sql = "UPDATE `place` SET `flag` = 0 WHERE ".$command." AND `floor_id` = '".$floor_id."'";
+			$place_num = $place_num+1;
+			$place_id = 'place_'.($place_num);
+			$sql = "INSERT INTO `place`(`place_id`, `place`, `capacity`, `flag`, `drum`, `speaker`, `microphone`, `projector`, `floor_id`, `user_id`) VALUES ('".$place_id."','".$place->placeName."',".$capacity.",1,".$drum.",".$speaker.",".$microphone.",".$projector.",'". $floor_id."',NULL)";
 			echo $sql;
 			$con->query($sql);
 		}
-		$condition_f[] = "`floor_id` != '".$floor->id."'";
+		else
+		{
+			$place_id = $place->id;
+			$sql = "UPDATE `place` SET `place`='".$place->placeName."',`capacity`=".$place->placeCapacity.",`drum`=".$drum.", `speaker`=".$speaker.",`microphone`=".$microphone.",`projector`=".$projector." WHERE `place_id`= '".$place_id."'";
+			echo $sql;
+			$con->query($sql);
+		}
+		$condition_p[] = "`place_id` != '".$place_id."'";
 	}
+	if(count($condition_p) != 0)
+	{
+		$command = $condition_p[0];
+		for($i=1; $i<count($condition_p); $i++)
+			$command = $command.' AND '.$condition_p[$i];
+		$sql = "UPDATE `place` SET `flag` = 0 WHERE ".$command." AND `floor_id` = '".$floor_id."'";
+		echo $sql;
+		$con->query($sql);
+	}
+	$condition_f[] = "`floor_id` != '".$floor_id."'";
 }
 if(count($condition_f) != 0)
 {
