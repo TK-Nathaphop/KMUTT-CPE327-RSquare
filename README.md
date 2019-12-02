@@ -1,5 +1,5 @@
 = Read Me =
--Introduction
+- Introduction -
 	R-Square is a web-based for reservation room or activity ground. The student can reserve places by input information and select places in R-Square.While the teachers or staff can read the details of the request and approve it through the R-Square. All of them can access R-Square by popular web browsers like Google Chrome, Safari, Firefox and Microsoft Edge. R-Square is stored on MySQL Database and developed by PHP language on Apache Server in Linux Ubuntu  16.04 operating system.
 	R-Square has important modules below
 		1) Authentication
