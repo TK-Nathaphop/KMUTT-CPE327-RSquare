@@ -15,7 +15,7 @@
 		3) Place Management
 		4) User Management
 
-### -Installation
+## -Installation
 	1) Create a new database name 'rsquare'
 	2) Import sql file into database
 	3) You can setting your own the domain, user of database, password of database, and database name in 'class/databaseConnection.php'
