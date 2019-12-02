@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+= Read Me =
+-Introduction
+	R-Square is a web-based for reservation room or activity ground. The student can reserve places by input information and select places in R-Square.While the teachers or staff can read the details of the request and approve it through the R-Square. All of them can access R-Square by popular web browsers like Google Chrome, Safari, Firefox and Microsoft Edge. R-Square is stored on MySQL Database and developed by PHP language on Apache Server in Linux Ubuntu  16.04 operating system.
+	R-Square has important modules below
+		1) Authentication
+		2) Reservation
+		3) Request Approval
+		4) Building Management
+		5) Floor Management
+		6) Place Management
+		7) User Management
+	But this implementation provided only
+		1) Building Management
+		2) Floor Management
+		3) Place Management
+		4) User Management
 
-You can use the [editor on GitHub](https://github.com/TK-Nathaphop/RSquare/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+- Installation -
+1) Create a new database name 'rsquare'
+2) Import sql file into database
+3) You can setting your own the domain, user of database, password of database, and database name in 'class/databaseConnection.php'
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/TK-Nathaphop/RSquare/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- How to use -
+	After import data into database, you can open the 'Adminpage.html' to access the admin page with has building list and user list. You can click at building or user to edit the information.
