@@ -28,3 +28,9 @@ This project used for studying about Software Engineering Project.
 
 ## How to use
 After import data into database, you can open the 'Adminpage.html' to access the admin page with has building list and user list. You can click at building or user to edit the information.
+
+## Member
+Nathaphop Sundarabhogin
+Thaweesak Saiwongse
+Natthawat Tungruethaipak
+Chawakorn Boonrin
